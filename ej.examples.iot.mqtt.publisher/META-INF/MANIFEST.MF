@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Application-Id: MQTTPublisher
+Application-Version: 1.0.0
+Application-PrintableName: Publisher
+Application-Description: Publisher
+Application-BackgroundServices: ej.examples.iot.mqtt.app.PublisherBG
