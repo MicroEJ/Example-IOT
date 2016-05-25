@@ -1,0 +1,1 @@
+This project gathers simple Sandboxed application using net libraries.
