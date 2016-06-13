@@ -5,6 +5,8 @@ import java.util.logging.Level;
 import android.net.ConnectivityManager;
 import android.net.ConnectivityManager.NetworkCallback;
 import android.net.Network;
+import android.net.NetworkInfo;
+import android.net.NetworkRequest;
 import ej.components.dependencyinjection.ServiceLoaderFactory;
 import ej.examples.iot.ssl.rest.ExampleRestyHttps;
 import ej.examples.iot.ssl.rest.ui.out.OutputStreamRedirection;
@@ -58,16 +60,16 @@ public class MainActivity extends NetworkCallback implements Activity {
 
 		ConnectivityManager connectivityManager = ServiceLoaderFactory.getServiceLoader()
 				.getService(ConnectivityManager.class);
-		// if (connectivityManager != null) {
-		// NetworkRequest request = new NetworkRequest.Builder().build();
-		// connectivityManager.registerNetworkCallback(request, this);
-		// NetworkInfo info = connectivityManager.getActiveNetworkInfo();
-		// if (info.isConnected()) {
-		onAvailable(null);
-		// } else {
-		// onLost(null);
-		// }
-		// }
+		if (connectivityManager != null) {
+			NetworkRequest request = new NetworkRequest.Builder().build();
+			connectivityManager.registerNetworkCallback(request, this);
+			NetworkInfo info = connectivityManager.getActiveNetworkInfo();
+			if (info.isConnected()) {
+				onAvailable(null);
+			} else {
+				onLost(null);
+			}
+		}
 	}
 
 	@Override

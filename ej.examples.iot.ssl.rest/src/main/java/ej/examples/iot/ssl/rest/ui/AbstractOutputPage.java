@@ -14,7 +14,6 @@ import ej.navigation.page.Page;
 import ej.widget.StyledDesktop;
 import ej.widget.basic.Image;
 import ej.widget.basic.Label;
-import ej.widget.basic.image.ImageHelper;
 import ej.widget.composed.ButtonComposite;
 import ej.widget.listener.OnClickListener;
 
@@ -98,7 +97,6 @@ public abstract class AbstractOutputPage extends Page{
 		topBar.setFirst(backButton);
 
 		ButtonComposite logo = new ButtonComposite();
-		logo.setWidget(new Image(ImageHelper.loadImage(Images.MICROEJ_LOGO)));
 		logo.setWidget(new Image(Images.MICROEJ_LOGO));
 		logo.addOnClickListener(new OnClickListener() {
 
