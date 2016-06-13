@@ -35,7 +35,6 @@
 		<dependency org="ej.api" name="bon" rev="[1.2.0-RC0,2.0.0-RC0[" conf="provided->*"/>
 		<dependency org="ej.api" name="kf" rev="[1.4.0-RC0,2.0.0-RC0[" conf="provided->*"/>
 		
-		<dependency org="ej.library.eclasspath" name="logging" rev="[1.0.0-RC0,2.0.0-RC0["/>
 		<dependency org="org.json.me" name="json" rev="[1.0.0-RC0,2.0.0-RC0["/>
 
 		
