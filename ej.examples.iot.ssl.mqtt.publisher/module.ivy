@@ -35,6 +35,7 @@
 		<dependency org="ej.api" name="bon" rev="[1.2.0-RC0,2.0.0-RC0[" conf="provided->*"/>
 		<dependency org="ej.api" name="net" rev="[1.0.0-RC0,2.0.0-RC0[" conf="provided->*"/>
 		<dependency org="ej.api" name="kf" rev="[1.0.0-RC0,2.0.0-RC0[" conf="provided->*"/>
+		<dependency org="ej.api" name="ssl" rev="[2.0.0-RC0,3.0.0-RC0[" conf="provided->*"/>
 		
 		<dependency org="ej.library.eclasspath" name="logging" rev="[1.0.0-RC0,2.0.0-RC0["/>
 
@@ -42,6 +43,7 @@
 		
 		<dependency org="ej.library.iot" name="android.connectivity" rev="[1.0.0,2.0.0[" />
 		
+		<dependency org="org.eclipse.paho" name="mqttv3-microej" rev="[1.0.0-RC0,2.0.0-RC0["/>
 		<dependency org="org.eclipse.paho" name="mqttv3-ssl-microej" rev="[0.0.0-RC0,1.0.0-RC0["/>
 		
 		<!-- 
