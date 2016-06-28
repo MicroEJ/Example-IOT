@@ -6,11 +6,11 @@
 	IS2T PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
 -->
 # Overview
-A MicroEJ sandboxed application that uses the org.json.me parser provided by json.org to parse and  browse a JSON content. 
+A MicroEJ sandboxed application that uses the org.json.me parser provided by json.org to parse and browse a [JSON file](/ej.examples.iot.json/src/main/resources/json/menu.json). 
 
-The JSON content is simple abstraction of a file menu as provided here: http://www.json.org/example.html
+The contents of the JSON file is taken from an example available from http://www.json.org/example.html
 
-The example then tries to list all the 'menuitem's available in the popup menu. It is assumed the user knows the menu JSON file structure.
+The example then iterates over all the **menuitem** elements available in the **popup** menu and print their contents.
 
 # Usage
 ## Run on MicroEJ Simulator
@@ -23,7 +23,7 @@ The example then tries to list all the 'menuitem's available in the popup menu. 
 ## Run on device
 ### Local deploy
 1. Right Click on [JsonExampleEntryPoint.java](/ej.examples.iot.json/src/.generated~/.java/__JsonExample__/generated/JsonExampleEntryPoint.java)
-1. Select **Run as -> Run Configuration** 
+1. Select **Run as -> Run Configurations...** 
 1. Select **MicroEJ Application** configuration kind
 1. Click on **New launch configuration** icon
 1. In **Execution** tab

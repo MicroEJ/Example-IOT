@@ -15,13 +15,11 @@ import org.json.me.JSONObject;
 
 /**
  * This example uses the org.json.me parser provided by json.org to parse and
- * browse a JSON content.
+ * browse a JSON file.
  *
- * The JSON content is simple abstraction of a file menu as provided here:
- * http://www.json.org/example.html
+ * The contents of the JSON file is taken from an example available from http://www.json.org/example.html
  *
- * The example then tries to list all the 'menuitem's available in the popup
- * menu. It is assumed the user knows the menu JSON file structure.
+ * The example then iterates over all the menuitem elements available in the popup menu and print their contents
  *
  */
 public class MyJSONExample {
