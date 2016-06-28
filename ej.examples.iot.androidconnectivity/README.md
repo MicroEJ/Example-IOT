@@ -18,7 +18,7 @@ A MicroEJ sandboxed application using the connectivity manager.
 
 ## Run on device
 ### Local deploy
-1. Right Click on [ExampleBG.java](/ej.examples.iot.androidconnectivity/src/main/java/ej/examples/iot/androidconnectivity/app/ExampleBG.java)
+1. Right Click on [ExampleBG.java](ej.examples.iot.androidconnectivity/src/main/java/ej/examples/iot/androidconnectivity/app/ExampleBG.java)
 1. Select **Run as -> Run Configuration** 
 1. Click on **New launch configuration** icon
 1. Select your platform 
