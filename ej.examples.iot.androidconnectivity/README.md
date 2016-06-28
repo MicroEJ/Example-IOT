@@ -12,14 +12,13 @@ A MicroEJ sandboxed application using the connectivity manager.
 ## Run on MicroEJ Simulator
 1. Right Click on the project
 1. Select **Run as -> MicroEJ Application**
-1. Select **BackgroundServicesStandalone**
-1. Select your platform 
+1. Select your platform
 1. Press **Ok**
 
 ## Run on a device
 ### Local deploy
 1. Right Click on [ExampleBG.java](ej.examples.iot.androidconnectivity/src/main/java/ej/examples/iot/androidconnectivity/app/ExampleBG.java)
-1. Select **Run as -> Run Configuration** 
+1. Select **Run as -> Run Configurations...** 
 1. Select **MicroEJ Application** configuration kind
 1. Click on **New launch configuration** icon
 1. In **Execution** tab
