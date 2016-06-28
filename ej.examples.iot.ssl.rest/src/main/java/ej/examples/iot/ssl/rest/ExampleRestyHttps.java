@@ -71,7 +71,7 @@ public class ExampleRestyHttps {
 	 */
 	public static void initRestyHttpsContext() throws Exception{
 		/*
-		 * Create and initialize the SSLContext which will be used to connect the secure Server.
+		 * Create and initialize the SSLContext which will be used to connect to the secure Server.
 		 * The followings steps show how to create and setup the SSLContext for Resty Https connection.
 		 */
 		try (
@@ -114,7 +114,7 @@ public class ExampleRestyHttps {
 
 			/*
 			 * Step 6 : Finally, tell Https to use by default our sslContext's SocketFactory for SSLSocket creation.
-			 * All Https Resty connection will use this SSLContext to connect a secure server and the SSL handshake
+			 * All Https Resty connection will use this SSLContext to connect to a secure server and the SSL handshake
 			 * will be done with the defined trust store and TLS algorithm v1.2.
 			 */
 			HttpsURLConnection.setDefaultSSLSocketFactory(sslContext.getSocketFactory());
@@ -248,7 +248,7 @@ public class ExampleRestyHttps {
 			int responseCode = conn.getResponseCode();
 			//check the connection response code
 			if(responseCode == HttpURLConnection.HTTP_OK){
-				//get the response infos
+				//get the response info
 				JSONObject response = resource.object();
 				LOGGER.info(response.toString());
 			}else{

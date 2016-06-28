@@ -14,7 +14,7 @@ import ej.style.container.Rectangle;
 import ej.widget.StyledComposite;
 
 /**
- * A composite that gives takes all the available space, and gives the minimum
+ * A composite that takes all the available space, and gives the minimum
  * space to its only child.
  */
 public class WrapComposite extends StyledComposite {
