@@ -6,9 +6,13 @@
 	IS2T PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
 -->
 # Overview
-A MicroEJ sandboxed application publishing mqtt data to a standard http MQTT broker.
+A MicroEJ sandboxed application publishing MQTT data to a regular MQTT broker.
 
 # Usage
+## MQTT broker setup
+A running MQTT broker is required in order to run this example. You shall ensure that the broker is reachable from your development machine (if running the sample on MicroEJ simulator) or from your target device
+1. Update the MQTT URL in [HelloWorldConstants.java](/ej.examples.iot.mqtt.publisher/src/main/java/ej/examples/iot/mqtt/HelloWorldConstants.java)
+
 ## Run on MicroEJ Simulator
 1. Right Click on the project
 1. Select **Run as -> MicroEJ Application**
