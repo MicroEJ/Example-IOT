@@ -27,7 +27,7 @@ To change the ssl broker server:
 ## Run on a device
 ### Local deploy
 1. Right Click on [SubscriberEntryPoint.java](/ej.examples.iot.ssl.mqtt.subscriber/src/.generated~/.java/__MQTTSSLSubscriber__/generated/MQTTSSLSubscriberEntryPoint.java)
-1. Select **Run as -> Run Configuration** 
+1. Select **Run as -> Run Configurations...** 
 1. Select **MicroEJ Application** configuration kind
 1. Click on **New launch configuration** icon
 1. In **Execution** tab

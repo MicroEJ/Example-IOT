@@ -19,7 +19,7 @@ A MicroEJ sandboxed application publishing mqtt data to a standard http MQTT bro
 ## Run on a device
 ### Local deploy
 1. Right Click on [PublisherEntryPoint.java](/ej.examples.iot.mqtt.publisher/src/.generated~/.java/__MQTTPublisher__/generated/MQTTPublisherEntryPoint.java)
-1. Select **Run as -> Run Configuration** 
+1. Select **Run as -> Run Configurations...** 
 1. Select **MicroEJ Application** configuration kind
 1. Click on **New launch configuration** icon
 1. In **Execution** tab

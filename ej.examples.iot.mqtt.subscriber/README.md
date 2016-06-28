@@ -19,7 +19,7 @@ A MicroEJ sandboxed application subscribing to a standard http MQTT broker.
 ## Run on device
 ### Local deploy
 1. Right Click on [SubscriberEntryPoint.java](/ej.examples.iot.mqtt.subscriber/src/.generated~/.java/__MQTTSubscriber__/generated/MQTTSubscriberEntryPoint.java)
-1. Select **Run as -> Run Configuration** 
+1. Select **Run as -> Run Configurations...** 
 1. Select **MicroEJ Application** configuration kind
 1. Click on **New launch configuration** icon
 1. In **Execution** tab
