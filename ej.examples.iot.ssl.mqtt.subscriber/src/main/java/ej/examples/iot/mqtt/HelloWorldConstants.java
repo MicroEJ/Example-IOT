@@ -8,7 +8,7 @@ package ej.examples.iot.mqtt;
 
 public interface HelloWorldConstants {
 
-	String BROKER = "ssl://85.119.83.194:8883";
+	String BROKER = "ssl://test.mosquitto.org:8883";
 	String SUBSCRIBER_ID = "subscriber";
 	String HELLO_WORLD_MESSAGE = "Hello World !!";
 	String TOPIC = "microej";
