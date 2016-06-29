@@ -39,7 +39,7 @@ public final class HelloWorldSubscriber extends NetworkCallbackImpl {
 
 	@Override
 	public void onAvailable() {
-		LOGGER.info("[Subsriber] Network available");
+		LOGGER.info("[Subscriber] Network available");
 		client = null;
 		try {
 			client = new MqttClient(BROKER, SUBSCRIBER_ID);
@@ -52,21 +52,21 @@ public final class HelloWorldSubscriber extends NetworkCallbackImpl {
 
 				@Override
 				public void deliveryComplete(IMqttDeliveryToken token) {
-					LOGGER.info("[Subsriber] delivery complete: " + token);
+					LOGGER.info("[Subscriber] delivery complete: " + token);
 				}
 
 				@Override
 				public void connectionLost(Throwable cause) {
-					LOGGER.info("[Subsriber] connection lost: " + cause);
+					LOGGER.info("[Subscriber] connection lost: " + cause);
 				}
 			});
-			LOGGER.info("[Subsriber] Try to connect to " + HelloWorldConstants.BROKER);
+			LOGGER.info("[Subscriber] Try to connect to " + HelloWorldConstants.BROKER);
 			client.connect();
-			LOGGER.info("[Subsriber] Client connected");
+			LOGGER.info("[Subscriber] Client connected");
 			client.subscribe(TOPIC);
-			LOGGER.info("[Subsriber] Client subscribed to " + TOPIC);
+			LOGGER.info("[Subscriber] Client subscribed to " + TOPIC);
 		} catch (MqttException e) {
-			LOGGER.info("[Subsriber] Unable to connect to " + BROKER + " and subscribe to topic " + TOPIC);
+			LOGGER.info("[Subscriber] Unable to connect to " + BROKER + " and subscribe to topic " + TOPIC);
 			disconnect();
 		}
 	}
@@ -75,7 +75,7 @@ public final class HelloWorldSubscriber extends NetworkCallbackImpl {
 		if (client != null) {
 			try {
 				client.disconnect();
-				LOGGER.info("[Subsriber] Client disconnected");
+				LOGGER.info("[Subscriber] Client disconnected");
 			} catch (MqttException e2) {
 				// Ignored.
 			}
@@ -84,7 +84,7 @@ public final class HelloWorldSubscriber extends NetworkCallbackImpl {
 
 	@Override
 	public void onLost() {
-		LOGGER.info("[Subsriber] Network Lost");
+		LOGGER.info("[Subscriber] Network Lost");
 		disconnect();
 	}
 }

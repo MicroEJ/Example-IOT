@@ -43,7 +43,6 @@
 		
 		<dependency org="ej.library.iot" name="android.connectivity" rev="[1.0.0,2.0.0[" />
 		
-		<dependency org="org.eclipse.paho" name="mqttv3-microej" rev="[1.0.0-RC0,2.0.0-RC0["/>
 		<dependency org="org.eclipse.paho" name="mqttv3-ssl-microej" rev="[0.0.0-RC0,1.0.0-RC0["/>
 		
 		<!-- 
