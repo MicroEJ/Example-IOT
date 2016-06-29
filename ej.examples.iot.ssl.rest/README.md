@@ -12,7 +12,7 @@ MicroEJ Java library: Simple Resty example using https connecion
 ## Change the server 
 To change the server:
 1. Download the broker server's certificate (eg **server.com.crt**).
-1. Drop it into the folder [certificates](ej.examples.iot.ssl.mqtt.subscriber/src/main/resources/certificates)
+1. Drop it into the folder [certificates](ej.examples.iot.ssl.rest/src/main/resources/certificates)
 1. In [ej.examples.iot.ssl.rest.resources.list](ej.examples.iot.ssl.rest/src/main/resources/ej/examples/iot/ssl/rest/ej.examples.iot.ssl.rest.resources.list)
 	1. change the existing path **/certificates/httpbin.org.crt** to the path of your certificate (eg **/certificates/server.com.crt**)
 1. In  [ExampleRestyHttps.java](ej.examples.iot.ssl.rest/src/main/java/ej/examples/iot/ssl/rest/ExampleRestyHttps.java)
