@@ -47,7 +47,7 @@
 		
 		<dependency org="ej.library.util"  name="concurrent.executor" rev="[1.0.0, 2.0.0["/>
 		
-		<dependency org="ej.library.ui" name="widget" rev="[2.0.0-a,3.0.0-a["/>
+		<dependency org="ej.library.ui" name="widget" rev="2.0.0-alpha.8"/>
 		<dependency org="ej.library.wadapps" name="exit" rev="[1.0.0-RC0,2.0.0-RC0["/>
 		<dependency org="ej.library.wadapps" name="framework" rev="[1.2.0-RC0,2.0.0-RC0[" />
         
