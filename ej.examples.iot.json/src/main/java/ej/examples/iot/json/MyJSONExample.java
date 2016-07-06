@@ -45,31 +45,58 @@ public class MyJSONExample {
 			e1.printStackTrace();
 			return;
 		}
-
+		JSONObject jsono = null;
+		JSONObject popup = null;
+		JSONArray menuItems = null;
 		try {
 
 			// create the data structure to exploit the content
 			// the string is created assuming default encoding
-			JSONObject jsono = new JSONObject(new String(bytes));
+			jsono = new JSONObject(new String(bytes));
 
 			// get the JSONObject named "menu" from the root JSONObject
 			JSONObject menu = jsono.getJSONObject("menu");
 			System.out.println("The JSONObject named \"menu\" is:");
 			System.out.println(menu + "\n");
 
-			JSONObject popup = menu.getJSONObject("popup");
+			popup = menu.getJSONObject("popup");
 			System.out.println("The JSONObject named \"popup\" in \"menu\" is:");
 			System.out.println(popup + "\n");
 
-			JSONArray a = popup.getJSONArray("menuitem");
+			menuItems = popup.getJSONArray("menuitem");
 
 			System.out.println("The menuitem content of popup is:");
-			System.out.println(a.toString() + "\n");
+			System.out.println(menuItems.toString() + "\n");
 
+			String defaultValue = jsono.optString("Unknown key", "Default value");
+			System.out.println("The value of \"Unknown key\" is:");
+			System.out.println(defaultValue + "\n");
 		} catch (JSONException e) {
 			// a getJSONObject() or a getJSONArray() failed
 			// or the parsing failed
-			e.printStackTrace();
+			throw new AssertionError(e);
+		}
+
+		// Write data
+		try {
+			// append a new menu item in the JSONArray
+			popup.append("menuitem", new JSONObject("{\"value\": \"Save\", \"onClick\": \"SaveDoc()\"}"));
+
+			// Add a new field.
+			jsono.put("window", false);
+			// Override existing field.
+			jsono.put("window", true);
+
+			// Accumulate a new menu (menu is a JsonObject)
+			jsono.accumulate("menu", new JSONObject("{\"id\": \"file2\"}"));
+			// Accumulate a new menu (menu is a JsonArray)
+			jsono.accumulate("menu", new JSONObject("{\"id\": \"file3\"}"));
+
+			System.out.println("The new JSONArray is:");
+			System.out.println(jsono + "\n");
+		} catch (JSONException e) {
+			// An error occured while adding data.
+			throw new AssertionError(e);
 		}
 
 	}

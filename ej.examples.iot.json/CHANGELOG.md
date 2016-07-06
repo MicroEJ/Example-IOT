@@ -12,6 +12,9 @@ Bugfixes:
   - List here the bug fixes.
 -->
 
+## 2.1.0 (2016-07-06)
+Add write functions.
+
 ## 2.0.0 (2016-06-13)
 Port to MicroEj 4
 
