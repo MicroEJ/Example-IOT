@@ -5,7 +5,7 @@
 	IS2T PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
 -->
 <ivy-module version="2.0" xmlns:ea="http://www.easyant.org"> 
-   <info organisation="ej.examples.iot" module="json" status="integration" revision="2.0.0">
+   <info organisation="ej.examples.iot" module="json" status="integration" revision="2.1.0">
     <ea:build organisation="com.is2t.easyant.buildtypes" module="build-application" revision="5.+">
         </ea:build>
     </info>
@@ -35,7 +35,7 @@
 		<dependency org="ej.api" name="bon" rev="[1.2.0-RC0,2.0.0-RC0[" conf="provided->*"/>
 		<dependency org="ej.api" name="kf" rev="[1.4.0-RC0,2.0.0-RC0[" conf="provided->*"/>
 		
-		<dependency org="org.json.me" name="json" rev="[1.0.0-RC0,2.0.0-RC0["/>
+		<dependency org="org.json.me" name="json" rev="[1.1.4-RC0,2.0.0-RC0["/>
 
 		
 		<dependency org="ej.library.wadapps" name="framework" rev="[1.0.0,2.0.0[" />
