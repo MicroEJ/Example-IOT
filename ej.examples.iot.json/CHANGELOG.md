@@ -12,14 +12,13 @@ Bugfixes:
   - List here the bug fixes.
 -->
 
-## 0.1.1 (2016-07-06)
-Features:
-  - Change ej.examples.iot.json
-Bugfixes:
-  - Add source code for iot ssl mqtt.
+## 2.1.0 (2016-07-06)
+Add write functions.
 
+## 2.0.0 (2016-06-13)
+Port to MicroEj 4
 
-## 0.1.0 (2016-05-25)
+## 1.0.0 (2016-05-25)
 Features:
   - Initial revision.
 
