@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Application-Id: ZWave
+Application-Version: 0.1.0
+Application-PrintableName: ZWave
+Application-Description: ZWave hello world
+Application-BackgroundServices: ej.examples.iot.zwave.app.ZWaveBG, 
+ ej.examples.iot.zwave.app.MorseSwitchBG
