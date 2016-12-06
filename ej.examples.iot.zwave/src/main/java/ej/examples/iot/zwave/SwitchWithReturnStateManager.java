@@ -13,7 +13,7 @@ import ej.ecom.RegistrationEvent;
 import ej.ecom.RegistrationListener;
 
 /**
- *
+ * Prints when a switch event occurs.
  */
 public class SwitchWithReturnStateManager
 implements RegistrationListener<SwitchWithReturnState>, EventHandler<SwitchWithReturnState, SwitchStateEvent> {

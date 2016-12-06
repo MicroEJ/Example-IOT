@@ -16,7 +16,7 @@ import ej.examples.iot.zwave.SwitchWithReturnStateManager;
 import ej.wadapps.app.BackgroundService;
 
 /**
- * Background Service starting the ZWave managment.
+ * Background Service starting the ZWave management.
  */
 public class ZWaveBG implements BackgroundService {
 

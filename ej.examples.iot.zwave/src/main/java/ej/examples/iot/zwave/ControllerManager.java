@@ -29,7 +29,7 @@ public class ControllerManager implements RegistrationListener<Controller> {
 
 	/**
 	 * Instantiate a Controller Manager.
-	 * 
+	 *
 	 * @param switchStateManager
 	 *            Switch
 	 * @param dryContactManager
@@ -58,6 +58,8 @@ public class ControllerManager implements RegistrationListener<Controller> {
 	}
 
 	/**
+	 * Add handlers to a controller.
+	 *
 	 * @param controller
 	 */
 	private void addHandlers(Controller controller) {
@@ -69,6 +71,8 @@ public class ControllerManager implements RegistrationListener<Controller> {
 	}
 
 	/**
+	 * Remove handlers to a controller.
+	 *
 	 * @param device
 	 */
 	private void removeHandlers(Controller controller) {
@@ -81,7 +85,7 @@ public class ControllerManager implements RegistrationListener<Controller> {
 	}
 
 	/**
-	 *
+	 * Remove all handlers to all controllers.
 	 */
 	public void stop() {
 		Iterator<Controller> it = DeviceManager.list(Controller.class);

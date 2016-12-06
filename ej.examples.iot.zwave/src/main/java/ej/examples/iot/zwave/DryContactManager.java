@@ -13,7 +13,7 @@ import ej.ecom.RegistrationEvent;
 import ej.ecom.RegistrationListener;
 
 /**
- *
+ * Prints a message when a drycontact event occurs.
  */
 public class DryContactManager
 implements RegistrationListener<DryContact>, EventHandler<DryContact, DryContactEvent> {
