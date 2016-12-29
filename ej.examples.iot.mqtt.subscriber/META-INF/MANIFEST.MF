@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-Application-Id: MQTTSubscriber
-Application-Version: 1.0.0
-Application-PrintableName: Subscriber
-Application-Description: Subscriber
-Application-BackgroundServices: ej.examples.iot.mqtt.app.SubscriberBG
