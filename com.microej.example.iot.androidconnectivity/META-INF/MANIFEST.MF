@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Application-Id: AndroidConnectivity
-Application-Version: 1.0.0
+Application-Version: 2.0.0
 Application-PrintableName: AndroidConnectivity
 Application-Description: AndroidConnectivity
-Application-BackgroundServices: ej.examples.iot.androidconnectivity.app.ExampleBG
+Application-BackgroundServices: com.microej.example.iot.androidconnectivity.app.ExampleBG

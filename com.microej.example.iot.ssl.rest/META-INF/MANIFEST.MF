@@ -3,5 +3,5 @@ Application-Id: RestHTTPS
 Application-Version: 0.1.0
 Application-PrintableName: rest.https
 Application-Description: rest.https
-Application-Activities: ej.examples.iot.ssl.rest.ui.MainActivity
+Application-Activities: com.microej.example.iot.ssl.rest.ui.MainActivity
 

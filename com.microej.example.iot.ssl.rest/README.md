@@ -1,10 +1,3 @@
-<!--
-	Markdown
-	
-	Copyright 2016 IS2T. All rights reserved.
-	Modification and distribution is permitted under certain conditions.
-	Use of this source code is governed by a BSD-style license that can be found at http://www.is2t.com/open-source-bsd-license/
--->
 # Overview
 MicroEJ Java library: Simple Resty example using https connecion
 
@@ -12,10 +5,10 @@ MicroEJ Java library: Simple Resty example using https connecion
 ## Change the server 
 To change the server:
 1. Download the broker server's certificate (eg **server.com.crt**).
-1. Drop it into the folder [certificates](ej.examples.iot.ssl.rest/src/main/resources/certificates)
-1. In [ej.examples.iot.ssl.rest.resources.list](ej.examples.iot.ssl.rest/src/main/resources/ej/examples/iot/ssl/rest/ej.examples.iot.ssl.rest.resources.list)
+2. Drop it into the folder [certificates](src/main/resources/certificates)
+3. In [com.microej.example.iot.ssl.rest.resources.list](src/main/resources/com/microej/example/iot/ssl/rest/com.microej.example.iot.ssl.rest.resources.list)
 	1. change the existing path **/certificates/httpbin.org.crt** to the path of your certificate (eg **/certificates/server.com.crt**)
-1. In  [ExampleRestyHttps.java](ej.examples.iot.ssl.rest/src/main/java/ej/examples/iot/ssl/rest/ExampleRestyHttps.java)
+4. In  [ExampleRestyHttps.java](src/main/java/com/microej/example/iot/ssl/rest/ExampleRestyHttps.java)
  	1. Set the variable **SERVER_CERT_FILENAME** to your certificate name (eg **server.com.crt**)
 	1. Set the variable **SERVER_URL** to your server URL
 
@@ -29,7 +22,7 @@ To change the server:
 
 ## Run on device
 ### Local deploy
-1. Right Click on [RestHTTPSEntryPoint.java](ej.examples.rest.https.app/src/.generated~/.java/__RestHTTPS__/generated/RestHTTPSEntryPoint.java)
+1. Right Click on [RestHTTPSEntryPoint.java](com.microej.example.rest.https.app/src/.generated~/.java/__RestHTTPS__/generated/RestHTTPSEntryPoint.java)
 1. Select **Run as -> Run Configurations...** 
 1. Select **MicroEJ Application** configuration kind
 1. Click on **New launch configuration** icon

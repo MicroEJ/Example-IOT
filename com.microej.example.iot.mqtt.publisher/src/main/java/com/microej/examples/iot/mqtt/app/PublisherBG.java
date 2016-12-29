@@ -4,9 +4,9 @@
  * Copyright 2016 IS2T. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found at http://www.is2t.com/open-source-bsd-license/
  */
-package ej.examples.iot.mqtt.app;
+package com.microej.example.iot.mqtt.app;
 
-import ej.examples.iot.mqtt.HelloWorldPublisher;
+import com.microej.example.iot.mqtt.HelloWorldPublisher;
 import ej.wadapps.app.BackgroundService;
 /**
  *

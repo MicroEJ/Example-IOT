@@ -1,18 +1,8 @@
-<!--
-	Markdown
--->
-<!--
-Changelog template:
-
-## Revision (YYYY-mm-dd)
+## 2.0.0 (2016-12-29)
 Features:
-  - List here the new features.
+  - Change organization.
   
-Bugfixes:
-  - List here the bug fixes.
--->
-  
-## 0.1.0 (2016-05-23)
+## 1.0.0 (2016-05-23)
 Features:
   - Initial revision.
 

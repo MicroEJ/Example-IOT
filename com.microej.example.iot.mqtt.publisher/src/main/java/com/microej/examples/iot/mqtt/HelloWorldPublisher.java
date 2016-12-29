@@ -4,10 +4,10 @@
  * Copyright 2015 IS2T. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found at http://www.is2t.com/open-source-bsd-license/.
  */
-package ej.examples.iot.mqtt;
+package com.microej.example.iot.mqtt;
 
-import static ej.examples.iot.mqtt.HelloWorldConstants.BROKER;
-import static ej.examples.iot.mqtt.HelloWorldConstants.TOPIC;
+import static com.microej.example.iot.mqtt.HelloWorldConstants.BROKER;
+import static com.microej.example.iot.mqtt.HelloWorldConstants.TOPIC;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
