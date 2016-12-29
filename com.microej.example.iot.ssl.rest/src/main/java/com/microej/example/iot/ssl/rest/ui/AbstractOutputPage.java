@@ -1,12 +1,12 @@
-package ej.examples.iot.ssl.rest.ui;
+package com.microej.example.iot.ssl.rest.ui;
 
 import ej.components.dependencyinjection.ServiceLoaderFactory;
 import ej.container.Dock;
-import ej.examples.iot.ssl.rest.ui.out.OutputStreamRedirection;
-import ej.examples.iot.ssl.rest.ui.out.OutputStreamWidget;
-import ej.examples.iot.ssl.rest.ui.style.ClassSelectors;
-import ej.examples.iot.ssl.rest.ui.style.Images;
-import ej.examples.iot.ssl.rest.ui.style.Pictos;
+import com.microej.example.iot.ssl.rest.ui.out.OutputStreamRedirection;
+import com.microej.example.iot.ssl.rest.ui.out.OutputStreamWidget;
+import com.microej.example.iot.ssl.rest.ui.style.ClassSelectors;
+import com.microej.example.iot.ssl.rest.ui.style.Images;
+import com.microej.example.iot.ssl.rest.ui.style.Pictos;
 import ej.exit.ExitHandler;
 import ej.mwt.Widget;
 import ej.navigation.desktop.NavigationDesktop;

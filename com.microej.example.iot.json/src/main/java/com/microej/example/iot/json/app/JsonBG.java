@@ -4,9 +4,9 @@
  * Copyright 2016 IS2T. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found at http://www.is2t.com/open-source-bsd-license/
  */
-package ej.examples.iot.json.app;
+package com.microej.example.iot.json.app;
 
-import ej.examples.iot.json.MyJSONExample;
+import com.microej.example.iot.json.MyJSONExample;
 import ej.wadapps.app.BackgroundService;
 /**
  *

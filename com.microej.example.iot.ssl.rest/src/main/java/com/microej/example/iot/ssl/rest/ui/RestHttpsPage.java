@@ -1,9 +1,9 @@
-package ej.examples.iot.ssl.rest.ui;
+package com.microej.example.iot.ssl.rest.ui;
 
 import ej.container.List;
-import ej.examples.iot.ssl.rest.ExampleRestyHttps;
-import ej.examples.iot.ssl.rest.ui.style.ClassSelectors;
-import ej.examples.iot.ssl.rest.ui.style.Pictos;
+import com.microej.example.iot.ssl.rest.ExampleRestyHttps;
+import com.microej.example.iot.ssl.rest.ui.style.ClassSelectors;
+import com.microej.example.iot.ssl.rest.ui.style.Pictos;
 import ej.mwt.Widget;
 import ej.util.concurrent.SingleThreadExecutor;
 import ej.widget.basic.Label;

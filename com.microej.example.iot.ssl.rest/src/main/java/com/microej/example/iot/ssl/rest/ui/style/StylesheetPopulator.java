@@ -1,7 +1,7 @@
-package ej.examples.iot.ssl.rest.ui.style;
+package com.microej.example.iot.ssl.rest.ui.style;
 
-import ej.examples.iot.ssl.rest.ui.WrapComposite;
-import ej.examples.iot.ssl.rest.ui.out.Line;
+import com.microej.example.iot.ssl.rest.ui.WrapComposite;
+import com.microej.example.iot.ssl.rest.ui.out.Line;
 import ej.microui.display.Colors;
 import ej.microui.display.GraphicsContext;
 import ej.navigation.desktop.NavigationDesktop;

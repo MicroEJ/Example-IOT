@@ -5,7 +5,7 @@
  * For demonstration purpose only.
  * IS2T PROPRIETARY. Use is subject to license terms.
  */
-package ej.examples.iot.ssl.rest.ui.out;
+package com.microej.example.iot.ssl.rest.ui.out;
 
 import java.io.IOException;
 import java.io.OutputStream;

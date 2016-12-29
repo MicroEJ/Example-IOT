@@ -1,4 +1,4 @@
-package ej.examples.iot.ssl.rest.ui;
+package com.microej.example.iot.ssl.rest.ui;
 
 import java.util.logging.Level;
 
@@ -8,9 +8,9 @@ import android.net.Network;
 import android.net.NetworkInfo;
 import android.net.NetworkRequest;
 import ej.components.dependencyinjection.ServiceLoaderFactory;
-import ej.examples.iot.ssl.rest.ExampleRestyHttps;
-import ej.examples.iot.ssl.rest.ui.out.OutputStreamRedirection;
-import ej.examples.iot.ssl.rest.ui.style.StylesheetPopulator;
+import com.microej.example.iot.ssl.rest.ExampleRestyHttps;
+import com.microej.example.iot.ssl.rest.ui.out.OutputStreamRedirection;
+import com.microej.example.iot.ssl.rest.ui.style.StylesheetPopulator;
 import ej.microui.MicroUI;
 import ej.navigation.desktop.NavigationDesktop;
 import ej.navigation.page.ClassNameURLResolver;

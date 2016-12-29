@@ -1,4 +1,4 @@
-package ej.examples.iot.ssl.rest.ui;
+package com.microej.example.iot.ssl.rest.ui;
 
 import ej.container.List;
 import ej.mwt.Widget;

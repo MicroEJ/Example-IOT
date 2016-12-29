@@ -1,4 +1,4 @@
-package ej.examples.iot.ssl.rest.ui.style;
+package com.microej.example.iot.ssl.rest.ui.style;
 
 public interface ClassSelectors {
 

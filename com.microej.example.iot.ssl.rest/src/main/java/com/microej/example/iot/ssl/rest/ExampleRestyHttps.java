@@ -5,7 +5,7 @@
  * Use of this source code is governed by a BSD-style license that can be found at http://www.is2t.com/open-source-bsd-license/
  *
  */
-package ej.examples.iot.ssl.rest;
+package com.microej.example.iot.ssl.rest;
 
 import java.io.IOException;
 import java.io.InputStream;
