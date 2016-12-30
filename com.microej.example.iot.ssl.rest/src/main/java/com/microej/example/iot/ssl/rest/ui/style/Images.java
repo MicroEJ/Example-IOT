@@ -1,8 +1,8 @@
 /*
  * Java
  *
- * Copyright 2015 IS2T. All rights reserved.
- * Use of this source code is governed by a BSD-style license that can be found at http://www.is2t.com/open-source-bsd-license/.
+ * Copyright 2015-2016 IS2T. All rights reserved.
+ * Use of this source code is subject to license terms..
  */
 package com.microej.example.iot.ssl.rest.ui.style;
 
