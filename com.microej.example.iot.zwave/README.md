@@ -1,10 +1,3 @@
-<!--
-	Markdown
-	
-	Copyright 2016 IS2T. All rights reserved.
-	Modification and distribution is permitted under certain conditions.
-	Use of this source code is subject to license terms.
--->
 # Overview
 A MicroEJ sandboxed application listening for ZWave notifications and switching on/off ZWave switchs.
 
