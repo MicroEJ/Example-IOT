@@ -70,7 +70,7 @@ public final class HelloWorldPublisher extends NetworkCallbackImpl {
 				}
 			}
 		}
-		unregisiterConnectivityManager();
+		unregisterConnectivityManager();
 	}
 
 	private void sleep() {
@@ -85,7 +85,7 @@ public final class HelloWorldPublisher extends NetworkCallbackImpl {
 	public void onLost() {
 		sendMessage = false;
 		LOGGER.info("[Publisher] Network Lost");
-		unregisiterConnectivityManager();
+		unregisterConnectivityManager();
 
 	}
 }

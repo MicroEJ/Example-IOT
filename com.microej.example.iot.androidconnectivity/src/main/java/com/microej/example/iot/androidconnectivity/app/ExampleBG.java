@@ -23,7 +23,7 @@ public class ExampleBG implements BackgroundService {
 
 	@Override
 	public void onStop() {
-		connectivityExample.unregisiterConnectivityManager();
+		connectivityExample.unregisterConnectivityManager();
 
 	}
 
