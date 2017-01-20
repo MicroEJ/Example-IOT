@@ -1,16 +1,7 @@
-<!--
-	Markdown
--->
-<!--
-Changelog template:
-
-## Revision (YYYY-mm-dd)
+## 13.0.0 (2016-12-29)
 Features:
-  - List here the new features.
-  
-Bugfixes:
-  - List here the bug fixes.
--->
+  - Change org
+  - Change count for revision (sum of all sub revisions)
 
 ## 0.1.1 (2016-07-06)
 Features:
