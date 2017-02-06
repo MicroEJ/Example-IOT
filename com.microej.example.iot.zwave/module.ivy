@@ -41,8 +41,8 @@
 		<dependency org="ej.library.eclasspath" name="logging" rev="[1.0.0-RC0,2.0.0-RC0["/>
 
 		<dependency org="ej.library.wadapps" name="framework" rev="[1.0.0,2.0.0[" />
-		<dependency org="ej.basedriver" name="basedriver-api" rev="[3.0.0,4.0.0["/>
-		<dependency org="ej.basedriver" name="basedriver-event" rev="[2.0.0,3.0.0["/>
+		<dependency org="ej.library.iot.basedriver" name="basedriver-api" rev="[1.0.0,2.0.0["/>
+		<dependency org="ej.library.iot.basedriver" name="basedriver-event" rev="[1.0.0,2.0.0["/>
 		
 		<!-- 
         	Additionnal dependencies only used by MicroEJ standalone application launches
