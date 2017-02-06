@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry kind="con" path="org.apache.ivyde.eclipse.cpcontainer.IVYDE_CONTAINER/?project=com.microej.example.iot.zwave.app&amp;ivyXmlPath=module.ivy&amp;confs=*"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.microej.example.iot.zwave"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
