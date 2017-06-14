@@ -1,16 +1,23 @@
 package com.microej.example.iot.ssl.rest.ui;
 
-import ej.container.List;
 import com.microej.example.iot.ssl.rest.ExampleRestyHttps;
 import com.microej.example.iot.ssl.rest.ui.style.ClassSelectors;
 import com.microej.example.iot.ssl.rest.ui.style.Pictos;
+
 import ej.mwt.Widget;
 import ej.util.concurrent.SingleThreadExecutor;
 import ej.widget.basic.Label;
 import ej.widget.composed.Button;
+import ej.widget.container.List;
 import ej.widget.listener.OnClickListener;
+import ej.widget.navigation.navigator.HistorizedNavigator;
 
 public class RestHttpsPage extends AbstractOutputPage {
+
+	public RestHttpsPage(HistorizedNavigator navi) {
+		super(navi);
+		// TODO Auto-generated constructor stub
+	}
 
 	SingleThreadExecutor executor = new SingleThreadExecutor();
 

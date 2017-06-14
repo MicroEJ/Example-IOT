@@ -1,0 +1,48 @@
+<!--
+	Ivy
+-->
+<ivy-module version="2.0" xmlns:ea="http://www.easyant.org" xmlns:m="http://ant.apache.org/ivy/extra"> 
+    <info organisation="com.microej.example.iot.ssl" module="restget" status="integration" revision="0.1.0">
+        <ea:build organisation="com.is2t.easyant.buildtypes" module="build-application" revision="5.5.+">
+        	<ea:property name="test.run.includes.pattern" value="**/_AllTests_*.class"/>
+        </ea:build>
+    </info>
+    
+    <configurations defaultconfmapping="default->default;provided->provided">
+		<conf name="default" visibility="public" description="Runtime dependencies to other artifacts"/>
+		<conf name="provided" visibility="public" description="Compile-time dependencies to APIs provided by the platform"/>
+		<conf name="documentation" visibility="public" description="Documentation related to the artifact (javadoc, PDF)"/>
+		<conf name="source" visibility="public" description="Source code"/>
+		<conf name="dist" visibility="public" description="Contains extra files like README.md, licenses"/>
+ 		<conf name="test" visibility="private" description="Dependencies for test execution. It is not required for normal use of the application, and is only available for the test compilation and execution phases."/>
+	</configurations>
+    
+    <publications>
+    	<!-- keep this empty if no specific artifact to publish -->
+		<!-- must be here in order to avoid all configurations for the default artifact -->
+    </publications>
+    
+    <dependencies>
+    	<!-- 
+			Put MicroEJ API dependencies to the "provided->*" configuration
+			Other regular runtime dependencies are in the "default" configuration  
+		-->
+        <dependency org="ej.api" name="edc" rev="[1.2.0-RC0,2.0.0-RC0[" conf="provided->*" />
+        <dependency org="ej.library.wadapps" name="framework" rev="[1.2.0-RC0,2.0.0-RC0[" />
+               
+        <dependency org="ej.api"  name="net" rev="[1.0.0-RC0,2.0.0-RC0)" conf="provided->*"/>
+		<dependency org="ej.api"  name="ssl" rev="[2.0.0-RC0,3.0.0-RC0)" conf="provided->*"/>
+
+		<dependency org="org.json.me"  name="json" rev="[1.0.0-RC0,2.0.0-RC0["  />
+		<dependency org="ej.library.iot"  name="restclient" rev="[1.0.0-RC0,2.0.0-RC0["/>
+		<dependency org="ej.library.eclasspath"  name="httpsclient" rev="[1.0.0-RC0, 2.0.0-RC0["/>
+		<dependency org="ej.library.eclasspath"  name="httpclient" rev="[1.0.0-RC0, 2.0.0-RC0["/>
+		<dependency org="ej.library.eclasspath"  name="url" rev="[1.0.0-RC0, 2.0.0-RC0["/>
+		<dependency org="ej.library.iot" name="android.connectivity" rev="[1.0.0-RC0, 2.0.0-RC0[" />
+               
+        <!-- 
+        	Test-only dependencies
+        --> 
+        <dependency org="ej.library.test" name="junit" rev="[1.0.0-RC0,2.0.0-RC0[" conf="test->*" />
+    </dependencies>
+</ivy-module>
