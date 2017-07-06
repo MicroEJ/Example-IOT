@@ -2,7 +2,7 @@
 This project gathers simple sandboxed applications using net libraries.
 
 ## Requirements
-* MicroEJ Studio or SDK 4.0 or later
+* MicroEJ Studio or SDK 4.1 or later
 
 # Usage
 Each subfolder contains a distinct IOT application.

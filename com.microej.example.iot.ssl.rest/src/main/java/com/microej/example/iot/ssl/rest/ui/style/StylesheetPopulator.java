@@ -2,9 +2,9 @@ package com.microej.example.iot.ssl.rest.ui.style;
 
 import com.microej.example.iot.ssl.rest.ui.WrapComposite;
 import com.microej.example.iot.ssl.rest.ui.out.Line;
+
 import ej.microui.display.Colors;
 import ej.microui.display.GraphicsContext;
-import ej.navigation.desktop.NavigationDesktop;
 import ej.style.Selector;
 import ej.style.State;
 import ej.style.Stylesheet;
@@ -32,7 +32,7 @@ public class StylesheetPopulator {
 	private StylesheetPopulator() {
 	}
 
-	public static void initialize(NavigationDesktop desktop) {
+	public static void initialize() {
 		Stylesheet stylesheet = StyleHelper.getStylesheet();
 		// Sets the default style.
 		EditableStyle defaultStyle = new EditableStyle();
