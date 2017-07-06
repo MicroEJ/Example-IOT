@@ -2,25 +2,25 @@ package com.microej.example.iot.ssl.rest.ui;
 
 import java.util.logging.Level;
 
+import com.microej.example.iot.ssl.rest.ExampleRestyHttps;
+import com.microej.example.iot.ssl.rest.ui.out.OutputStreamRedirection;
+import com.microej.example.iot.ssl.rest.ui.style.StylesheetPopulator;
+
 import android.net.ConnectivityManager;
 import android.net.ConnectivityManager.NetworkCallback;
 import android.net.Network;
 import android.net.NetworkInfo;
 import android.net.NetworkRequest;
 import ej.components.dependencyinjection.ServiceLoaderFactory;
-import com.microej.example.iot.ssl.rest.ExampleRestyHttps;
-import com.microej.example.iot.ssl.rest.ui.out.OutputStreamRedirection;
-import com.microej.example.iot.ssl.rest.ui.style.StylesheetPopulator;
 import ej.microui.MicroUI;
-import ej.navigation.desktop.NavigationDesktop;
-import ej.navigation.page.ClassNameURLResolver;
-import ej.navigation.page.PagesStackURL;
-import ej.navigation.page.URLResolver;
 import ej.wadapps.app.Activity;
+import ej.widget.StyledDesktop;
+import ej.widget.StyledPanel;
+import ej.widget.navigation.navigator.HistorizedNavigator;
 
 public class MainActivity extends NetworkCallback implements Activity {
 
-	private NavigationDesktop desktop;
+	private HistorizedNavigator navi;
 
 	@Override
 	public String getID() {
@@ -51,12 +51,15 @@ public class MainActivity extends NetworkCallback implements Activity {
 			e.printStackTrace();
 		}
 		MicroUI.start();
-		URLResolver solver = new ClassNameURLResolver();
-		PagesStackURL urlStackURL = new PagesStackURL(solver);
-		desktop = new NavigationDesktop(solver,
-				urlStackURL);
 
-		StylesheetPopulator.initialize(desktop);
+		StylesheetPopulator.initialize();
+		
+		StyledDesktop desktop = new StyledDesktop();
+		navi = new HistorizedNavigator();
+		StyledPanel panel = new StyledPanel();
+		panel.setWidget(navi);
+		panel.showFullScreen(desktop);
+		desktop.show();
 
 		ConnectivityManager connectivityManager = ServiceLoaderFactory.getServiceLoader()
 				.getService(ConnectivityManager.class);
@@ -102,11 +105,14 @@ public class MainActivity extends NetworkCallback implements Activity {
 
 	@Override
 	public void onAvailable(Network network) {
-		desktop.show(RestHttpsPage.class.getName());
+		RestHttpsPage restHttpPage= new RestHttpsPage(navi);
+		navi.show(restHttpPage);
 	}
 
 	@Override
 	public void onLost(Network network) {
-		desktop.show(ConnectingPage.class.getName());
+		ConnectingPage connectingPage = new ConnectingPage(navi);
+		navi.show(connectingPage);
 	}
+
 }

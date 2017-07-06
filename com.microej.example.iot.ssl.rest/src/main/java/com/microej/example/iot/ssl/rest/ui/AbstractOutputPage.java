@@ -1,36 +1,38 @@
 package com.microej.example.iot.ssl.rest.ui;
 
-import ej.components.dependencyinjection.ServiceLoaderFactory;
-import ej.container.Dock;
 import com.microej.example.iot.ssl.rest.ui.out.OutputStreamRedirection;
 import com.microej.example.iot.ssl.rest.ui.out.OutputStreamWidget;
 import com.microej.example.iot.ssl.rest.ui.style.ClassSelectors;
 import com.microej.example.iot.ssl.rest.ui.style.Images;
 import com.microej.example.iot.ssl.rest.ui.style.Pictos;
+
+import ej.components.dependencyinjection.ServiceLoaderFactory;
 import ej.exit.ExitHandler;
 import ej.mwt.Widget;
-import ej.navigation.desktop.NavigationDesktop;
-import ej.navigation.page.Page;
-import ej.widget.StyledDesktop;
 import ej.widget.basic.Image;
 import ej.widget.basic.Label;
-import ej.widget.composed.ButtonComposite;
+import ej.widget.composed.ButtonWrapper;
+import ej.widget.container.Dock;
 import ej.widget.listener.OnClickListener;
+import ej.widget.navigation.navigator.HistorizedNavigator;
+import ej.widget.navigation.page.Page;
 
 public abstract class AbstractOutputPage extends Page{
 
 	private Dock content;
 	private OutputStreamWidget outStreamWidget;
+	private HistorizedNavigator navi;
+	
 
-	public AbstractOutputPage() {
+	public AbstractOutputPage(HistorizedNavigator navi) {
 		super();
+		this.navi = navi;
 		setWidget(createContent());
 	}
 
 	private Widget createContent() {
 		this.content = new Dock();
-		this.content.setHorizontal(false);
-		this.content.setFirst(createTopBar());
+		this.content.addTop(createTopBar());
 		this.content.setCenter(createMainContent());
 		return this.content;
 	}
@@ -46,7 +48,7 @@ public abstract class AbstractOutputPage extends Page{
 
 	protected Widget createMainContent() {
 		Dock dock = new Dock();
-		dock.setFirst(createMenu());
+		dock.addLeft(createMenu());
 		dock.setCenter(createOutput());
 		dock.addClassSelector(ClassSelectors.GREY_BG);
 		return dock;
@@ -63,7 +65,7 @@ public abstract class AbstractOutputPage extends Page{
 		Dock topBar = new Dock();
 		topBar.setCenter(title);
 
-		ButtonComposite backButton = new ButtonComposite();
+		ButtonWrapper backButton = new ButtonWrapper();
 		Label label;
 		if (canGoBack()) {
 			// Add a back button.
@@ -71,10 +73,7 @@ public abstract class AbstractOutputPage extends Page{
 
 				@Override
 				public void onClick() {
-					StyledDesktop desktop = AbstractOutputPage.this.getDesktop();
-					if(desktop instanceof NavigationDesktop){
-						((NavigationDesktop)desktop).back();
-					}
+					navi.back();
 				}
 			});
 			label = new Label(Character.toString(Pictos.BACK));
@@ -94,9 +93,9 @@ public abstract class AbstractOutputPage extends Page{
 		label.addClassSelector(ClassSelectors.PICTO);
 		backButton.setWidget(label);
 
-		topBar.setFirst(backButton);
+		topBar.addLeft(backButton);
 
-		ButtonComposite logo = new ButtonComposite();
+		ButtonWrapper logo = new ButtonWrapper();
 		logo.setWidget(new Image(Images.MICROEJ_LOGO));
 		logo.addOnClickListener(new OnClickListener() {
 
@@ -107,18 +106,15 @@ public abstract class AbstractOutputPage extends Page{
 		});
 
 		// Image logo = new Image(Images.MICROEJ_LOGO);
-		topBar.setLast(logo);
+		topBar.addRight(logo);
 		topBar.addClassSelector(ClassSelectors.TITLE);
 
 		return topBar;
 	}
 
 	private boolean canGoBack() {
-		StyledDesktop desktop = this.getDesktop();
-		if(desktop instanceof NavigationDesktop){
-			return ((NavigationDesktop)desktop).canGoBack();
-		}
-		return false;
+		return navi.canGoBackward();
+
 	}
 
 	protected Widget getTitle() {

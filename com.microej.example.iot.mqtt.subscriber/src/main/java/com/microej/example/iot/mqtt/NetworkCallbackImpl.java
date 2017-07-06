@@ -28,10 +28,10 @@ public abstract class NetworkCallbackImpl extends NetworkCallback {
 	 */
 	public NetworkCallbackImpl() {
 		super();
-		regisiterConnectivityManager();
+		registerConnectivityManager();
 	}
 
-	protected void regisiterConnectivityManager() {
+	protected void registerConnectivityManager() {
 		registerTask = null;
 
 		ConnectivityManager connectivityManager = ServiceLoaderFactory.getServiceLoader()
@@ -50,7 +50,7 @@ public abstract class NetworkCallbackImpl extends NetworkCallback {
 			registerTask = new TimerTask() {
 				@Override
 				public void run() {
-					regisiterConnectivityManager();
+					registerConnectivityManager();
 				}
 			};
 
@@ -74,7 +74,7 @@ public abstract class NetworkCallbackImpl extends NetworkCallback {
 
 	public abstract void onLost();
 
-	protected void unregisiterConnectivityManager() {
+	protected void unregisterConnectivityManager() {
 		if (registerTask != null) {
 			registerTask.cancel();
 		}

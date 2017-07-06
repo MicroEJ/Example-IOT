@@ -23,10 +23,10 @@ public abstract class NetworkCallbackImpl extends NetworkCallback {
 	 */
 	public NetworkCallbackImpl() {
 		super();
-		regisiterConnectivityManager();
+		registerConnectivityManager();
 	}
 
-	protected void regisiterConnectivityManager() {
+	protected void registerConnectivityManager() {
 		// Load connectivityManager service.
 		ConnectivityManager connectivityManager = ServiceLoaderFactory.getServiceLoader()
 				.getService(ConnectivityManager.class);
@@ -63,7 +63,7 @@ public abstract class NetworkCallbackImpl extends NetworkCallback {
 
 	public abstract void onLost();
 
-	public void unregisiterConnectivityManager() {
+	public void unregisterConnectivityManager() {
 		ConnectivityManager connectivityManager = ServiceLoaderFactory.getServiceLoader()
 				.getService(ConnectivityManager.class);
 		if (connectivityManager != null) {
