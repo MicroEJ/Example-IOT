@@ -130,6 +130,7 @@ public class ExampleRestyHttps {
 		LOGGER.info("=========== GET REQUEST ===========");
 		String requestURL = SERVER_URL+"/get";
 		Resty resty = new Resty();
+				
 		//do GET request request;
 		JSONResource resource = resty.json(requestURL);
 		HttpURLConnection conn = resource.http();

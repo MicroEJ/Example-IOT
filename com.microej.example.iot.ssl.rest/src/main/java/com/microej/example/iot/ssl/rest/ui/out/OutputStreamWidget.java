@@ -7,10 +7,10 @@
  */
 package com.microej.example.iot.ssl.rest.ui.out;
 
-import ej.container.List;
-import ej.container.Scroll;
 import ej.mwt.Panel;
 import ej.mwt.Widget;
+import ej.widget.container.List;
+import ej.widget.container.Scroll;
 
 public class OutputStreamWidget extends Scroll {
 
