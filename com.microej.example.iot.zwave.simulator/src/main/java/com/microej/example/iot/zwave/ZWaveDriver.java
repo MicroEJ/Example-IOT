@@ -9,15 +9,15 @@ package com.microej.example.iot.zwave;
 import java.io.IOException;
 
 import ej.basedriver.Controller;
+import ej.basedriver.util.AbstractDriverService;
 import ej.basedriver.zwave.ZwaveController;
 import ej.ecom.io.CommPort;
 import ej.ecom.io.Connector;
-import ej.wadapps.basedriver.util.AbstractDriverBackgroundService;
 
 /**
  *
  */
-public class ZWaveDriver extends AbstractDriverBackgroundService {
+public class ZWaveDriver extends AbstractDriverService {
 
 	static {
 		try {

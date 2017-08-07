@@ -17,18 +17,20 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 /**
- * This example connects to a MQTT broker, publishes the "Hello World!" message to the topic "MqttHelloWorld" and
- * disconnects from the MQTT broker.
+ * This example connects to a MQTT broker, publishes the "Hello World!" message
+ * to the topic "MqttHelloWorld" and disconnects from the MQTT broker.
  */
-public final class HelloWorldPublisher extends NetworkCallbackImpl {
+public final class HelloWorldPublisher extends NetworkCallbackImpl implements Runnable {
 
 	/**
 	 * Application logger.
 	 */
 	private static final Logger LOGGER = Logger.getLogger(HelloWorldPublisher.class.getName());
 	private static final long PUBLISH_DELAY = 1000;
+	private static final String NAME = "Hello World Publisher Thread";
 
 	private boolean sendMessage = false;
+	private MqttClient client;
 
 	public static void main(String[] args) {
 		// Display all logs
@@ -36,56 +38,60 @@ public final class HelloWorldPublisher extends NetworkCallbackImpl {
 
 		new HelloWorldPublisher();
 	}
-
+	
 	@Override
 	public void onAvailable() {
 		sendMessage = true;
 		LOGGER.info("[Publisher] Network available");
 
-		MqttClient client = null;
+		client = null;
 		try {
 			client = new MqttClient(HelloWorldConstants.BROKER, HelloWorldConstants.PUBLISHER_ID);
 			LOGGER.info("[Publisher] Try to connect to " + HelloWorldConstants.BROKER);
 			client.connect();
 
 			LOGGER.info("[Publisher] Client connected");
-			while (sendMessage) {
-				MqttMessage message = new MqttMessage();
-				String text = HelloWorldConstants.HELLO_WORLD_MESSAGE;
-				message.setPayload(text.getBytes());
-				client.publish(HelloWorldConstants.TOPIC, message);
-				LOGGER.info(message + " published to " + HelloWorldConstants.TOPIC);
-				sleep();
-			}
+		
+			Thread thread = new Thread(this);
+			thread.setName(NAME);
+			thread.run();
+
 		} catch (MqttException e) {
 			e.printStackTrace();
 			LOGGER.info("[Publisher] Unable to connect to " + BROKER + " and publish to topic " + TOPIC);
-		} finally {
-			if (client != null) {
-				try {
-					client.disconnect();
-					LOGGER.info("[Publisher] Client disconnected");
-				} catch (MqttException e) {
-					// Ignored.
-				}
-			}
-		}
-		unregisterConnectivityManager();
-	}
-
-	private void sleep() {
-		try {
-			Thread.sleep(PUBLISH_DELAY);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+			unregisterConnectivityManager();
 		}
 	}
-
+	
 	@Override
 	public void onLost() {
 		sendMessage = false;
 		LOGGER.info("[Publisher] Network Lost");
 		unregisterConnectivityManager();
 
+	}
+
+	@Override
+	public void run() {
+		while (sendMessage && !Thread.currentThread().isInterrupted()) {
+			MqttMessage message = new MqttMessage();
+			String text = HelloWorldConstants.HELLO_WORLD_MESSAGE;
+			message.setPayload(text.getBytes());
+			try {
+				client.publish(HelloWorldConstants.TOPIC, message);
+				LOGGER.info(message + " published to " + HelloWorldConstants.TOPIC);
+				Thread.sleep(PUBLISH_DELAY);
+			} catch (MqttException | InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		try {
+			client.disconnect();
+			LOGGER.info("[Publisher] Client disconnected");
+		} catch (MqttException e) {
+			// Ignored.
+		}
+		unregisterConnectivityManager();
 	}
 }
