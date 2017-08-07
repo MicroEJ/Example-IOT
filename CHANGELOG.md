@@ -1,4 +1,8 @@
-## 14.0.0 (2017-14-06)
+## 14.0.3 (2017-08-07)
+Bug Fixes:
+  - HTTP Rest samples & MQTT 
+
+## 14.0.0 (2017-06-14)
 
 Features:
 	- Add new com.microej.example.iot.ssl.restget example
