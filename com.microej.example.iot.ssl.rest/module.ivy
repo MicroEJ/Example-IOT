@@ -5,7 +5,7 @@
 	Use of this source code is subject to license terms.
 -->
 <ivy-module version="2.0" xmlns:ea="http://www.easyant.org" xmlns:m="http://ant.apache.org/ivy/extra"> 
-	<info organisation="com.is2t.libraries" module="resty-https-example" status="integration" revision="2.0.0">
+	<info organisation="com.is2t.libraries" module="resty-https-example" status="integration" revision="2.0.1">
         <ea:build organisation="com.is2t.easyant.buildtypes" module="build-application" revision="5.5.+">
         	<ea:property name="test.run.includes.pattern" value="**/_AllTests_*.class"/>
         </ea:build>

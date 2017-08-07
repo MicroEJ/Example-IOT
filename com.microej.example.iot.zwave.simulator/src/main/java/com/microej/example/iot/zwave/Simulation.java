@@ -17,7 +17,7 @@ public class Simulation {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		new ZWaveDriver().onStart();
+		new ZWaveDriver().start();
 		BackgroundServicesStandalone.main(args);
 
 	}
