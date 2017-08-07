@@ -34,7 +34,7 @@ public class ExampleRestyHttps {
 	public static final Logger LOGGER = java.util.logging.Logger.getLogger("HTTPS example");
 
 	//The server certificate file name
-	public static String SERVER_CERT_FILENAME = "httpbin.org.crt";
+	public static String SERVER_CERT_FILENAME = "postman-echo.crt";
 	public static String SERVER_CERT_PATH = "/certificates/";
 
 	//X509 certificate type name
@@ -44,7 +44,7 @@ public class ExampleRestyHttps {
 	public static String TLS_VERSION_1_2 = "TLSv1.2";
 
 	//The server url
-	public static String SERVER_URL = "https://httpbin.org";
+	public static String SERVER_URL = "https://postman-echo.com" ;
 
 	public static void main(String[] args) throws Exception{
 
@@ -55,7 +55,7 @@ public class ExampleRestyHttps {
 		doGetRequest();
 
 		//POST request
-		doPostRequest();
+		doPostRequest();	
 
 		//PUT request
 		doPutRequest();
@@ -140,15 +140,12 @@ public class ExampleRestyHttps {
 			if(conn.getResponseCode() == HttpURLConnection.HTTP_OK){
 				JSONObject response = resource.object();
 				LOGGER.info(response.toString());
-				String ip = response.getString("origin");
-				String url = response.getString("url");
+				
 				JSONObject headers = response.getJSONObject("headers");
-				String agent = headers.getString("User-Agent");
-				String host = headers.getString("Host");
-
+				String agent = headers.getString("user-agent");
+				String host = headers.getString("host");
 				StringBuffer sb = new StringBuffer();
-				sb.append("my ip: ").append(ip).append("\n");
-				sb.append("url: ").append(url).append("\n");
+				
 				sb.append("user-agent: ").append(agent).append("\n");
 				sb.append("host: ").append(host).append("\n");
 				LOGGER.info(sb.toString());
