@@ -1,5 +1,9 @@
 <!--
 	Ivy
+	
+	Copyright 2018 IS2T. All rights reserved.
+ 	For demonstration purpose only.
+	IS2T PROPRIETARY. Use is subject to license terms.
 -->
 <ivy-module version="2.0" xmlns:ea="http://www.easyant.org" xmlns:m="http://ant.apache.org/ivy/extra"> 
     <info organisation="com.microej.example.iot.ssl" module="restget" status="integration" revision="0.1.0">
