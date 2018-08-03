@@ -36,20 +36,20 @@ import ej.wadapps.app.BackgroundService;
  */
 public class GetBS implements BackgroundService {
 
-	public static final Logger LOGGER = java.util.logging.Logger.getLogger("HTTPS GET");
+	private static final Logger LOGGER = java.util.logging.Logger.getLogger("HTTPS GET"); //$NON-NLS-1$
 
 	// The server certificate file name
-	public static final String SERVER_CERT_FILENAME = "GlobalSignRootCA.crt";
-	public static final String SERVER_CERT_PATH = "/certificates/";
+	private static final String SERVER_CERT_FILENAME = "GlobalSignRootCA.crt"; //$NON-NLS-1$
+	private static final String SERVER_CERT_PATH = "/certificates/"; //$NON-NLS-1$
 
 	// X509 certificate type name
-	public static final String CERT_TYPE = "X509";
+	private static final String CERT_TYPE = "X509"; //$NON-NLS-1$
 
 	// TLS algorithm version 1.2
-	public static final String TLS_VERSION_1_2 = "TLSv1.2";
+	private static final String TLS_VERSION_1_2 = "TLSv1.2"; //$NON-NLS-1$
 
 	// The server url
-	public static final String SERVER_URL = "https://communitystore.microej.com";
+	private static final String SERVER_URL = "https://communitystore.microej.com"; //$NON-NLS-1$
 
 	public static void main(String[] args) {
 		updateTime();
@@ -88,12 +88,10 @@ public class GetBS implements BackgroundService {
 		 * Create and initialize the SSLContext which will be used to connect to the secure Server. The followings steps
 		 * show how to create and setup the SSLContext for Resty Https connection.
 		 */
-		try (
-				/*
-				 * Step 1 : Create an input stream with the server certificate file
-				 */
-
-				InputStream in = GetBS.class.getResourceAsStream(SERVER_CERT_PATH + SERVER_CERT_FILENAME)) {
+		/*
+		 * Step 1 : Create an input stream with the server certificate file
+		 */
+		try (InputStream in = GetBS.class.getResourceAsStream(SERVER_CERT_PATH + SERVER_CERT_FILENAME)) {
 
 			/*
 			 * Step 2 : Generate the server certificate
@@ -111,7 +109,7 @@ public class GetBS implements BackgroundService {
 			// parameters
 			store.load(null, null);
 			// add the server certificate to our created KeyStore
-			store.setCertificateEntry("myServer", myServerCert);
+			store.setCertificateEntry("myServer", myServerCert); //$NON-NLS-1$
 
 			/*
 			 * Step 4: Create and initialize the trust manager with our KeyStore
@@ -144,8 +142,8 @@ public class GetBS implements BackgroundService {
 	 */
 	public static void doGetRequest() throws Exception {
 
-		LOGGER.info("=========== GET REQUEST ===========");
-		String requestURL = SERVER_URL + "/api/v2/DeviceReferences";
+		LOGGER.info("=========== GET REQUEST ==========="); //$NON-NLS-1$
+		String requestURL = SERVER_URL + "/api/v2/DeviceReferences"; //$NON-NLS-1$
 		Resty resty = new Resty();
 
 		// do GET request request;
@@ -160,7 +158,7 @@ public class GetBS implements BackgroundService {
 				LOGGER.info(response.toString(2));
 
 			} else {
-				throw new IOException("Wrong response code " + responseCode + " for GET " + requestURL);
+				throw new IOException("Wrong response code " + responseCode + " for GET " + requestURL); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 
 		} finally {
