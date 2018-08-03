@@ -1,13 +1,11 @@
 /*
  * Java
  *
- * Copyright 2015-2016 IS2T. All rights reserved.
- * Use of this source code is subject to license terms..
+ * Copyright 2016-2018 IS2T. All rights reserved.
+ * For demonstration purpose only.
+ * IS2T PROPRIETARY. Use is subject to license terms.
  */
 package com.microej.example.iot.mqtt;
-
-import static com.microej.example.iot.mqtt.HelloWorldConstants.BROKER;
-import static com.microej.example.iot.mqtt.HelloWorldConstants.TOPIC;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,15 +20,15 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
  */
 public final class HelloWorldPublisher extends NetworkCallbackImpl implements Runnable {
 
+	private static final String PUBLISHER = "[Publisher] ";
 	/**
 	 * Application logger.
 	 */
 	private static final Logger LOGGER = Logger.getLogger(HelloWorldPublisher.class.getName());
 	private static final long PUBLISH_DELAY = 1000;
-	private static final String NAME = "Hello World Publisher Thread";
 
 	private boolean sendMessage = false;
-	private MqttClient client;
+	private Thread thread;
 
 	public static void main(String[] args) {
 		// Display all logs
@@ -38,60 +36,101 @@ public final class HelloWorldPublisher extends NetworkCallbackImpl implements Ru
 
 		new HelloWorldPublisher();
 	}
-	
+
 	@Override
 	public void onAvailable() {
-		sendMessage = true;
-		LOGGER.info("[Publisher] Network available");
-
-		client = null;
-		try {
-			client = new MqttClient(HelloWorldConstants.BROKER, HelloWorldConstants.PUBLISHER_ID);
-			LOGGER.info("[Publisher] Try to connect to " + HelloWorldConstants.BROKER);
-			client.connect();
-
-			LOGGER.info("[Publisher] Client connected");
-		
-			Thread thread = new Thread(this);
-			thread.setName(NAME);
-			thread.run();
-
-		} catch (MqttException e) {
-			e.printStackTrace();
-			LOGGER.info("[Publisher] Unable to connect to " + BROKER + " and publish to topic " + TOPIC);
-			unregisterConnectivityManager();
-		}
+		LOGGER.info(PUBLISHER + "Network available");
 	}
-	
+
 	@Override
 	public void onLost() {
-		sendMessage = false;
-		LOGGER.info("[Publisher] Network Lost");
-		unregisterConnectivityManager();
+		stopSending();
+		LOGGER.info(PUBLISHER + "Network Lost");
+	}
 
+	@Override
+	public void onInternet(boolean connected) {
+		LOGGER.info(PUBLISHER + "Internet access=" + connected);
+		if (connected) {
+			startSending();
+		} else {
+			stopSending();
+		}
 	}
 
 	@Override
 	public void run() {
-		while (sendMessage && !Thread.currentThread().isInterrupted()) {
-			MqttMessage message = new MqttMessage();
-			String text = HelloWorldConstants.HELLO_WORLD_MESSAGE;
-			message.setPayload(text.getBytes());
-			try {
+		MqttClient client = null;
+		try {
+			client = new MqttClient(HelloWorldConstants.BROKER, HelloWorldConstants.PUBLISHER_ID);
+			LOGGER.info(PUBLISHER + "Try to connect to " + HelloWorldConstants.BROKER);
+			client.connect();
+
+			LOGGER.info(PUBLISHER + "Client connected");
+			while (sendMessage) {
+				MqttMessage message = new MqttMessage();
+				String text = HelloWorldConstants.HELLO_WORLD_MESSAGE;
+				message.setPayload(text.getBytes());
 				client.publish(HelloWorldConstants.TOPIC, message);
-				LOGGER.info(message + " published to " + HelloWorldConstants.TOPIC);
-				Thread.sleep(PUBLISH_DELAY);
-			} catch (MqttException | InterruptedException e) {
-				e.printStackTrace();
+				LOGGER.info(PUBLISHER + message + " published to " + HelloWorldConstants.TOPIC);
+				sleep();
+			}
+		} catch (MqttException e) {
+			LOGGER.log(Level.INFO, PUBLISHER + "Unable to connect to " + HelloWorldConstants.BROKER
+					+ " and publish to topic " + HelloWorldConstants.TOPIC, e);
+		} finally {
+			if (client != null) {
+				try {
+					client.disconnect();
+					LOGGER.info(PUBLISHER + "Client disconnected");
+				} catch (MqttException e) {
+					// Ignored.
+				}
 			}
 		}
-		
-		try {
-			client.disconnect();
-			LOGGER.info("[Publisher] Client disconnected");
-		} catch (MqttException e) {
-			// Ignored.
+		thread = null;
+		if (sendMessage) {
+			sleep();
+			synchronized (HelloWorldPublisher.this) {
+				if (sendMessage) {
+					startSending();
+				}
+			}
 		}
-		unregisterConnectivityManager();
+	}
+
+	/**
+	 * Stops the publishing and unregister the network state listener.
+	 */
+	public void stop() {
+		stopSending();
+		unregisiterConnectivityManager();
+	}
+
+	private synchronized void stopSending() {
+		sendMessage = false;
+		Thread thread = this.thread;
+		this.thread = null;
+		if (thread != null) {
+			thread.interrupt();
+		}
+	}
+
+	private synchronized void startSending() {
+		sendMessage = true;
+		if (thread == null) {
+			thread = new Thread(this, getClass().getSimpleName());
+			thread.start();
+		}
+	}
+
+	private void sleep() {
+		try {
+			Thread.sleep(PUBLISH_DELAY);
+		} catch (InterruptedException e) {
+			synchronized (this) {
+				sendMessage = false;
+			}
+		}
 	}
 }
