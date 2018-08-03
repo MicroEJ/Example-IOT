@@ -1,3 +1,10 @@
+/*
+ * Java
+ *
+ * Copyright 2015-2018 IS2T. All rights reserved.
+ * For demonstration purpose only.
+ * IS2T PROPRIETARY. Use is subject to license terms.
+ */
 package com.microej.example.iot.ssl.rest.ui;
 
 import java.util.logging.Level;
@@ -10,17 +17,26 @@ import android.net.ConnectivityManager;
 import android.net.ConnectivityManager.NetworkCallback;
 import android.net.Network;
 import android.net.NetworkInfo;
-import android.net.NetworkRequest;
 import ej.components.dependencyinjection.ServiceLoaderFactory;
 import ej.microui.MicroUI;
+import ej.microui.display.Display;
+import ej.mwt.MWT;
 import ej.wadapps.app.Activity;
 import ej.widget.StyledDesktop;
 import ej.widget.StyledPanel;
-import ej.widget.navigation.navigator.HistorizedNavigator;
+import ej.widget.container.transition.SlideScreenshotTransitionContainer;
+import ej.widget.container.transition.TransitionContainer;
 
 public class MainActivity extends NetworkCallback implements Activity {
 
-	private HistorizedNavigator navi;
+	private boolean isConnected;
+	private TransitionContainer navi;
+
+	public static void main(String[] args) {
+		new MainActivity().onStart();
+		ExampleRestyHttps.waitForConnectivity();
+		ExampleRestyHttps.updateTime();
+	}
 
 	@Override
 	public String getID() {
@@ -53,9 +69,9 @@ public class MainActivity extends NetworkCallback implements Activity {
 		MicroUI.start();
 
 		StylesheetPopulator.initialize();
-		
+
 		StyledDesktop desktop = new StyledDesktop();
-		navi = new HistorizedNavigator();
+		navi = new SlideScreenshotTransitionContainer(MWT.BOTTOM, true, false);
 		StyledPanel panel = new StyledPanel();
 		panel.setWidget(navi);
 		panel.showFullScreen(desktop);
@@ -64,10 +80,11 @@ public class MainActivity extends NetworkCallback implements Activity {
 		ConnectivityManager connectivityManager = ServiceLoaderFactory.getServiceLoader()
 				.getService(ConnectivityManager.class);
 		if (connectivityManager != null) {
-			NetworkRequest request = new NetworkRequest.Builder().build();
-			connectivityManager.registerNetworkCallback(request, this);
+			connectivityManager.registerDefaultNetworkCallback(this);
 			NetworkInfo info = connectivityManager.getActiveNetworkInfo();
-			if (info.isConnected()) {
+			boolean connected = info.isConnected();
+			isConnected = !connected;
+			if (connected) {
 				onAvailable(null);
 			} else {
 				onLost(null);
@@ -105,14 +122,30 @@ public class MainActivity extends NetworkCallback implements Activity {
 
 	@Override
 	public void onAvailable(Network network) {
-		RestHttpsPage restHttpPage= new RestHttpsPage(navi);
-		navi.show(restHttpPage);
+		Display.getDefaultDisplay().callSerially(new Runnable() {
+
+			@Override
+			public void run() {
+				if (!isConnected) {
+					isConnected = true;
+					navi.show(new RestHttpsPage(), true);
+				}
+			}
+		});
 	}
 
 	@Override
 	public void onLost(Network network) {
-		ConnectingPage connectingPage = new ConnectingPage(navi);
-		navi.show(connectingPage);
+		Display.getDefaultDisplay().callSerially(new Runnable() {
+
+			@Override
+			public void run() {
+				if (isConnected) {
+					isConnected = false;
+					navi.show(new ConnectingPage(), false);
+				}
+			}
+		});
 	}
 
 }

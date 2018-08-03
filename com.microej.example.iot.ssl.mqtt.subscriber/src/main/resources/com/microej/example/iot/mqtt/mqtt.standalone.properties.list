@@ -2,4 +2,5 @@
 # For demonstration purpose only.
 # IS2T PROPRIETARY. Use is subject to license terms.
 
-/certificates/AmazonRootCA1.crt
+# Used for standalone launch
+android.net.ConnectivityManager=ej.net.PollerConnectivityManager

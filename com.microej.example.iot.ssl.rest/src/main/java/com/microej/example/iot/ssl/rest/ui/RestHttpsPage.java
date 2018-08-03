@@ -1,3 +1,10 @@
+/*
+ * Java
+ *
+ * Copyright 2015-2018 IS2T. All rights reserved.
+ * For demonstration purpose only.
+ * IS2T PROPRIETARY. Use is subject to license terms.
+ */
 package com.microej.example.iot.ssl.rest.ui;
 
 import com.microej.example.iot.ssl.rest.ExampleRestyHttps;
@@ -10,16 +17,10 @@ import ej.widget.basic.Label;
 import ej.widget.composed.Button;
 import ej.widget.container.List;
 import ej.widget.listener.OnClickListener;
-import ej.widget.navigation.navigator.HistorizedNavigator;
 
 public class RestHttpsPage extends AbstractOutputPage {
 
-	public RestHttpsPage(HistorizedNavigator navi) {
-		super(navi);
-		// TODO Auto-generated constructor stub
-	}
-
-	SingleThreadExecutor executor = new SingleThreadExecutor();
+	private final SingleThreadExecutor executor = new SingleThreadExecutor();
 
 	@Override
 	protected Widget createMenu() {

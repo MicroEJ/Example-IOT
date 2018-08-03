@@ -7,6 +7,7 @@
 package com.microej.example.iot.mqtt.app;
 
 import com.microej.example.iot.mqtt.HelloWorldSubscriber;
+
 import ej.wadapps.app.BackgroundService;
 
 /**
@@ -14,15 +15,17 @@ import ej.wadapps.app.BackgroundService;
  */
 public class SubscriberBG implements BackgroundService {
 
+	private HelloWorldSubscriber helloWorldSubscriber;
+
 	@Override
 	public void onStart() {
-		HelloWorldSubscriber.main(new String[0]);
-
+		helloWorldSubscriber = new HelloWorldSubscriber();
 	}
 
 	@Override
 	public void onStop() {
-
+		helloWorldSubscriber.stop();
+		helloWorldSubscriber = null;
 	}
 
 }

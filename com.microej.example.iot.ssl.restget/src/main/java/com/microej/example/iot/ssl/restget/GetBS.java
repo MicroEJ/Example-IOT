@@ -1,3 +1,10 @@
+/*
+ * Java
+ *
+ * Copyright 2015-2018 IS2T. All rights reserved.
+ * For demonstration purpose only.
+ * IS2T PROPRIETARY. Use is subject to license terms.
+ */
 package com.microej.example.iot.ssl.restget;
 
 import java.io.IOException;
@@ -6,6 +13,7 @@ import java.net.HttpURLConnection;
 import java.security.KeyStore;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateFactory;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,47 +24,36 @@ import javax.net.ssl.TrustManagerFactory;
 
 import org.json.me.JSONArray;
 
+import android.net.SntpClient;
+import ej.bon.Util;
 import ej.rest.web.JSONResource;
 import ej.rest.web.Resty;
-import ej.wadapps.app.Activity;
+import ej.wadapps.app.BackgroundService;
 
 /**
  *
  *
  */
-public class GetActivity implements Activity {
+public class GetBS implements BackgroundService {
 
 	public static final Logger LOGGER = java.util.logging.Logger.getLogger("HTTPS GET");
 
 	// The server certificate file name
-	public static String SERVER_CERT_FILENAME = "communitystore.microej.com.crt";
-	public static String SERVER_CERT_PATH = "/certificates/";
+	public static final String SERVER_CERT_FILENAME = "GlobalSignRootCA.crt";
+	public static final String SERVER_CERT_PATH = "/certificates/";
 
 	// X509 certificate type name
-	public static String CERT_TYPE = "X509";
+	public static final String CERT_TYPE = "X509";
 
 	// TLS algorithm version 1.2
-	public static String TLS_VERSION_1_2 = "TLSv1.2";
+	public static final String TLS_VERSION_1_2 = "TLSv1.2";
 
 	// The server url
-	public static String SERVER_URL = "https://preprodstore.microej.com";
+	public static final String SERVER_URL = "https://communitystore.microej.com";
 
-	@Override
-	public String getID() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void onCreate() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onRestart() {
-		// TODO Auto-generated method stub
-
+	public static void main(String[] args) {
+		updateTime();
+		new GetBS().onStart();
 	}
 
 	@Override
@@ -66,9 +63,9 @@ public class GetActivity implements Activity {
 
 		try {
 
-			GetActivity.initRestyHttpsContext();
+			GetBS.initRestyHttpsContext();
 
-			GetActivity.doGetRequest();
+			GetBS.doGetRequest();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -77,27 +74,8 @@ public class GetActivity implements Activity {
 	}
 
 	@Override
-	public void onResume() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onPause() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public void onStop() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onDestroy() {
-		// TODO Auto-generated method stub
-
+		// Nothing to do.
 	}
 
 	/**
@@ -115,7 +93,7 @@ public class GetActivity implements Activity {
 				 * Step 1 : Create an input stream with the server certificate file
 				 */
 
-				InputStream in = GetActivity.class.getResourceAsStream(SERVER_CERT_PATH + SERVER_CERT_FILENAME)) {
+				InputStream in = GetBS.class.getResourceAsStream(SERVER_CERT_PATH + SERVER_CERT_FILENAME)) {
 
 			/*
 			 * Step 2 : Generate the server certificate
@@ -189,6 +167,33 @@ public class GetActivity implements Activity {
 			conn.disconnect();
 		}
 
+	}
+
+	/**
+	 *
+	 */
+	public static void updateTime() {
+		LOGGER.info("=========== Updating time ==========="); //$NON-NLS-1$
+		SntpClient ntpClient = new SntpClient();
+
+		while (Util.currentTimeMillis() < 1000000) {
+			/**
+			 * Request NTP time
+			 */
+			if (ntpClient.requestTime("ntp.ubuntu.com", 123, 1000)) { //$NON-NLS-1$
+				long now = ntpClient.getNtpTime() + Util.platformTimeMillis() - ntpClient.getNtpTimeReference();
+
+				Calendar.getInstance().setTimeInMillis(now);
+				Util.setCurrentTimeMillis(now);
+			} else {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// Sanity.
+				}
+			}
+		}
+		LOGGER.info("Time updated"); //$NON-NLS-1$
 	}
 
 }
