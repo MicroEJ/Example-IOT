@@ -26,14 +26,6 @@ public abstract class NetworkCallbackImpl extends NetworkCallback {
 	private TimerTask registerTask;
 	private boolean register;
 
-	/**
-	 * Instantiates a {@link NetworkCallbackImpl}.
-	 */
-	public NetworkCallbackImpl() {
-		super();
-		registerConnectivityManager();
-	}
-
 	@Override
 	public void onAvailable(Network network) {
 		onAvailable();
@@ -60,7 +52,6 @@ public abstract class NetworkCallbackImpl extends NetworkCallback {
 	 */
 	public abstract void onLost();
 
-
 	/**
 	 * Called when Internet state changes.
 	 *
@@ -69,7 +60,7 @@ public abstract class NetworkCallbackImpl extends NetworkCallback {
 	 */
 	public abstract void onInternet(boolean connected);
 
-	protected void registerConnectivityManager() {
+	public void registerConnectivityManager() {
 		register = true;
 		doRegister();
 	}
@@ -77,7 +68,7 @@ public abstract class NetworkCallbackImpl extends NetworkCallback {
 	/**
 	 * Unregister itself as a callback.
 	 */
-	protected void unregisiterConnectivityManager() {
+	public synchronized void unregisterConnectivityManager() {
 		register = false;
 		unregisterTask();
 
@@ -88,7 +79,7 @@ public abstract class NetworkCallbackImpl extends NetworkCallback {
 		}
 	}
 
-	private void unregisterTask() {
+	private synchronized void unregisterTask() {
 		TimerTask registerTask = this.registerTask;
 		this.registerTask = null;
 		if (registerTask != null) {
@@ -96,7 +87,7 @@ public abstract class NetworkCallbackImpl extends NetworkCallback {
 		}
 	}
 
-	private void doRegister() {
+	private synchronized void doRegister() {
 		unregisterTask();
 		if (register) {
 			ConnectivityManager connectivityManager = ServiceLoaderFactory.getServiceLoader()

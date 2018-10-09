@@ -34,7 +34,7 @@ public final class HelloWorldPublisher extends NetworkCallbackImpl implements Ru
 		// Display all logs
 		LOGGER.setLevel(Level.ALL);
 
-		new HelloWorldPublisher();
+		new HelloWorldPublisher().registerConnectivityManager();
 	}
 
 	@Override
@@ -100,11 +100,18 @@ public final class HelloWorldPublisher extends NetworkCallbackImpl implements Ru
 	}
 
 	/**
+	 * Starts the publishing.
+	 */
+	public void start() {
+		registerConnectivityManager();
+	}
+
+	/**
 	 * Stops the publishing and unregister the network state listener.
 	 */
 	public void stop() {
 		stopSending();
-		unregisiterConnectivityManager();
+		unregisterConnectivityManager();
 	}
 
 	private synchronized void stopSending() {

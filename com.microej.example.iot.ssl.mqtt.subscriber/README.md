@@ -45,3 +45,10 @@ A running MQTT broker is required in order to run this example. You shall ensure
 
 ## Dependencies
 _All dependencies are retrieved transitively by Ivy resolver_.
+
+<!--
+    Markdown
+    Copyright 2016-2018 IS2T. All rights reserved.
+    For demonstration purpose only.
+    IS2T PROPRIETARY. Use is subject to license terms.
+-->

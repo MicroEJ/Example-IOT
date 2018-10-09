@@ -164,12 +164,20 @@ public final class HelloWorldPublisher extends NetworkCallbackImpl implements Ru
 		}
 	}
 
+
+	/**
+	 * Starts the publisher.
+	 */
+	public void start() {
+		registerConnectivityManager();
+	}
+
 	/**
 	 * Stops the publishing and unregister the network state listener.
 	 */
 	public void stop() {
 		stopSending();
-		unregisiterConnectivityManager();
+		unregisterConnectivityManager();
 	}
 
 	private synchronized void stopSending() {
@@ -198,4 +206,5 @@ public final class HelloWorldPublisher extends NetworkCallbackImpl implements Ru
 			}
 		}
 	}
+
 }

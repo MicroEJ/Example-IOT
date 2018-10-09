@@ -3,7 +3,7 @@ A MicroEJ sandboxed application using the connectivity manager.
 
 # Usage
 ## Run on MicroEJ Simulator
-1. Right Click on the project
+1. Right Click on [Main.java](src\main\java\com\microej\example\iot\androidconnectivity\Main.java)
 2. Select **Run as -> MicroEJ Application**
 3. Select your platform
 4. Press **Ok**
@@ -34,3 +34,10 @@ A MicroEJ sandboxed application using the connectivity manager.
 
 ## Dependencies
 _All dependencies are retrieved transitively by Ivy resolver_.
+
+
+<!--
+  Copyright 2016-2018 IS2T. All rights reserved.
+  For demonstration purpose only.
+  IS2T PROPRIETARY. Use is subject to license terms.
+-->

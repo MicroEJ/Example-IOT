@@ -20,6 +20,7 @@ public class PublisherBG implements BackgroundService {
 	@Override
 	public void onStart() {
 		helloWorldPublisher = new HelloWorldPublisher();
+		helloWorldPublisher.start();
 	}
 
 	@Override

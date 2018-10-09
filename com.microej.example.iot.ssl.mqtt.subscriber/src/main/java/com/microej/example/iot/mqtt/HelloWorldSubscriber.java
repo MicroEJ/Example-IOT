@@ -1,8 +1,9 @@
 /*
  * Java
  *
- * Copyright 2015-2016 IS2T. All rights reserved.
- * Use of this source code is subject to license terms..
+ * Copyright 2016-2018 IS2T. All rights reserved.
+ * For demonstration purpose only.
+ * IS2T PROPRIETARY. Use is subject to license terms.
  */
 package com.microej.example.iot.mqtt;
 
@@ -119,6 +120,13 @@ public final class HelloWorldSubscriber extends NetworkCallbackImpl {
 	}
 
 	/**
+	 * Start the subscriber.
+	 */
+	public void start() {
+		registerConnectivityManager();
+	}
+
+	/**
 	 * Stops the publishing and unregister the network state listener.
 	 */
 	public synchronized void stop() {
@@ -129,7 +137,7 @@ public final class HelloWorldSubscriber extends NetworkCallbackImpl {
 			thread.interrupt();
 		}
 		disconnect();
-		unregisiterConnectivityManager();
+		unregisterConnectivityManager();
 	}
 
 	private synchronized void subscribe() {
