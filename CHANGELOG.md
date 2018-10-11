@@ -1,6 +1,11 @@
+## 14.0.4 (2018-10-09)
+
+Bug Fixes:
+  - Update minors versions
+
 ## 14.0.3 (2017-08-07)
 Bug Fixes:
-  - HTTP Rest samples & MQTT 
+  - HTTP Rest samples & MQTT
 
 ## 14.0.0 (2017-06-14)
 
@@ -24,3 +29,10 @@ Bugfixes:
 Features:
   - Initial revision.
 
+
+
+<!--
+    Copyright 2016-2018 IS2T. All rights reserved.
+    For demonstration purpose only.
+    IS2T PROPRIETARY. Use is subject to license terms.
+-->

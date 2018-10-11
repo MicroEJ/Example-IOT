@@ -1,15 +1,18 @@
 /*
  * Java
  *
- * Copyright 2015-2016 IS2T. All rights reserved.
- * Use of this source code is subject to license terms..
+ * Copyright 2015-2018 IS2T. All rights reserved.
+ * For demonstration purpose only.
+ * IS2T PROPRIETARY. Use is subject to license terms.
  */
 package com.microej.example.iot.mqtt;
+
+import java.util.Random;
 
 public interface HelloWorldConstants {
 
 	String BROKER = "ssl://test.mosquitto.org:8883";
-	String SUBSCRIBER_ID = "subscriber";
-	String HELLO_WORLD_MESSAGE = "Hello World !!";
-	String TOPIC = "microej";
+	// Set a random id.
+	String SUBSCRIBER_ID = "subscriber_" + new Random().nextInt(); //$NON-NLS-1$
+	String TOPIC = "microej"; //$NON-NLS-1$
 }
