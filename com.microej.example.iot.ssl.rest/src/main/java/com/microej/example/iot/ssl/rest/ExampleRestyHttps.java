@@ -1,9 +1,9 @@
 /*
  * Java
  *
- * Copyright 2015-2016 IS2T. All rights reserved.
- * Use of this source code is subject to license terms.
- *
+ * Copyright 2015-2018 IS2T. All rights reserved.
+ * For demonstration purpose only.
+ * IS2T PROPRIETARY. Use is subject to license terms.
  */
 package com.microej.example.iot.ssl.rest;
 
@@ -13,6 +13,7 @@ import java.net.HttpURLConnection;
 import java.security.KeyStore;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateFactory;
+import java.util.Calendar;
 import java.util.logging.Logger;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -22,6 +23,13 @@ import javax.net.ssl.TrustManagerFactory;
 
 import org.json.me.JSONObject;
 
+import android.net.ConnectivityManager;
+import android.net.ConnectivityManager.NetworkCallback;
+import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.net.SntpClient;
+import ej.bon.Util;
+import ej.components.dependencyinjection.ServiceLoaderFactory;
 import ej.rest.web.AbstractContent;
 import ej.rest.web.Content;
 import ej.rest.web.Deletion;
@@ -31,22 +39,26 @@ import ej.rest.web.Resty;
 
 public class ExampleRestyHttps {
 
-	public static final Logger LOGGER = java.util.logging.Logger.getLogger("HTTPS example");
+	public static final Logger LOGGER = java.util.logging.Logger.getLogger("HTTPS example"); //$NON-NLS-1$
 
 	//The server certificate file name
-	public static String SERVER_CERT_FILENAME = "postman-echo.crt";
-	public static String SERVER_CERT_PATH = "/certificates/";
+	public static final String SERVER_CERT_FILENAME = "AmazonRootCA1.crt"; //$NON-NLS-1$
+	public static final String SERVER_CERT_PATH = "/certificates/"; //$NON-NLS-1$
 
 	//X509 certificate type name
-	public static String CERT_TYPE = "X509";
+	public static final String CERT_TYPE = "X509"; //$NON-NLS-1$
 
 	//TLS algorithm version 1.2
-	public static String TLS_VERSION_1_2 = "TLSv1.2";
+	public static final String TLS_VERSION_1_2 = "TLSv1.2"; //$NON-NLS-1$
 
 	//The server url
-	public static String SERVER_URL = "https://postman-echo.com" ;
+	public static final String SERVER_URL = "https://postman-echo.com"; //$NON-NLS-1$
 
 	public static void main(String[] args) throws Exception{
+
+		waitForConnectivity();
+
+		updateTime();
 
 		//On first, we need to initialize the SSLContext for Resty Https connection
 		initRestyHttpsContext();
@@ -55,13 +67,72 @@ public class ExampleRestyHttps {
 		doGetRequest();
 
 		//POST request
-		doPostRequest();	
+		doPostRequest();
 
 		//PUT request
 		doPutRequest();
 
 		//DELETE request
 		doDeleteRequest();
+	}
+
+
+	public static void waitForConnectivity() {
+		LOGGER.info("=========== Waiting for connectivity ==========="); //$NON-NLS-1$
+		final Object mutex = new Object();
+		final ConnectivityManager service = ServiceLoaderFactory.getServiceLoader().getService(ConnectivityManager.class);
+		if(service!=null) {
+			NetworkCallback callback = new NetworkCallback() {
+				@Override
+				public void onCapabilitiesChanged(Network network, NetworkCapabilities networkCapabilities) {
+					if(networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)) {
+						synchronized (mutex) {
+							mutex.notify();
+						}
+					}
+				}
+			};
+			service.registerDefaultNetworkCallback(callback);
+			NetworkCapabilities capabilities = service.getNetworkCapabilities(service.getActiveNetwork());
+			if (capabilities == null || !capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)) {
+				synchronized (mutex) {
+					try {
+						mutex.wait();
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			service.unregisterNetworkCallback(callback);
+		}
+		LOGGER.info("Connected"); //$NON-NLS-1$
+	}
+
+	/**
+	 *
+	 */
+	public static void updateTime() {
+		LOGGER.info("=========== Updating time ==========="); //$NON-NLS-1$
+		SntpClient ntpClient = new SntpClient();
+
+		while (Util.currentTimeMillis() < 1000000) {
+			/**
+			 * Request NTP time
+			 */
+			if (ntpClient.requestTime("ntp.ubuntu.com", 123, 1000)) { //$NON-NLS-1$
+				long now = ntpClient.getNtpTime() + Util.platformTimeMillis() - ntpClient.getNtpTimeReference();
+
+				Calendar.getInstance().setTimeInMillis(now);
+				Util.setCurrentTimeMillis(now);
+			} else {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// Sanity.
+				}
+			}
+		}
+		LOGGER.info("Time updated"); //$NON-NLS-1$
 	}
 
 
@@ -74,14 +145,11 @@ public class ExampleRestyHttps {
 		 * Create and initialize the SSLContext which will be used to connect to the secure Server.
 		 * The followings steps show how to create and setup the SSLContext for Resty Https connection.
 		 */
-		try (
-				/*
-				 * Step 1 : Create an input stream with the server certificate
-				 * file
-				 */
 
-				InputStream in = ExampleRestyHttps.class.getResourceAsStream(SERVER_CERT_PATH + SERVER_CERT_FILENAME)) {
-
+		/*
+		 * Step 1 : Create an input stream with the server certificate file
+		 */
+		try (InputStream in = ExampleRestyHttps.class.getResourceAsStream(SERVER_CERT_PATH + SERVER_CERT_FILENAME)) {
 			/*
 			 * Step 2 : Generate the server certificate
 			 */
@@ -97,7 +165,7 @@ public class ExampleRestyHttps {
 			//our default KeyStore can not be loaded from an InputStream; so just load as empty KeyStore with null parameters
 			store.load(null, null);
 			//add the server certificate to our created KeyStore
-			store.setCertificateEntry("myServer", myServerCert);
+			store.setCertificateEntry("myServer", myServerCert); //$NON-NLS-1$
 
 			/*
 			 * Step 4: Create and initialize the trust manager with our KeyStore
@@ -118,7 +186,6 @@ public class ExampleRestyHttps {
 			 * will be done with the defined trust store and TLS algorithm v1.2.
 			 */
 			HttpsURLConnection.setDefaultSSLSocketFactory(sslContext.getSocketFactory());
-
 		}
 	}
 
@@ -127,10 +194,10 @@ public class ExampleRestyHttps {
 	 * @throws Exception if an error occurs
 	 */
 	public static void doGetRequest() throws Exception{
-		LOGGER.info("=========== GET REQUEST ===========");
-		String requestURL = SERVER_URL+"/get";
+		LOGGER.info("=========== GET REQUEST ==========="); //$NON-NLS-1$
+		String requestURL = SERVER_URL + "/get"; //$NON-NLS-1$
 		Resty resty = new Resty();
-				
+
 		//do GET request request;
 		JSONResource resource = resty.json(requestURL);
 		HttpURLConnection conn = resource.http();
@@ -140,18 +207,18 @@ public class ExampleRestyHttps {
 			if(conn.getResponseCode() == HttpURLConnection.HTTP_OK){
 				JSONObject response = resource.object();
 				LOGGER.info(response.toString());
-				
-				JSONObject headers = response.getJSONObject("headers");
-				String agent = headers.getString("user-agent");
-				String host = headers.getString("host");
+
+				JSONObject headers = response.getJSONObject("headers"); //$NON-NLS-1$
+				String agent = headers.getString("user-agent"); //$NON-NLS-1$
+				String host = headers.getString("host"); //$NON-NLS-1$
 				StringBuffer sb = new StringBuffer();
-				
-				sb.append("user-agent: ").append(agent).append("\n");
-				sb.append("host: ").append(host).append("\n");
+
+				sb.append("user-agent: ").append(agent).append("\n"); //$NON-NLS-1$ //$NON-NLS-2$
+				sb.append("host: ").append(host).append("\n"); //$NON-NLS-1$ //$NON-NLS-2$
 				LOGGER.info(sb.toString());
 
 			}else{
-				throw new IOException("Wrong response code "+ responseCode+ " for GET "+requestURL);
+				throw new IOException("Wrong response code " + responseCode + " for GET " + requestURL); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 
 		}finally{
@@ -165,13 +232,13 @@ public class ExampleRestyHttps {
 	 * @throws Exception if an error occurs
 	 */
 	public static void doPostRequest() throws Exception{
-		LOGGER.info("=========== POST REQUEST ===========");
-		String requestURL = SERVER_URL+"/post";
+		LOGGER.info("=========== POST REQUEST ==========="); //$NON-NLS-1$
+		String requestURL = SERVER_URL + "/post"; //$NON-NLS-1$
 		Resty resty = new Resty();
-		String data = "My POST request data";
+		String data = "My POST request data"; //$NON-NLS-1$
 
 		//create the POST request content
-		AbstractContent postContent = new PostContent("text/plain; charset=UTF-8", data.getBytes("UTF-8"));
+		AbstractContent postContent = new PostContent("text/plain; charset=UTF-8", data.getBytes("UTF-8")); //$NON-NLS-1$ //$NON-NLS-2$
 		//do POST request
 		JSONResource resource = resty.json(requestURL, postContent);
 
@@ -182,9 +249,9 @@ public class ExampleRestyHttps {
 			if(responseCode == HttpURLConnection.HTTP_OK){
 				JSONObject response = resource.object();
 				LOGGER.info(response.toString());
-				LOGGER.info("Data sent for POST request: "+response.getString("data"));
+				LOGGER.info("Data sent for POST request: " + response.getString("data")); //$NON-NLS-1$ //$NON-NLS-2$
 			}else{
-				throw new IOException("Wrong response code "+ responseCode+ " for POST "+requestURL);
+				throw new IOException("Wrong response code " + responseCode + " for POST " + requestURL); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 		}finally{
 			conn.disconnect();
@@ -197,13 +264,13 @@ public class ExampleRestyHttps {
 	 * @throws Exception if an error occurs
 	 */
 	public static void doPutRequest() throws Exception{
-		LOGGER.info("=========== PUT REQUEST ===========");
-		String requestURL = SERVER_URL+"/put";
+		LOGGER.info("=========== PUT REQUEST ==========="); //$NON-NLS-1$
+		String requestURL = SERVER_URL + "/put"; //$NON-NLS-1$
 		Resty resty = new Resty();
-		String data = "My PUT request data";
+		String data = "My PUT request data"; //$NON-NLS-1$
 
 		//create the PUT request content
-		Content content = new Content("text/plain; charset=UTF-8", data.getBytes("UTF-8"));
+		Content content = new Content("text/plain; charset=UTF-8", data.getBytes("UTF-8")); //$NON-NLS-1$ //$NON-NLS-2$
 		Replacement putContent = new Replacement(content);
 
 		//do PUT request
@@ -216,9 +283,9 @@ public class ExampleRestyHttps {
 			if(responseCode == HttpURLConnection.HTTP_OK){
 				JSONObject response = resource.object();
 				LOGGER.info(response.toString());
-				LOGGER.info("Data sent for PUT request: "+response.getString("data"));
+				LOGGER.info("Data sent for PUT request: " + response.getString("data")); //$NON-NLS-1$ //$NON-NLS-2$
 			}else{
-				throw new IOException("Wrong response code "+ responseCode+ " for PUT "+requestURL);
+				throw new IOException("Wrong response code " + responseCode + " for PUT " + requestURL); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 		}finally{
 			conn.disconnect();
@@ -231,8 +298,8 @@ public class ExampleRestyHttps {
 	 * @throws Exception if an error occurs
 	 */
 	public static void doDeleteRequest() throws Exception{
-		LOGGER.info("=========== DELETE REQUEST ===========");
-		String requestURL = SERVER_URL+"/delete";
+		LOGGER.info("=========== DELETE REQUEST ==========="); //$NON-NLS-1$
+		String requestURL = SERVER_URL + "/delete"; //$NON-NLS-1$
 		Resty resty = new Resty();
 
 		//create the DELETION request content
@@ -250,7 +317,7 @@ public class ExampleRestyHttps {
 				JSONObject response = resource.object();
 				LOGGER.info(response.toString());
 			}else{
-				throw new IOException("Wrong response code "+ responseCode+ " for DELETE "+requestURL);
+				throw new IOException("Wrong response code " + responseCode + " for DELETE " + requestURL); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 		}finally{
 			conn.disconnect();
