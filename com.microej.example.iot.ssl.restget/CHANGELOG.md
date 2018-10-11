@@ -1,18 +1,15 @@
-<!--
-	Markdown
--->
-<!--
-Changelog template:
+## 1.0.0 (2018-08-01)
 
-## Revision (YYYY-mm-dd)
 Features:
-  - List here the new features.
+  - Update certificates.
   
-Bugfixes:
-  - List here the bug fixes.
--->
-
 ## 0.1.0 (2016-xx-xx)
 Features:
   - Initial revision.
 
+<!--
+    Markdown
+    Copyright 2016-2018 IS2T. All rights reserved.
+    For demonstration purpose only.
+    IS2T PROPRIETARY. Use is subject to license terms.
+-->

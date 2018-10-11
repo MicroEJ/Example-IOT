@@ -1,3 +1,10 @@
+/*
+ * Java
+ *
+ * Copyright 2015-2018 IS2T. All rights reserved.
+ * For demonstration purpose only.
+ * IS2T PROPRIETARY. Use is subject to license terms.
+ */
 package com.microej.example.iot.ssl.rest.ui;
 
 import com.microej.example.iot.ssl.rest.ui.out.OutputStreamRedirection;
@@ -14,19 +21,16 @@ import ej.widget.basic.Label;
 import ej.widget.composed.ButtonWrapper;
 import ej.widget.container.Dock;
 import ej.widget.listener.OnClickListener;
-import ej.widget.navigation.navigator.HistorizedNavigator;
 import ej.widget.navigation.page.Page;
 
 public abstract class AbstractOutputPage extends Page{
 
 	private Dock content;
 	private OutputStreamWidget outStreamWidget;
-	private HistorizedNavigator navi;
-	
 
-	public AbstractOutputPage(HistorizedNavigator navi) {
+
+	public AbstractOutputPage() {
 		super();
-		this.navi = navi;
 		setWidget(createContent());
 	}
 
@@ -67,29 +71,17 @@ public abstract class AbstractOutputPage extends Page{
 
 		ButtonWrapper backButton = new ButtonWrapper();
 		Label label;
-		if (canGoBack()) {
-			// Add a back button.
-			backButton.addOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick() {
-					navi.back();
+		// Add an exit button.
+		backButton.addOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick() {
+				ExitHandler exitHandler = ServiceLoaderFactory.getServiceLoader().getService(ExitHandler.class);
+				if (exitHandler != null) {
+					exitHandler.exit();
 				}
-			});
-			label = new Label(Character.toString(Pictos.BACK));
-		} else {
-			// Add an exit button.
-			backButton.addOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick() {
-					ExitHandler exitHandler = ServiceLoaderFactory.getServiceLoader().getService(ExitHandler.class);
-					if (exitHandler != null) {
-						exitHandler.exit();
-					}
-				}
-			});
-			label = new Label(Character.toString(Pictos.STORE));
-		}
+			}
+		});
+		label = new Label(Character.toString(Pictos.STORE));
 		label.addClassSelector(ClassSelectors.PICTO);
 		backButton.setWidget(label);
 
@@ -110,11 +102,6 @@ public abstract class AbstractOutputPage extends Page{
 		topBar.addClassSelector(ClassSelectors.TITLE);
 
 		return topBar;
-	}
-
-	private boolean canGoBack() {
-		return navi.canGoBackward();
-
 	}
 
 	protected Widget getTitle() {

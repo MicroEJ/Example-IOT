@@ -1,8 +1,9 @@
 /*
  * Java
  *
- * Copyright 2016 IS2T. All rights reserved.
- * Use of this source code is subject to license terms.
+ * Copyright 2015-2018 IS2T. All rights reserved.
+ * For demonstration purpose only.
+ * IS2T PROPRIETARY. Use is subject to license terms.
  */
 package com.microej.example.iot.ssl.rest.ui;
 

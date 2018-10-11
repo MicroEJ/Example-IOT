@@ -1,8 +1,9 @@
 /*
  * Java
  *
- * Copyright 2016 IS2T. All rights reserved.
- * Use of this source code is subject to license terms.
+ * Copyright 2016-2018 IS2T. All rights reserved.
+ * For demonstration purpose only.
+ * IS2T PROPRIETARY. Use is subject to license terms.
  */
 package com.microej.example.iot.androidconnectivity;
 
@@ -21,6 +22,11 @@ public class MyConnectivityExample extends NetworkCallbackImpl {
 	public void onLost() {
 		System.out.println("Network is lost.");
 
+	}
+
+	@Override
+	public void onInternet(boolean connected) {
+		System.out.println("Connected to the internet = " + connected);
 	}
 
 }
