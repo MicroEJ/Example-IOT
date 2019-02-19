@@ -1,4 +1,4 @@
-## 1.0.0 (2018-08-01)
+## 1.0.0 (2019-02-19)
 
 Features:
   - Connect to websocket.org send an echo message as text then binary.
