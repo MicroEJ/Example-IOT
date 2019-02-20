@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.security.KeyStore;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateFactory;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,6 +34,10 @@ import ej.websocket.WebSocketURI;
  *
  */
 public class WebsocketBS implements BackgroundService, Endpoint {
+
+	private static final int SLEEP_DURATION = 1000;
+	private static final String HELLO_WORLD = "Hello World!"; //$NON-NLS-1$
+	private static final String GOODBYE_WORLD = "Goodbye World!"; //$NON-NLS-1$
 
 	private static final Logger LOGGER = java.util.logging.Logger.getLogger("WEBSOCKET"); //$NON-NLS-1$
 
@@ -137,27 +142,34 @@ public class WebsocketBS implements BackgroundService, Endpoint {
 		LOGGER.info("=========== Websocket USAGE ==========="); //$NON-NLS-1$
 
 		try (WebSocketSecure webSocket = new WebSocketSecure(
-				new WebSocketURI(SERVER_URL, WebSocketURI.DEFAULT_SECURE_PORT, "/", true), this, this.sslContext)) {
+				new WebSocketURI(SERVER_URL, WebSocketURI.DEFAULT_SECURE_PORT, "/", true), this, this.sslContext)) { //$NON-NLS-1$
 			webSocket.connect();
-			Thread.sleep(500);
-			webSocket.sendText("Hello World");
-			Thread.sleep(500);
-			webSocket.sendBinary("Hello World".getBytes());
-			Thread.sleep(500);
+			Thread.sleep(SLEEP_DURATION);
+			System.out.println("Sending messqge " + HELLO_WORLD);
+			webSocket.sendText(HELLO_WORLD);
+			Thread.sleep(SLEEP_DURATION);
+			System.out.println("Sending binary message length " + HELLO_WORLD.length());
+			webSocket.sendBinary(HELLO_WORLD.getBytes());
+			Thread.sleep(SLEEP_DURATION);
 		}
 	}
 
 	@Override
 	public byte[] onBinaryMessage(WebSocket ws, byte[] message) {
-		System.out.println("Binary message receive length = " + message.length);
-		// Does not return anything to the server to avoid loop.
-		// If an answer was expected, it could be sent from here.
-		return null;
+		System.out.println("Binary message receive length = " + message.length); //$NON-NLS-1$
+		if (Arrays.equals(message, HELLO_WORLD.getBytes())) {
+			// When hello is echoed, return goodbye
+			System.out.println("Answering with binary message length " + GOODBYE_WORLD.length());
+			return GOODBYE_WORLD.getBytes();
+		} else {
+			// Does not return anything to the server to avoid loop.
+			return null;
+		}
 	}
 
 	@Override
 	public void onClose(WebSocket ws, ReasonForClosure closeReason) {
-		System.out.println("Close: " + closeReason);
+		System.out.println("Close: " + closeReason); //$NON-NLS-1$
 
 	}
 
@@ -169,22 +181,27 @@ public class WebsocketBS implements BackgroundService, Endpoint {
 
 	@Override
 	public void onOpen(WebSocket ws) {
-		System.out.println("WebsocketBS.onOpen()");
+		System.out.println("WebsocketBS.onOpen()"); //$NON-NLS-1$
 
 	}
 
 	@Override
 	public void onPong(byte[] data) {
-		System.out.println("WebsocketBS.onPong()");
+		System.out.println("WebsocketBS.onPong()"); //$NON-NLS-1$
 
 	}
 
 	@Override
 	public String onTextMessage(WebSocket ws, String message) {
-		System.out.println("Message received: " + message);
-		// Does not return anything to the server to avoid loop.
-		// If an answer was expected, it could be sent from here.
-		return null;
+		System.out.println("Message received: " + message); //$NON-NLS-1$
+		if (message.equals(HELLO_WORLD)) {
+			System.out.println("Answering with " + GOODBYE_WORLD);
+			// When hello is echoed, return goodbye
+			return GOODBYE_WORLD;
+		} else {
+			// Does not return anything to the server to avoid loop.
+			return null;
+		}
 	}
 
 	/**
