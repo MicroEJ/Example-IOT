@@ -42,7 +42,7 @@
         <dependency org="ej.library.iot" name="websocket-secure" rev="[1.0.0-RC0,2.0.0-RC0["/> 
                
 		<!-- Used to update the time when launch as standalone -->
-		<dependency org="ej.library.iot" name="sntpclient" rev="[1.0.0-RC0,2.0.0-RC0[" />
+		<dependency org="ej.library.iot" name="net-util" rev="[1.0.0-RC0,2.0.0-RC0[" />
 		
         <!-- 
         	Test-only dependencies

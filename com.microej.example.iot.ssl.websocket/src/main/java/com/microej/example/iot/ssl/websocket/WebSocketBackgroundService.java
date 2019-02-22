@@ -7,12 +7,12 @@
  */
 package com.microej.example.iot.ssl.websocket;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.security.KeyStore;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateFactory;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,8 +20,8 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 
-import android.net.SntpClient;
 import ej.bon.Util;
+import ej.net.util.NtpUtil;
 import ej.wadapps.app.BackgroundService;
 import ej.websocket.Endpoint;
 import ej.websocket.ReasonForClosure;
@@ -31,9 +31,9 @@ import ej.websocket.WebSocketURI;
 
 /**
  *
- *
+ * Background service using a WebSocket server to echo a hello world.
  */
-public class WebsocketBS implements BackgroundService, Endpoint {
+public class WebSocketBackgroundService implements BackgroundService, Endpoint {
 
 	private static final int SLEEP_DURATION = 1000;
 	private static final String HELLO_WORLD = "Hello World!"; //$NON-NLS-1$
@@ -58,7 +58,7 @@ public class WebsocketBS implements BackgroundService, Endpoint {
 
 	public static void main(String[] args) {
 		updateTime();
-		new WebsocketBS().onStart();
+		new WebSocketBackgroundService().onStart();
 	}
 
 	@Override
@@ -96,7 +96,8 @@ public class WebsocketBS implements BackgroundService, Endpoint {
 		/*
 		 * Step 1 : Create an input stream with the server certificate file
 		 */
-		try (InputStream in = WebsocketBS.class.getResourceAsStream(SERVER_CERT_PATH + SERVER_CERT_FILENAME)) {
+		try (InputStream in = WebSocketBackgroundService.class
+				.getResourceAsStream(SERVER_CERT_PATH + SERVER_CERT_FILENAME)) {
 
 			/*
 			 * Step 2 : Generate the server certificate
@@ -205,27 +206,20 @@ public class WebsocketBS implements BackgroundService, Endpoint {
 	}
 
 	/**
-	 *
+	 * Update the platform time.
 	 */
 	public static void updateTime() {
 		LOGGER.info("=========== Updating time ==========="); //$NON-NLS-1$
-		SntpClient ntpClient = new SntpClient();
-
 		while (Util.currentTimeMillis() < 1000000) {
-			/**
-			 * Request NTP time
-			 */
-			if (ntpClient.requestTime("ntp.ubuntu.com", 123, 1000)) { //$NON-NLS-1$
-				long now = ntpClient.getNtpTime() + Util.platformTimeMillis() - ntpClient.getNtpTimeReference();
-
-				Calendar.getInstance().setTimeInMillis(now);
-				Util.setCurrentTimeMillis(now);
-			} else {
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					// Sanity.
-				}
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// Sanity.
+			}
+			try {
+				NtpUtil.updateLocalTime();
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 		}
 		LOGGER.info("Time updated"); //$NON-NLS-1$
