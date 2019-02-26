@@ -1,3 +1,8 @@
+## 14.1.0 (2019-02-19)
+
+Feature:
+  - Add websocket example
+
 ## 14.0.4 (2018-10-09)
 
 Bug Fixes:
@@ -32,7 +37,7 @@ Features:
 
 
 <!--
-    Copyright 2016-2018 IS2T. All rights reserved.
+    Copyright 2016-2019 IS2T. All rights reserved.
     For demonstration purpose only.
     IS2T PROPRIETARY. Use is subject to license terms.
 -->
