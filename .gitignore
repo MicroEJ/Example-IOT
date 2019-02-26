@@ -9,3 +9,5 @@
 # */launches/
 */launches/*.properties
 */ej.examples.*/
+com.microej.example.iot.ssl.websocket/com.microej.example.iot.ssl.websocket.WebsocketBS/
+com.microej.example.iot.ssl.websocket/src-adpgenerated/
