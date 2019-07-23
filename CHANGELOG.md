@@ -1,3 +1,8 @@
+## 14.2.0 (2019-07-23)
+
+Feature:
+  - Add synamic server example
+  
 ## 14.1.0 (2019-02-19)
 
 Feature:
@@ -34,10 +39,8 @@ Bugfixes:
 Features:
   - Initial revision.
 
-
-
-<!--
-    Copyright 2016-2019 IS2T. All rights reserved.
-    For demonstration purpose only.
-    IS2T PROPRIETARY. Use is subject to license terms.
--->
+---  
+_Markdown_   
+_Copyright 2016-2019 MicroEJ Corp. All rights reserved._   
+_For demonstration purpose only._   
+_MicroEJ Corp. PROPRIETARY. Use is subject to license terms._  
