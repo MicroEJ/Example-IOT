@@ -6,8 +6,8 @@
 	MicroEJ Corp. PROPRIETARY. Use is subject to license terms.
 -->
 <ivy-module version="2.0" xmlns:ea="http://www.easyant.org" xmlns:m="http://ant.apache.org/ivy/extra" xmlns:ej="https://developer.microej.com" ej:version="2.0.0"> 
-    <info organisation="com.microej.example.iot" module="dynamic-restserver" status="integration" revision="0.1.0">
-        <ea:build organisation="com.is2t.easyant.buildtypes" module="build-application" revision="5.+">
+    <info organisation="com.microej.example.iot" module="dynamic-restserver" status="integration" revision="1.0.0">
+        <ea:build organisation="com.is2t.easyant.buildtypes" module="build-application" revision="7.+">
         </ea:build>
     </info>
     
@@ -31,10 +31,15 @@
 			Put MicroEJ API dependencies to the "provided->*" configuration
 			Other regular runtime dependencies are in the "default" configuration  
 		-->
-        <dependency org="ej.api" name="edc" rev="+" conf="provided->*" />
-        <dependency org="ej.library.wadapps" name="framework" rev="+" />
-        
-        <dependency org="ej.library.iot" name="restserver" rev="[4.0.0,5.0.0[" />
-        <dependency org="ej.library.iot" name="net-util" rev="+" />
+        <dependency org="ej.api" name="edc" rev="1.2.3" />
+		<dependency org="ej.api" name="bon" rev="1.3.0"/>
+		<dependency org="ej.api" name="net" rev="1.1.1"/>
+		
+		<!-- Dependencies used for MultiSandboxed support -->
+		<dependency org="ej.api" name="kf" rev="1.4.4"/>
+		<dependency org="ej.library.wadapps" name="framework" rev="1.10.0"/>
+		
+        <!-- Libraries used for the example -->
+        <dependency org="ej.library.iot" name="restserver" rev="4.1.0" />
     </dependencies>
 </ivy-module>

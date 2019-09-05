@@ -37,12 +37,13 @@
 		<dependency org="ej.api" name="bon" rev="1.3.0"/>
 		<dependency org="ej.api" name="net" rev="1.1.1"/>
 		
-		<dependency org="ej.library.iot" name="net-util" rev="1.2.0" />
-		<dependency org="ej.library.iot" name="android-connectivity" rev="1.2.0" />
-		
 		<!-- Dependencies used for MultiSandboxed support -->
 		<dependency org="ej.api" name="kf" rev="1.4.4"/>
 		<dependency org="ej.library.wadapps" name="framework" rev="1.10.0"/>
+		
+        <!-- Addon Libraries used for the example -->
+		<dependency org="ej.library.iot" name="net-util" rev="1.2.0" />
+		<dependency org="ej.library.iot" name="android-connectivity" rev="1.2.0" />
 		
 		<!-- This is used in case the application is run in standalone, in a multiapp firmware, the Connectivity Manager is provided by the firmware. -->
 		<dependency org="ej.library.iot" name="connectivity" rev="2.1.0" />
