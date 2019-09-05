@@ -1,21 +1,29 @@
-## 2.1.0 (2018-10-09)
+# Changelog
 
-Features:
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## 2.1.0 - 2018-10-09
+
+### Added
+
   - Support android connectivity 1.1.0.
   - Fix minor version on ej.api.
 
-## 2.0.0 (2016-12-29)
+## 2.0.0 - 2016-12-29
 
-Features:
+### Added
+
   - Change organization.
   
-## 1.0.0 (2016-06-13)
+## 1.0.0 - 2016-06-13
 
-Features:
+### Added
+
   - Initial revision.
 
-<!--
-  Copyright 2016-2018 IS2T. All rights reserved.
-  For demonstration purpose only.
-  IS2T PROPRIETARY. Use is subject to license terms.
--->
+---  
+_Markdown_   
+_Copyright 2019 MicroEJ Corp. All rights reserved._   
+_For demonstration purpose only._   
+_MicroEJ Corp. PROPRIETARY. Use is subject to license terms._  
