@@ -10,8 +10,9 @@ package com.microej.example.iot.mqtt.app;
 import com.microej.example.iot.mqtt.HelloWorldPublisher;
 
 import ej.wadapps.app.BackgroundService;
+
 /**
- *
+ * Background service using the helloworld publisher.
  */
 public class PublisherBG implements BackgroundService {
 

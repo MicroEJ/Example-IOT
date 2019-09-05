@@ -7,7 +7,6 @@
  */
 package com.microej.example.iot.mqtt;
 
-import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,57 +14,41 @@ import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
-import com.microej.profiling.AutomaticProfiler;
-import com.microej.profiling.profiler.HeapProfiler;
-import com.microej.profiling.profiler.ImmortalsProfiler;
-import com.microej.profiling.profiler.InstantProfiler;
-import com.microej.profiling.profiler.ThreadsProfiler;
+import android.net.ConnectivityManager;
+import ej.components.dependencyinjection.ServiceLoaderFactory;
+import ej.net.util.connectivity.ConnectivityUtil;
+import ej.net.util.connectivity.SimpleNetworkCallback;
+import ej.net.util.connectivity.SimpleNetworkCallbackAdapter;
 
 /**
  * This example connects to a MQTT broker, publishes the "Hello World!" message
  * to the topic "MqttHelloWorld" and disconnects from the MQTT broker.
  */
-public final class HelloWorldPublisher extends NetworkCallbackImpl implements Runnable {
+public final class HelloWorldPublisher implements Runnable, SimpleNetworkCallback {
 
-	private static final String PUBLISHER = "[Publisher] ";
+	private static final String PUBLISHER = "[Publisher] "; //$NON-NLS-1$
 	/**
 	 * Application logger.
 	 */
-	private static final Logger LOGGER = Logger.getLogger(HelloWorldPublisher.class.getName());
+	private static final Logger LOGGER = Logger.getLogger("Hello world publisher"); //$NON-NLS-1$
 	private static final long PUBLISH_DELAY = 1000;
 
 	private boolean sendMessage = false;
 	private Thread thread;
+	private SimpleNetworkCallbackAdapter simpleNetworkCallbackAdapter;
 
-	public static void main(String[] args) throws URISyntaxException {
+	public static void main(String[] args) {
 		// Display all logs
 		LOGGER.setLevel(Level.ALL);
 
-		InstantProfiler[] profilers = new InstantProfiler[] { new HeapProfiler(), new ThreadsProfiler(),
-				new ImmortalsProfiler() };
-		for (InstantProfiler instantProfiler : profilers) {
-			AutomaticProfiler automaticProfiler = new AutomaticProfiler(instantProfiler);
-			automaticProfiler.watchIntervalRange(true);
-			automaticProfiler.start();
-		}
-
-		new HelloWorldPublisher().registerConnectivityManager();
+		new HelloWorldPublisher().start();
 	}
 
-	@Override
-	public void onAvailable() {
-		LOGGER.info(PUBLISHER + "Network available");
-	}
 
-	@Override
-	public void onLost() {
-		stopSending();
-		LOGGER.info(PUBLISHER + "Network Lost");
-	}
 
 	@Override
 	public void onInternet(boolean connected) {
-		LOGGER.info(PUBLISHER + "Internet access=" + connected);
+		LOGGER.info(PUBLISHER + "Internet access=" + connected); //$NON-NLS-1$
 		if (connected) {
 			startSending();
 		} else {
@@ -78,38 +61,38 @@ public final class HelloWorldPublisher extends NetworkCallbackImpl implements Ru
 		MqttClient client = null;
 		try {
 			client = new MqttClient(HelloWorldConstants.BROKER, HelloWorldConstants.PUBLISHER_ID);
-			LOGGER.info(PUBLISHER + "Try to connect to " + HelloWorldConstants.BROKER);
+			LOGGER.info(PUBLISHER + "Try to connect to " + HelloWorldConstants.BROKER); //$NON-NLS-1$
 			client.connect();
 
-			LOGGER.info(PUBLISHER + "Client connected");
+			LOGGER.info(PUBLISHER + "Client connected"); //$NON-NLS-1$
 			while (sendMessage) {
 				MqttMessage message = new MqttMessage();
 				String text = HelloWorldConstants.HELLO_WORLD_MESSAGE;
 				message.setPayload(text.getBytes());
 				client.publish(HelloWorldConstants.TOPIC, message);
-				LOGGER.info(PUBLISHER + message + " published to " + HelloWorldConstants.TOPIC);
+				LOGGER.info(PUBLISHER + message + " published to " + HelloWorldConstants.TOPIC); //$NON-NLS-1$
 				sleep();
 			}
 		} catch (MqttException e) {
-			LOGGER.log(Level.INFO, PUBLISHER + "Unable to connect to " + HelloWorldConstants.BROKER
-					+ " and publish to topic " + HelloWorldConstants.TOPIC, e);
+			LOGGER.log(Level.INFO, PUBLISHER + "Unable to connect to " + HelloWorldConstants.BROKER //$NON-NLS-1$
+					+ " and publish to topic " + HelloWorldConstants.TOPIC, e); //$NON-NLS-1$
+			sleep();
 		} finally {
 			if (client != null) {
 				try {
 					client.disconnect();
-					LOGGER.info(PUBLISHER + "Client disconnected");
+					LOGGER.info(PUBLISHER + "Client disconnected"); //$NON-NLS-1$
 				} catch (MqttException e) {
 					// Ignored.
 				}
 			}
 		}
-		thread = null;
-		if (sendMessage) {
-			sleep();
-			synchronized (HelloWorldPublisher.this) {
-				if (sendMessage) {
-					startSending();
-				}
+
+		// Try again.
+		synchronized (HelloWorldPublisher.this) {
+			thread = null;
+			if (sendMessage) {
+				startSending();
 			}
 		}
 	}
@@ -117,16 +100,30 @@ public final class HelloWorldPublisher extends NetworkCallbackImpl implements Ru
 	/**
 	 * Starts the publishing.
 	 */
-	public void start() {
-		registerConnectivityManager();
+	public synchronized void start() {
+		if (simpleNetworkCallbackAdapter == null) {
+			ConnectivityManager connectivityManager = ServiceLoaderFactory.getServiceLoader()
+					.getService(ConnectivityManager.class);
+			if (connectivityManager != null) {
+				simpleNetworkCallbackAdapter = new SimpleNetworkCallbackAdapter(this);
+				ConnectivityUtil.registerAndCall(connectivityManager, simpleNetworkCallbackAdapter);
+			} else {
+				LOGGER.severe("No connectivity manager found"); //$NON-NLS-1$
+			}
+		}
 	}
 
 	/**
 	 * Stops the publishing and unregister the network state listener.
 	 */
-	public void stop() {
+	public synchronized void stop() {
 		stopSending();
-		unregisterConnectivityManager();
+		ConnectivityManager connectivityManager = ServiceLoaderFactory.getServiceLoader()
+				.getService(ConnectivityManager.class);
+		if (connectivityManager != null && simpleNetworkCallbackAdapter != null) {
+			connectivityManager.unregisterNetworkCallback(simpleNetworkCallbackAdapter);
+		}
+		simpleNetworkCallbackAdapter = null;
 	}
 
 	private synchronized void stopSending() {
@@ -146,13 +143,21 @@ public final class HelloWorldPublisher extends NetworkCallbackImpl implements Ru
 		}
 	}
 
+	@Override
+	public void onConnectivity(boolean isConnected) {
+		if (isConnected) {
+			LOGGER.info(PUBLISHER + "Network available"); //$NON-NLS-1$
+		} else {
+			stopSending();
+			LOGGER.info(PUBLISHER + "Network Lost"); //$NON-NLS-1$
+		}
+	}
+
 	private void sleep() {
 		try {
 			Thread.sleep(PUBLISH_DELAY);
 		} catch (InterruptedException e) {
-			synchronized (this) {
-				sendMessage = false;
-			}
+			stopSending();
 		}
 	}
 }

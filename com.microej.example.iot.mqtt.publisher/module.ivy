@@ -34,12 +34,10 @@
 		
 		<dependency org="ej.library.eclasspath" name="logging" rev="1.1.0"/>
 
-		<dependency org="ej.library.wadapps" name="framework" rev="1.10.0" />
+		<dependency org="ej.library.wadapps" name="framework" rev="1.10.0"/>
 		
+		<dependency org="ej.library.iot" name="net-util" rev="1.2.0" />
 		<dependency org="ej.library.iot" name="android-connectivity" rev="1.2.0" />
-		<dependency org="ej.library.iot" name="connectivity" rev="2.1.0" />
-		
-		<dependency org="org.eclipse.paho" name="mqttv3-microej" rev="1.6.0"/>
-		<dependency org="com.microej.library" name="profiling" rev="0.5.0" />
+		<dependency org="org.eclipse.paho" name="mqttv3-microej" rev="1.5.0"/>
 	</dependencies>
 </ivy-module>

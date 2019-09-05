@@ -2,5 +2,5 @@
 # For demonstration purpose only.
 # MicroEJ Corp. PROPRIETARY. Use is subject to license terms.
 
-# Used for standalone launch
+# This is used in case the application is run in standalone, in a multiapp firmware, the Connectivity Manager is provided by the firmware. 
 android.net.ConnectivityManager=ej.net.PollerConnectivityManager
