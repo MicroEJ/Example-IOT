@@ -10,8 +10,9 @@ package com.microej.example.iot.json.app;
 import com.microej.example.iot.json.MyJSONExample;
 
 import ej.wadapps.app.BackgroundService;
+
 /**
- *
+ * Background service starting the JSON example.
  */
 public class JsonBG implements BackgroundService {
 
@@ -23,7 +24,7 @@ public class JsonBG implements BackgroundService {
 
 	@Override
 	public void onStop() {
-		// TODO Auto-generated method stub
+		// Nothing to do.
 
 	}
 

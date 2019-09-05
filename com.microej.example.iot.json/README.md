@@ -47,6 +47,7 @@ The example then iterates over all the **menuitem** elements available in the **
 _All dependencies are retrieved transitively by Ivy resolver_.
 
 ---  
-_Copyright 2016-2019 MicroEJ Corp. All rights reserved._  
-_For demonstration purpose only._  
+_Markdown_   
+_Copyright 2019 MicroEJ Corp. All rights reserved._   
+_For demonstration purpose only._   
 _MicroEJ Corp. PROPRIETARY. Use is subject to license terms._  

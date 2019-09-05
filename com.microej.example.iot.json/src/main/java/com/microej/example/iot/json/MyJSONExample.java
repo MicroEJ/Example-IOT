@@ -30,7 +30,7 @@ public class MyJSONExample {
 		// get back an input stream from the resource that represents the JSON
 		// content
 		DataInputStream dis = new DataInputStream(
-				MyJSONExample.class.getResourceAsStream("/json/menu.json"));
+				MyJSONExample.class.getResourceAsStream("/json/menu.json")); //$NON-NLS-1$
 
 		byte[] bytes = null;
 
@@ -56,22 +56,22 @@ public class MyJSONExample {
 			jsono = new JSONObject(new String(bytes));
 
 			// get the JSONObject named "menu" from the root JSONObject
-			JSONObject menu = jsono.getJSONObject("menu");
-			System.out.println("The JSONObject named \"menu\" is:");
-			System.out.println(menu + "\n");
+			JSONObject menu = jsono.getJSONObject("menu"); //$NON-NLS-1$
+			System.out.println("The JSONObject named \"menu\" is:"); //$NON-NLS-1$
+			System.out.println(menu + "\n"); //$NON-NLS-1$
 
-			popup = menu.getJSONObject("popup");
-			System.out.println("The JSONObject named \"popup\" in \"menu\" is:");
-			System.out.println(popup + "\n");
+			popup = menu.getJSONObject("popup"); //$NON-NLS-1$
+			System.out.println("The JSONObject named \"popup\" in \"menu\" is:"); //$NON-NLS-1$
+			System.out.println(popup + "\n"); //$NON-NLS-1$
 
-			menuItems = popup.getJSONArray("menuitem");
+			menuItems = popup.getJSONArray("menuitem"); //$NON-NLS-1$
 
-			System.out.println("The menuitem content of popup is:");
-			System.out.println(menuItems.toString() + "\n");
+			System.out.println("The menuitem content of popup is:"); //$NON-NLS-1$
+			System.out.println(menuItems.toString() + "\n"); //$NON-NLS-1$
 
-			String defaultValue = jsono.optString("Unknown key", "Default value");
-			System.out.println("The value of \"Unknown key\" is:");
-			System.out.println(defaultValue + "\n");
+			String defaultValue = jsono.optString("Unknown key", "Default value"); //$NON-NLS-1$ //$NON-NLS-2$
+			System.out.println("The value of \"Unknown key\" is:"); //$NON-NLS-1$
+			System.out.println(defaultValue + "\n"); //$NON-NLS-1$
 		} catch (JSONException e) {
 			// a getJSONObject() or a getJSONArray() failed
 			// or the parsing failed
@@ -81,20 +81,20 @@ public class MyJSONExample {
 		// Write data
 		try {
 			// append a new menu item in the JSONArray
-			popup.append("menuitem", new JSONObject("{\"value\": \"Save\", \"onClick\": \"SaveDoc()\"}"));
+			popup.append("menuitem", new JSONObject("{\"value\": \"Save\", \"onClick\": \"SaveDoc()\"}")); //$NON-NLS-1$ //$NON-NLS-2$
 
 			// Add a new field.
-			jsono.put("window", false);
+			jsono.put("window", false); //$NON-NLS-1$
 			// Override existing field.
-			jsono.put("window", true);
+			jsono.put("window", true); //$NON-NLS-1$
 
 			// Accumulate a new menu (menu is a JsonObject)
-			jsono.accumulate("menu", new JSONObject("{\"id\": \"file2\"}"));
+			jsono.accumulate("menu", new JSONObject("{\"id\": \"file2\"}")); //$NON-NLS-1$ //$NON-NLS-2$
 			// Accumulate a new menu (menu is a JsonArray)
-			jsono.accumulate("menu", new JSONObject("{\"id\": \"file3\"}"));
+			jsono.accumulate("menu", new JSONObject("{\"id\": \"file3\"}")); //$NON-NLS-1$ //$NON-NLS-2$
 
-			System.out.println("The new JSONArray is:");
-			System.out.println(jsono + "\n");
+			System.out.println("The new JSONArray is:"); //$NON-NLS-1$
+			System.out.println(jsono + "\n"); //$NON-NLS-1$
 		} catch (JSONException e) {
 			// An error occured while adding data.
 			throw new AssertionError(e);
