@@ -1,3 +1,8 @@
+## 14.2.0 (2019-09-05)
+
+Feature:
+  - Add a headless REST example
+
 ## 14.1.0 (2019-02-19)
 
 Feature:
