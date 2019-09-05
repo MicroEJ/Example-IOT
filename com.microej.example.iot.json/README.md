@@ -6,7 +6,9 @@ The contents of the JSON file is taken from an example available from http://www
 The example then iterates over all the **menuitem** elements available in the **popup** menu and print their contents.
 
 # Usage
+
 ## Run on MicroEJ Simulator
+
 1. Right Click on the project
 2. Select **Run as -> MicroEJ Application**
 3. Select **BackgroundServicesStandalone**
@@ -14,7 +16,9 @@ The example then iterates over all the **menuitem** elements available in the **
 5. Press **Ok**
 
 ## Run on device
+
 ### Local deploy
+
 1. Right Click on [JsonExampleEntryPoint.java](src/.generated~/.java/__JsonExample__/generated/JsonExampleEntryPoint.java)
 2. Select **Run as -> Run Configurations...** 
 3. Select **MicroEJ Application** configuration kind
@@ -31,6 +35,7 @@ The example then iterates over all the **menuitem** elements available in the **
 8. Press **Run**
 
 # Requirements
+
 * MicroEJ Studio or SDK 4.0 or later
 * A platform with at least:
 	* EDC-1.2 or higher
@@ -38,11 +43,10 @@ The example then iterates over all the **menuitem** elements available in the **
 	* KF-1.4 or higher
 
 ## Dependencies
+
 _All dependencies are retrieved transitively by Ivy resolver_.
 
-
-<!--
-  Copyright 2016-2018 IS2T. All rights reserved.
-  For demonstration purpose only.
-  IS2T PROPRIETARY. Use is subject to license terms.
--->
+---  
+_Copyright 2016-2019 MicroEJ Corp. All rights reserved._  
+_For demonstration purpose only._  
+_MicroEJ Corp. PROPRIETARY. Use is subject to license terms._  

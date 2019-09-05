@@ -1,9 +1,9 @@
 /*
  * Java
  *
- * Copyright 2016-2018 IS2T. All rights reserved.
+ * Copyright 2016-2019 MicroEJ Corp. All rights reserved.
  * For demonstration purpose only.
- * IS2T PROPRIETARY. Use is subject to license terms.
+ * MicroEJ Corp. PROPRIETARY. Use is subject to license terms.
  */
 package com.microej.example.iot.mqtt;
 
@@ -93,6 +93,7 @@ public abstract class NetworkCallbackImpl extends NetworkCallback {
 			ConnectivityManager connectivityManager = ServiceLoaderFactory.getServiceLoader()
 					.getService(ConnectivityManager.class);
 
+			System.out.println("NetworkCallbackImpl.doRegister() connectivityManager=" + connectivityManager);
 			if (connectivityManager != null) {
 				connectivityManager.registerDefaultNetworkCallback(this);
 				NetworkInfo info = connectivityManager.getActiveNetworkInfo();

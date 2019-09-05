@@ -1,9 +1,9 @@
 /*
  * Java
  *
- * Copyright 2016-2018 IS2T. All rights reserved.
+ * Copyright 2016-2019 MicroEJ Corp. All rights reserved.
  * For demonstration purpose only.
- * IS2T PROPRIETARY. Use is subject to license terms.
+ * MicroEJ Corp. PROPRIETARY. Use is subject to license terms.
  */
 package com.microej.example.iot.mqtt;
 
@@ -14,6 +14,12 @@ import java.util.logging.Logger;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+
+import com.microej.profiling.AutomaticProfiler;
+import com.microej.profiling.profiler.HeapProfiler;
+import com.microej.profiling.profiler.ImmortalsProfiler;
+import com.microej.profiling.profiler.InstantProfiler;
+import com.microej.profiling.profiler.ThreadsProfiler;
 
 import android.net.ConnectivityManager;
 import android.net.ConnectivityManager.NetworkCallback;
@@ -45,7 +51,15 @@ public final class HelloWorldPublisher extends NetworkCallbackImpl implements Ru
 
 		updateTime();
 
-		new HelloWorldPublisher();
+		InstantProfiler[] profilers = new InstantProfiler[] { new HeapProfiler(), new ThreadsProfiler(),
+				new ImmortalsProfiler() };
+		for (InstantProfiler instantProfiler : profilers) {
+			AutomaticProfiler automaticProfiler = new AutomaticProfiler(instantProfiler);
+			automaticProfiler.watchIntervalRange(true);
+			automaticProfiler.start();
+		}
+
+		new HelloWorldPublisher().registerConnectivityManager();
 	}
 
 	/**
