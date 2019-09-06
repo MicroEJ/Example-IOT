@@ -24,7 +24,8 @@ A running MQTT broker is required in order to run this example. You shall ensure
 ## Run on device
 
 ### Local deploy
-1. Right Click on [PublisherEntryPoint.java](src/.generated~/.java/__MQTTSSLPublisher__/generated/MQTTSSLPublisherEntryPoint.java)
+
+1. Right Click on the project
 2. Select **Run as -> Run Configurations...** 
 3. Select **MicroEJ Application** configuration kind
 4. Click on **New launch configuration** icon

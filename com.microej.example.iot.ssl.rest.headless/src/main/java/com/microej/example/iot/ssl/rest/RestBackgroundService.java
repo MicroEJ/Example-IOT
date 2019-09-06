@@ -1,8 +1,9 @@
 /*
  * Java
  *
- * Copyright 2019 IS2T. All rights reserved.
- * IS2T PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Copyright 2015-2019 MicroEJ Corp. All rights reserved.
+ * For demonstration purpose only.
+ * MicroEJ Corp. PROPRIETARY. Use is subject to license terms.
  */
 package com.microej.example.iot.ssl.rest;
 
@@ -11,7 +12,7 @@ import ej.wadapps.app.BackgroundService;
 /**
  *
  */
-public class RestBG implements BackgroundService {
+public class RestBackgroundService implements BackgroundService {
 
 	@Override
 	public void onStart() {
@@ -19,7 +20,6 @@ public class RestBG implements BackgroundService {
 		try {
 			ExampleRestyHttps.main(null);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -27,8 +27,7 @@ public class RestBG implements BackgroundService {
 
 	@Override
 	public void onStop() {
-		// TODO Auto-generated method stub
-
+		// Nothing to do.
 	}
 
 }

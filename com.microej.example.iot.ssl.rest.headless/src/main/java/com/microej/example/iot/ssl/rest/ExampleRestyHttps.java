@@ -1,9 +1,9 @@
 /*
  * Java
  *
- * Copyright 2015-2018 IS2T. All rights reserved.
+ * Copyright 2015-2019 MicroEJ Corp. All rights reserved.
  * For demonstration purpose only.
- * IS2T PROPRIETARY. Use is subject to license terms.
+ * MicroEJ Corp. PROPRIETARY. Use is subject to license terms.
  */
 package com.microej.example.iot.ssl.rest;
 
@@ -13,6 +13,7 @@ import java.net.HttpURLConnection;
 import java.security.KeyStore;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateFactory;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -102,8 +103,10 @@ public class ExampleRestyHttps {
 				}
 			}
 			service.unregisterNetworkCallback(callback);
+			LOGGER.info("Connected"); //$NON-NLS-1$
+		} else {
+			LOGGER.info("No connectivity manager found."); //$NON-NLS-1$
 		}
-		LOGGER.info("Connected"); //$NON-NLS-1$
 	}
 
 	/**
@@ -111,14 +114,11 @@ public class ExampleRestyHttps {
 	 */
 	public static void updateTime() {
 		LOGGER.info("=========== Updating time ==========="); //$NON-NLS-1$
-
 		try {
 			NtpUtil.updateLocalTime();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.log(Level.INFO, "Could not update time.", e); //$NON-NLS-1$
 		}
-
 		LOGGER.info("Time updated"); //$NON-NLS-1$
 	}
 
@@ -185,7 +185,7 @@ public class ExampleRestyHttps {
 		String requestURL = SERVER_URL + "/get"; //$NON-NLS-1$
 		Resty resty = new Resty();
 
-		// do GET request;
+		// do GET request request;
 		JSONResource resource = resty.json(requestURL);
 		HttpURLConnection conn = resource.http();
 		try{
@@ -309,8 +309,6 @@ public class ExampleRestyHttps {
 		}finally{
 			conn.disconnect();
 		}
-
 	}
-
 
 }

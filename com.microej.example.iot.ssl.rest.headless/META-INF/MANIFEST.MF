@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Application-Id: RestHTTPS
-Application-Version: 2.1.0
+Application-Version: 1.0.0
 Application-PrintableName: rest.https
 Application-Description: rest.https
-Application-BackgroundServices: com.microej.example.iot.ssl.rest.RestBG
+Application-BackgroundServices: com.microej.example.iot.ssl.rest.RestBackgroundService

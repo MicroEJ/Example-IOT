@@ -1,9 +1,9 @@
 /*
  * Java
  *
- * Copyright 2015-2018 IS2T. All rights reserved.
+ * Copyright 2015-2019 MicroEJ Corp. All rights reserved.
  * For demonstration purpose only.
- * IS2T PROPRIETARY. Use is subject to license terms.
+ * MicroEJ Corp. PROPRIETARY. Use is subject to license terms.
  */
 package com.microej.example.iot.ssl.rest.ui.out;
 
@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.logging.Handler;
 import java.util.logging.LogRecord;
 
+import com.microej.example.iot.ssl.rest.ExampleRestyHttps;
 
 public class OutputStreamRedirection extends OutputStream {
 
@@ -30,7 +31,7 @@ public class OutputStreamRedirection extends OutputStream {
 		handler = new LoggerHandler();
 
 		if(INSTANCE != null){
-			throw new InstantiationException("Can't instanciate two instances");
+			throw new InstantiationException("Can't instanciate two instances"); //$NON-NLS-1$
 		}
 		INSTANCE = this;
 		lines = new ArrayList<Line>();
@@ -95,7 +96,7 @@ public class OutputStreamRedirection extends OutputStream {
 			try {
 				INSTANCE = new OutputStreamRedirection();
 			} catch (InstantiationException e) {
-				// Sanity
+				ExampleRestyHttps.LOGGER.info(e.getMessage());
 			}
 		}
 		return INSTANCE;
