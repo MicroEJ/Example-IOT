@@ -5,11 +5,13 @@
  * For demonstration purpose only.
  * MicroEJ Corp. PROPRIETARY. Use is subject to license terms.
  */
-package com.microej.example.iot;
+package com.microej.example.iot.server;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
+
+import com.microej.example.iot.Main;
 
 import ej.hoka.http.HTTPConstants;
 import ej.hoka.http.HTTPRequest;

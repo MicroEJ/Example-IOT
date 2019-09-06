@@ -5,7 +5,7 @@
  * For demonstration purpose only.
  * MicroEJ Corp. PROPRIETARY. Use is subject to license terms.
  */
-package com.microej.example.iot;
+package com.microej.example.iot.server;
 
 import java.util.Map;
 

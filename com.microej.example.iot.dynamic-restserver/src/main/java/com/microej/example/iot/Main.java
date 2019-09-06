@@ -9,6 +9,9 @@ package com.microej.example.iot;
 
 import java.io.IOException;
 
+import com.microej.example.iot.server.IndexEndpoint;
+import com.microej.example.iot.server.ValueEndPoint;
+
 import ej.restserver.RestServer;
 import ej.restserver.endpoint.AliasEndpoint;
 import ej.restserver.endpoint.ResourceRestEndpoint;

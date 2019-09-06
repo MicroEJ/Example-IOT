@@ -18,20 +18,20 @@ public class MyConnectivityExample extends NetworkCallback {
 
 	@Override
 	public void onAvailable(Network network) {
-		Main.LOGGER.info("Network is available."); //$NON-NLS-1$
+		ExampleBackgroundService.LOGGER.info("Network is available."); //$NON-NLS-1$
 
 	}
 
 	@Override
 	public void onLost(Network network) {
-		Main.LOGGER.info("Network is lost."); //$NON-NLS-1$
+		ExampleBackgroundService.LOGGER.info("Network is lost."); //$NON-NLS-1$
 
 	}
 
 	@Override
 	public void onCapabilitiesChanged(Network network, NetworkCapabilities networkCapabilities) {
 		boolean hasInternet = networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET);
-		Main.LOGGER.info("Connected to the internet = " //$NON-NLS-1$
+		ExampleBackgroundService.LOGGER.info("Connected to the internet = " //$NON-NLS-1$
 				+ hasInternet);
 	}
 

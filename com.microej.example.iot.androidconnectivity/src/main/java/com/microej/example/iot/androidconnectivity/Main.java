@@ -7,21 +7,11 @@
  */
 package com.microej.example.iot.androidconnectivity;
 
-import java.util.logging.Logger;
-
-import android.net.ConnectivityManager;
-import ej.components.dependencyinjection.ServiceLoaderFactory;
-import ej.net.util.connectivity.ConnectivityUtil;
-
 /**
  * Entry point.
  */
 public class Main {
 
-	/**
-	 * Logger use for the application.
-	 */
-	public static final Logger LOGGER = Logger.getLogger("Android connectivity example"); //$NON-NLS-1$
 
 	/**
 	 * Entry point.
@@ -29,14 +19,7 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		ConnectivityManager connectivityManager = ServiceLoaderFactory.getServiceLoader()
-				.getService(ConnectivityManager.class);
-		if (connectivityManager != null) {
-			MyConnectivityExample connectivityExample = new MyConnectivityExample();
-			ConnectivityUtil.registerAndCall(connectivityManager, connectivityExample);
-		} else {
-			LOGGER.severe("No connectivity manager found."); //$NON-NLS-1$
-		}
+		new ExampleBackgroundService().onStart();
 	}
 
 }
