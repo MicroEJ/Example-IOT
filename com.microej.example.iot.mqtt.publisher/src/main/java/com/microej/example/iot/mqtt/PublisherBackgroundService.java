@@ -30,7 +30,7 @@ public class PublisherBackgroundService implements BackgroundService, Runnable, 
 	/**
 	 * Application logger.
 	 */
-	public static final Logger LOGGER = Logger.getLogger("Publisher"); //$NON-NLS-1$
+	public static final Logger LOGGER = Logger.getLogger("[Publisher]"); //$NON-NLS-1$
 	private static final long PUBLISH_DELAY = 1000;
 
 	private boolean sendMessage = false;
