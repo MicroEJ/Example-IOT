@@ -41,11 +41,13 @@ A running MQTT broker is required in order to run this example. You shall ensure
 
 # Requirements
 
-* MicroEJ Studio or SDK 4.0 or later
-* A platform with at least:
-	* EDC-1.2 or higher
-	* NET-1.0 or higher
-	* BON-1.0 or higher
+This example has been tested on:
+
+* MicroEJ SDK 5.1
+* With a platform that contains:
+    * EDC-1.2 or higher
+    * BON-1.2 or higher
+    * NET-1.1 or higher
 	* SSL-2.0 or higher
 	* KF-1.4 or higher
 
