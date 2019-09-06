@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
@@ -93,8 +94,11 @@ public class PublisherBackgroundService implements BackgroundService, Runnable, 
 		MqttClient client = null;
 		try {
 			client = new MqttClient(HelloWorldConstants.BROKER, HelloWorldConstants.PUBLISHER_ID);
+			MqttConnectOptions option = new MqttConnectOptions();
+			// Workaround to fix ssl timeout being raised during handshake.
+			option.setConnectionTimeout(0);
 			LOGGER.info("Try to connect to " + HelloWorldConstants.BROKER); //$NON-NLS-1$
-			client.connect();
+			client.connect(option);
 
 			LOGGER.info("Client connected"); //$NON-NLS-1$
 			while (sendMessage) {

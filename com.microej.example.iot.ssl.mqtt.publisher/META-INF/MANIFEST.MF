@@ -3,4 +3,4 @@ Application-Id: MQTTSSLPublisher
 Application-Version: 2.0.0
 Application-PrintableName: Publisher
 Application-Description: Publisher
-Application-BackgroundServices: com.microej.example.iot.mqtt.app.PublisherBG
+Application-BackgroundServices: com.microej.example.iot.mqtt.PublisherBackgroundService
