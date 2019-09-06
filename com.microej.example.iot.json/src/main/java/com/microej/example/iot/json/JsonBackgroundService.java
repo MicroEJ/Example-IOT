@@ -14,23 +14,20 @@ import org.json.me.JSONArray;
 import org.json.me.JSONException;
 import org.json.me.JSONObject;
 
-/**
- * This example uses the org.json.me parser provided by json.org to parse and
- * browse a JSON file.
- *
- * The contents of the JSON file is taken from an example available from http://www.json.org/example.html
- *
- * The example then iterates over all the menuitem elements available in the popup menu and print their contents
- *
- */
-public class MyJSONExample {
+import ej.wadapps.app.BackgroundService;
 
-	public static void main(String[] args) {
+/**
+ * Background service starting the JSON example.
+ */
+public class JsonBackgroundService implements BackgroundService {
+
+	@Override
+	public void onStart() {
 
 		// get back an input stream from the resource that represents the JSON
 		// content
 		DataInputStream dis = new DataInputStream(
-				MyJSONExample.class.getResourceAsStream("/json/menu.json")); //$NON-NLS-1$
+				Main.class.getResourceAsStream("/json/menu.json")); //$NON-NLS-1$
 
 		byte[] bytes = null;
 
@@ -99,6 +96,11 @@ public class MyJSONExample {
 			// An error occured while adding data.
 			throw new AssertionError(e);
 		}
+	}
+
+	@Override
+	public void onStop() {
+		// Nothing to do.
 
 	}
 

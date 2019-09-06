@@ -1,22 +1,22 @@
 # Overview
 
-MicroEJ Application using a restserver.
+MicroEJ Application using a rest server.
 
 # Usage
 
 ## Run on MicroEJ Simulator
 
 1. Right Click on the project
-2. Select **Run as -> MicroEJ Application**
-3. Select **BackgroundServicesStandalone**
-4. Select your platform 
+2. Select Main
+3. Select **Run as -> MicroEJ Application**
+4. Select your platform
 5. Press **Ok**
 
 ## Run on device
 
 ### Local deploy
 
-1. Right Click on [Main.java](src\main\java\com\microej\example\iot\Main.java)
+1. Right Click on the project
 2. Select **Run as -> Run Configurations...** 
 3. Select **MicroEJ Application** configuration kind
 4. Click on **New launch configuration** icon
@@ -40,9 +40,13 @@ The source code is provided as is for educative purpose, to reduce the embedded 
 
 # Requirements
 
-  - EDC-1.2 or higher
-  - BON-1.2 or higher
-  - NET-1.1 or higher
+This example has been tested on:
+
+* MicroEJ SDK 5.1
+* With a platform that contains:
+    * EDC-1.2 or higher
+    * BON-1.2 or higher
+    * NET-1.1 or higher
 
 # Dependencies
 

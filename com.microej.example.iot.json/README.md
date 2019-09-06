@@ -10,16 +10,16 @@ The example then iterates over all the **menuitem** elements available in the **
 ## Run on MicroEJ Simulator
 
 1. Right Click on the project
-2. Select **Run as -> MicroEJ Application**
-3. Select **BackgroundServicesStandalone**
-4. Select your platform 
+2. Select Main
+3. Select **Run as -> MicroEJ Application**
+4. Select your platform
 5. Press **Ok**
 
 ## Run on device
 
 ### Local deploy
 
-1. Right Click on [JsonExampleEntryPoint.java](src/.generated~/.java/__JsonExample__/generated/JsonExampleEntryPoint.java)
+1. Right Click on the project
 2. Select **Run as -> Run Configurations...** 
 3. Select **MicroEJ Application** configuration kind
 4. Click on **New launch configuration** icon
@@ -36,11 +36,12 @@ The example then iterates over all the **menuitem** elements available in the **
 
 # Requirements
 
-* MicroEJ Studio or SDK 4.0 or later
-* A platform with at least:
-	* EDC-1.2 or higher
-	* BON-1.2 or higher
-	* KF-1.4 or higher
+This example has been tested on:
+
+* MicroEJ SDK 5.1
+* With a platform that contains:
+    * EDC-1.2 or higher
+    * BON-1.2 or higher
 
 ## Dependencies
 
