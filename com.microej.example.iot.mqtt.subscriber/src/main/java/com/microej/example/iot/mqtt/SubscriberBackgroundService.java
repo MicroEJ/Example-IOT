@@ -31,7 +31,7 @@ public class SubscriberBackgroundService implements BackgroundService, SimpleNet
 	/**
 	 * Application logger.
 	 */
-	public static final Logger LOGGER = Logger.getLogger("[Subscriber]");
+	public static final Logger LOGGER = Logger.getLogger("[Subscriber]"); //$NON-NLS-1$
 	private MqttClient client;
 	private Thread thread;
 	private boolean subscribe;
