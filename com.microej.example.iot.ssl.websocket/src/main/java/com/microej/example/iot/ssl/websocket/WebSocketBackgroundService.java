@@ -34,7 +34,6 @@ import ej.net.util.NtpUtil;
 import ej.wadapps.app.BackgroundService;
 import ej.websocket.Endpoint;
 import ej.websocket.ReasonForClosure;
-import ej.websocket.ServerException;
 import ej.websocket.WebSocket;
 import ej.websocket.WebSocketException;
 import ej.websocket.WebSocketSecure;
@@ -64,6 +63,7 @@ public class WebSocketBackgroundService implements BackgroundService, Endpoint {
 
 	// The server url
 	private static final String SERVER_URL = "echo.websocket.org"; //$NON-NLS-1$
+	private static final String RESOURCE_NAME = "/echo"; //$NON-NLS-1$
 
 	private SSLContext sslContext;
 
@@ -86,11 +86,8 @@ public class WebSocketBackgroundService implements BackgroundService, Endpoint {
 		LOGGER.setLevel(Level.ALL);
 
 		try {
-
 			initSSLContext();
-
 			useSecureWebsocket();
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -119,6 +116,7 @@ public class WebSocketBackgroundService implements BackgroundService, Endpoint {
 	 */
 	public void initSSLContext() throws NoSuchAlgorithmException, CertificateException, IOException, KeyStoreException,
 			KeyManagementException {
+		LOGGER.info("=========== Initialize SSLContext ==========="); //$NON-NLS-1$
 		/*
 		 * Create and initialize the SSLContext which will be used to connect to the secure Server. The followings steps
 		 * show how to create and setup the SSLContext for Resty Https connection.
@@ -160,33 +158,31 @@ public class WebSocketBackgroundService implements BackgroundService, Endpoint {
 			this.sslContext = SSLContext.getInstance(TLS_VERSION_1_2);
 			this.sslContext.init(null, trustManagers, null);
 		}
+		LOGGER.info("Initialization done"); //$NON-NLS-1$
 	}
 
 	/**
-	 * Uses a standard websocket.
+	 * Uses a secure websocket.
 	 *
 	 * @throws IOException
 	 *             if an {@link IOException} occurs during the communication.
-	 * @throws IllegalArgumentException
-	 *             if 'endpoint' or 'uri' is null, or if 'uri' is not secured
 	 * @throws NoSuchAlgorithmException
 	 *             if context is null and does not
 	 * @throws WebSocketException
 	 *             if an {@link WebSocketException} occurs during the communication.
-	 * @throws ServerException
-	 *             if an {@link ServerException} occurs during the communication.
 	 * @throws InterruptedException
 	 *             if the thread is interrupted.
 	 */
-	public void useSecureWebsocket() throws IllegalArgumentException, NoSuchAlgorithmException, IOException,
-			ServerException, WebSocketException, InterruptedException {
-		LOGGER.info("=========== Websocket USAGE ==========="); //$NON-NLS-1$
+	public void useSecureWebsocket()
+			throws NoSuchAlgorithmException, IOException, WebSocketException, InterruptedException {
+		LOGGER.info("=========== Secure Websocket USAGE ==========="); //$NON-NLS-1$
 
 		try (WebSocketSecure webSocket = new WebSocketSecure(
-				new WebSocketURI(SERVER_URL, WebSocketURI.DEFAULT_SECURE_PORT, "/", true), this, this.sslContext)) { //$NON-NLS-1$
+				new WebSocketURI(SERVER_URL, WebSocketURI.DEFAULT_SECURE_PORT, RESOURCE_NAME, true), this,
+				this.sslContext)) {
 			webSocket.connect();
 			Thread.sleep(SLEEP_DURATION);
-			LOGGER.info("Sending messqge " + HELLO_WORLD); //$NON-NLS-1$
+			LOGGER.info("Sending message " + HELLO_WORLD); //$NON-NLS-1$
 			webSocket.sendText(HELLO_WORLD);
 			Thread.sleep(SLEEP_DURATION);
 			LOGGER.info("Sending binary message length " + HELLO_WORLD.length()); //$NON-NLS-1$

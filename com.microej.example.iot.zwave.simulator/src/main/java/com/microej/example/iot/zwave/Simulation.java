@@ -1,12 +1,14 @@
 /*
  * Java
  *
- * Copyright 2016 IS2T. All rights reserved.
- * Use of this source code is subject to license terms.
+ * Copyright 2016-2019 MicroEJ Corp. All rights reserved.
+ * For demonstration purpose only.
+ * MicroEJ Corp. PROPRIETARY. Use is subject to license terms.
  */
 package com.microej.example.iot.zwave;
 
-import __ZWave__.generated.BackgroundServicesStandalone;
+import com.microej.example.iot.zwave.app.MorseSwitchBG;
+import com.microej.example.iot.zwave.app.ZWaveBG;
 
 /**
  *
@@ -18,8 +20,8 @@ public class Simulation {
 	 */
 	public static void main(String[] args) {
 		new ZWaveDriver().start();
-		BackgroundServicesStandalone.main(args);
-
+		new MorseSwitchBG().onStart();
+		new ZWaveBG().onStart();
 	}
 
 }

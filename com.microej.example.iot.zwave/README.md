@@ -1,9 +1,12 @@
 # Overview
+
 A MicroEJ sandboxed application listening for ZWave notifications and switching on/off ZWave switchs.
 
 # Usage
+
 ## Run on MicroEJ Simulator
-1. Right Click on [Simulation.java](/com.microej.example.iot.zwave.simulator/src/main/java/ej/examples/iot/zwave/Simulation.java) in [com.microej.example.iot.zwave.simulator](/com.microej.example.iot.zwave.simulator/)
+
+1. Right Click on **com.microej.example.iot.zwave.simulator** project
 2. Select **Run as -> Run Configurations...** 
 3. Select **MicroEJ Application** configuration kind
 4. Click on **New launch configuration** icon
@@ -26,8 +29,10 @@ A MicroEJ sandboxed application listening for ZWave notifications and switching 
 8. Press **Run**
 
 ## Run on a device
+
 ### Local deploy
-1. Right Click on [BackgroundServicesStandalone.java](/com.microej.example.iot.zwave/src/.generated~/.java/__ZWave__/generated/BackgroundServicesStandalone.java)
+
+1. Right Click on **com.microej.example.iot.zwave** project
 2. Select **Run as -> Run Configurations...** 
 3. Select **MicroEJ Application** configuration kind
 4. Click on **New launch configuration** icon
@@ -45,14 +50,23 @@ A MicroEJ sandboxed application listening for ZWave notifications and switching 
 10. Launch ZWave driver
 
 # Requirements
-* MicroEJ Studio or SDK 4.0 or later
-* A platform with at least:
-	* EDC-1.2 or higher
-	* BON-1.2 or higher
-	* KF-1.4 or higher
-	* NET-1.0 or higher
-	* ECOM-1.1 or higher
-	* ECOM-COMM-1.1 or higher
+
+This example has been tested on:
+
+* MicroEJ SDK 5.1
+* With a platform that contains:
+    * EDC-1.2 or higher
+    * BON-1.2 or higher
+    * ECOM-1.1 or higher
+    * ECOM-COMM-1.1 or higher
+    * KF-1.4 or higher
 
 ## Dependencies
+
 _All dependencies are retrieved transitively by Ivy resolver_.
+
+---  
+_Markdown_   
+_Copyright 2019 MicroEJ Corp. All rights reserved._   
+_For demonstration purpose only._   
+_MicroEJ Corp. PROPRIETARY. Use is subject to license terms._  
