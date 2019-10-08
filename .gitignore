@@ -1,8 +1,10 @@
 bin/
 .generated~/
+.sonar/
 target~/
-*/.settings/org.sonar.ide.eclipse.core.prefs
+.settings/
 */_*/
 */launches/*.properties
 src-adpgenerated/
-**/com.microej.example.iot.*/
+**/com.microej.example.iot.*/com.microej.example.iot.*/
+filesystem/
