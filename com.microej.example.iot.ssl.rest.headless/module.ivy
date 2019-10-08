@@ -6,7 +6,7 @@
     MicroEJ Corp. PROPRIETARY. Use is subject to license terms.
 -->
 <ivy-module version="2.0" xmlns:ea="http://www.easyant.org" xmlns:ej="https://developer.microej.com" ej:version="2.0.0">  
-	<info organisation="com.is2t.libraries" module="resty-https-headless-example" status="integration" revision="1.0.0">
+	<info organisation="com.microej.example.iot.ssl" module="resty-https-headless-example" status="integration" revision="1.0.0">
         <ea:build organisation="com.is2t.easyant.buildtypes" module="build-application" revision="7.0.+">
         </ea:build>
     </info>
