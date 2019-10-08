@@ -14,7 +14,7 @@ To change the server:
 	2. Remove the root certificate (if the client certificate is changed as well) **/certificates/ca-crt.pem**
 	3. Add any other certificates
 4. In  [MutualAuthBackgroundService.java](src/main/java/com/microej/example/iot/ssl/mutual/MutualAuthBackgroundService.java)
- 	1. Set the variable **SERVER_CERT_FILENAME** to your certificate names (eg **[server.com.crt, root.com.crt"]**)
+ 	1. Set the variable **SERVER_CERT_FILENAME** to your certificate names (eg **[server.com.crt, root.com.crt]**)
 	2. Set the variable **HOST** to your server host
 	3. Set the variable **PORT** to your server port
 
@@ -78,6 +78,8 @@ This example has been tested on:
     * NET-1.1 or higher
     * SSL-2.0 or higher
     * KF-1.4 or higher
+    
+The server used is the one available in [com.microej.example.iot.ssl.mutual.server](../com.microej.example.iot.ssl.mutual.server).
 
 ## Dependencies
 
