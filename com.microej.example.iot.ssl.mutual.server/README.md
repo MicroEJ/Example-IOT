@@ -40,10 +40,10 @@ If you don't have it, generate a key to be used as root certificate: `openssl re
 
 ### Key for the server
 
-Generate a server key: `openssl genrsa -out server-key.pem 4096`
-Generate a signing request: `openssl req -new -sha256 -key server-key.pem -out server-csr.pem`
-Sign the key: `openssl x509 -req -days 365 -in server-csr.pem -CA ca-crt.pem -CAkey ca-key.pem -CAcreateserial -out server-crt.pem`
-Generate the pks12: `openssl pkcs12 -export  -inkey .\server-key.pem -in .\server-crt.pem -certfile .\ca-crt.pem -out server.p12`
+1. Generate a server key: `openssl genrsa -out server-key.pem 4096`
+2. Generate a signing request: `openssl req -new -sha256 -key server-key.pem -out server-csr.pem`
+3. Sign the key: `openssl x509 -req -days 365 -in server-csr.pem -CA ca-crt.pem -CAkey ca-key.pem -CAcreateserial -out server-crt.pem`
+4. Generate the pks12: `openssl pkcs12 -export  -inkey .\server-key.pem -in .\server-crt.pem -certfile .\ca-crt.pem -out server.p12`
 
 # Requirements
 

@@ -77,10 +77,10 @@ If you don't have it, generate a key to be used as root certificate: `openssl re
 
 ### Key for the client
 
-Generate a client key: `openssl genrsa -out clientA-key.pem 4096`
-Generate a signing request: `opensslreq -new -sha256 -key clientA-key.pem -out clientA-csr.pem`
-Sign the key: `openssl x509 -req -days 365 -in clientA-csr.pem -CA ca-crt.pem -CAkey ca-key.pem -CAcreateserial -out clientA-crt.pem`
-Generate the DER format: `openssl pkcs8 -inform PEM -in .\clientA-key.pem -topk8 -outform DER -out clientA-key.der  -v1 PBE-SHA1-3DES -passout pass:demo`
+1. Generate a client key: `openssl genrsa -out clientA-key.pem 4096`
+2. Generate a signing request: `opensslreq -new -sha256 -key clientA-key.pem -out clientA-csr.pem`
+3. Sign the key: `openssl x509 -req -days 365 -in clientA-csr.pem -CA ca-crt.pem -CAkey ca-key.pem -CAcreateserial -out clientA-crt.pem`
+4. Generate the DER format: `openssl pkcs8 -inform PEM -in .\clientA-key.pem -topk8 -outform DER -out clientA-key.der  -v1 PBE-SHA1-3DES -passout pass:demo`
 
 # Requirements
 
