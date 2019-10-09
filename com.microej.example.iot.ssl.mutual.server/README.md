@@ -11,8 +11,8 @@ To change the server:
     1. Drop the new P2 in [src](src/)
 2. In  [Server.java](src/com/microej/example/iot/ssl/mutual/server/Server.java)
 	1. Set the variable **PORT** to your server port
-	2. Set the variable **SERVER_P12** to the path to the p12.
-	3. Set the variable **PASSWORD** to the password of the p12.
+	2. Set the variable **SERVER_PKS12** to the path to the pks12.
+	3. Set the variable **PASSWORD** to the password of the pks12.
 
 ## Change the client 
 

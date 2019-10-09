@@ -27,7 +27,7 @@ import javax.net.ssl.TrustManagerFactory;
 public class Server {
 
 	private static final int PORT = 12345;
-	private static final String SERVER_P12 = "/server.p12";
+	private static final String SERVER_PKS12 = "/server.p12";
 	private static final String PASSWORD = "demo";
 
 	private static final String[] CLIENT_CERTIFICATES = new String[] { "clientA-crt.pem", "ca-crt.pem" };
@@ -36,7 +36,7 @@ public class Server {
 			throws KeyStoreException, NoSuchAlgorithmException, CertificateException, IOException,
 			UnrecoverableKeyException, KeyManagementException {
 		KeyStore keyStore = KeyStore.getInstance("pkcs12");
-		keyStore.load(Server.class.getResourceAsStream(SERVER_P12), PASSWORD.toCharArray());
+		keyStore.load(Server.class.getResourceAsStream(SERVER_PKS12), PASSWORD.toCharArray());
 
 		KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
 		keyManagerFactory.init(keyStore, PASSWORD.toCharArray());
