@@ -65,7 +65,22 @@ To change the server:
 	1. In **Board** frame
 		1. Set **Host** field to your board IP address
 7. Press **Apply**
-8. Press **Run**b 
+8. Press **Run**
+
+## Keys and certificates generation
+
+The keys and certificates available on this example have been generated using the following openssl commands:
+
+### Root certificate
+
+If you don't have it, generate a key to be used as root certificate: `openssl req -new -x509 -days 3650 -keyout ca-key.pem -out ca-crt.pem`
+
+### Key for the client
+
+Generate a client key: `openssl genrsa -out clientA-key.pem 4096`
+Generate a signing request: `opensslreq -new -sha256 -key clientA-key.pem -out clientA-csr.pem`
+Sign the key: `openssl x509 -req -days 365 -in clientA-csr.pem -CA ca-crt.pem -CAkey ca-key.pem -CAcreateserial -out clientA-crt.pem`
+Generate the DER format: `openssl pkcs8 -inform PEM -in .\clientA-key.pem -topk8 -outform DER -out clientA-key.der  -v1 PBE-SHA1-3DES -passout pass:demo`
 
 # Requirements
 

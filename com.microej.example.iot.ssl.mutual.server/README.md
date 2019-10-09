@@ -29,6 +29,21 @@ To change the server:
 1. Right Click on the project
 2. Select **Run as -> Java application** 
 
+## Keys and certificates generation
+
+The keys and certificates available on this example have been generated using the following openssl commands:
+
+### Root certificate
+
+If you don't have it, generate a key to be used as root certificate: `openssl req -new -x509 -days 3650 -keyout ca-key.pem -out ca-crt.pem`
+
+
+### Key for the server
+
+Generate a server key: `openssl genrsa -out server-key.pem 4096`
+Generate a signing request: `openssl req -new -sha256 -key server-key.pem -out server-csr.pem`
+Sign the key: `openssl x509 -req -days 365 -in server-csr.pem -CA ca-crt.pem -CAkey ca-key.pem -CAcreateserial -out server-crt.pem`
+Generate the pks12: `openssl pkcs12 -export  -inkey .\server-key.pem -in .\server-crt.pem -certfile .\ca-crt.pem -out server.p12`
 
 # Requirements
 
