@@ -1,10 +1,13 @@
 /*
  * Java
  *
- * Copyright 2016 IS2T. All rights reserved.
- * Use of this source code is subject to license terms.
+ * Copyright 2016-2019 MicroEJ Corp. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be found with this software.
+ * MicroEJ Corp. PROPRIETARY. Use is subject to license terms.
  */
 package com.microej.example.iot.zwave;
+
+import com.microej.example.iot.zwave.app.ZWaveBG;
 
 import ej.basedriver.DryContact;
 import ej.basedriver.event.DryContactEvent;
@@ -15,31 +18,26 @@ import ej.ecom.RegistrationListener;
 /**
  * Prints a message when a drycontact event occurs.
  */
-public class DryContactManager
-implements RegistrationListener<DryContact>, EventHandler<DryContact, DryContactEvent> {
+public class DryContactManager implements RegistrationListener<DryContact>, EventHandler<DryContact, DryContactEvent> {
 
 	@Override
 	public void deviceRegistered(RegistrationEvent<DryContact> event) {
-		System.out.println("New DryContact device registered " + event.getDevice());
-
+		ZWaveBG.LOGGER.info("New DryContact device registered " + event.getDevice()); //$NON-NLS-1$
 	}
 
 	@Override
 	public void deviceUnregistered(RegistrationEvent<DryContact> event) {
-		System.out.println("DryContact device unregistered " + event.getDevice());
-
+		ZWaveBG.LOGGER.info("DryContact device unregistered " + event.getDevice()); //$NON-NLS-1$
 	}
 
 	@Override
 	public void handleEvent(DryContactEvent event) {
-		System.out.println(event.getDevice() + " handleEvent " + event.getState());
-
+		ZWaveBG.LOGGER.info(event.getDevice() + " handleEvent " + event.getState()); //$NON-NLS-1$
 	}
 
 	@Override
 	public void handleError(DryContactEvent error) {
-		System.out.println(error.getDevice() + " handleError " + error.getState());
-
+		ZWaveBG.LOGGER.info(error.getDevice() + " handleError " + error.getState()); //$NON-NLS-1$
 	}
 
 }

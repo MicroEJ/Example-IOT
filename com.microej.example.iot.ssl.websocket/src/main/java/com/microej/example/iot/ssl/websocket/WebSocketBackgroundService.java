@@ -1,16 +1,20 @@
 /*
  * Java
  *
- * Copyright 2019 IS2T. All rights reserved.
- * For demonstration purpose only.
- * IS2T PROPRIETARY. Use is subject to license terms.
+ * Copyright 2019-2019 MicroEJ Corp. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be found with this software.
+ * MicroEJ Corp. PROPRIETARY. Use is subject to license terms.
  */
 package com.microej.example.iot.ssl.websocket;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.KeyManagementException;
 import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
 import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.util.Arrays;
 import java.util.logging.Level;
@@ -20,12 +24,18 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 
-import ej.bon.Util;
+import android.net.ConnectivityManager;
+import android.net.ConnectivityManager.NetworkCallback;
+import android.net.Network;
+import android.net.NetworkCapabilities;
+import ej.components.dependencyinjection.ServiceLoaderFactory;
+import ej.net.PollerConnectivityManager;
 import ej.net.util.NtpUtil;
 import ej.wadapps.app.BackgroundService;
 import ej.websocket.Endpoint;
 import ej.websocket.ReasonForClosure;
 import ej.websocket.WebSocket;
+import ej.websocket.WebSocketException;
 import ej.websocket.WebSocketSecure;
 import ej.websocket.WebSocketURI;
 
@@ -53,12 +63,21 @@ public class WebSocketBackgroundService implements BackgroundService, Endpoint {
 
 	// The server url
 	private static final String SERVER_URL = "echo.websocket.org"; //$NON-NLS-1$
+	private static final String RESOURCE_NAME = "/echo"; //$NON-NLS-1$
 
 	private SSLContext sslContext;
 
+	/**
+	 * Starts the {@link WebSocketBackgroundService} after initialisation.
+	 *
+	 * @param args
+	 *            not used.
+	 */
 	public static void main(String[] args) {
+		waitForConnectivity();
 		updateTime();
 		new WebSocketBackgroundService().onStart();
+		stopConnectivityManager();
 	}
 
 	@Override
@@ -67,11 +86,8 @@ public class WebSocketBackgroundService implements BackgroundService, Endpoint {
 		LOGGER.setLevel(Level.ALL);
 
 		try {
-
-			initRestyHttpsContext();
-
-			useWebsocket();
-
+			initSSLContext();
+			useSecureWebsocket();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -84,11 +100,23 @@ public class WebSocketBackgroundService implements BackgroundService, Endpoint {
 	}
 
 	/**
-	 * Initialize the SSLContext used for Resty Https connection
+	 * Initialize the SSLContext.
 	 *
-	 * @throws Exception
+	 * @throws IOException
+	 *             if the certificate cannot be loaded.
+	 *
+	 * @throws CertificateException
+	 *             if the certificate is not valid.
+	 * @throws NoSuchAlgorithmException
+	 *             if the platform does not support x509.
+	 * @throws KeyStoreException
+	 *             if an error occurs during keystore init.
+	 * @throws KeyManagementException
+	 *             if an error occurs during keystore init.
 	 */
-	public void initRestyHttpsContext() throws Exception {
+	public void initSSLContext() throws NoSuchAlgorithmException, CertificateException, IOException, KeyStoreException,
+			KeyManagementException {
+		LOGGER.info("=========== Initialize SSLContext ==========="); //$NON-NLS-1$
 		/*
 		 * Create and initialize the SSLContext which will be used to connect to the secure Server. The followings steps
 		 * show how to create and setup the SSLContext for Resty Https connection.
@@ -129,27 +157,35 @@ public class WebSocketBackgroundService implements BackgroundService, Endpoint {
 			 */
 			this.sslContext = SSLContext.getInstance(TLS_VERSION_1_2);
 			this.sslContext.init(null, trustManagers, null);
-
 		}
+		LOGGER.info("Initialization done"); //$NON-NLS-1$
 	}
 
 	/**
-	 * Get request example
+	 * Uses a secure websocket.
 	 *
-	 * @throws Exception
-	 *             if an error occurs
+	 * @throws IOException
+	 *             if an {@link IOException} occurs during the communication.
+	 * @throws NoSuchAlgorithmException
+	 *             if context is null and does not
+	 * @throws WebSocketException
+	 *             if an {@link WebSocketException} occurs during the communication.
+	 * @throws InterruptedException
+	 *             if the thread is interrupted.
 	 */
-	public void useWebsocket() throws Exception {
-		LOGGER.info("=========== Websocket USAGE ==========="); //$NON-NLS-1$
+	public void useSecureWebsocket()
+			throws NoSuchAlgorithmException, IOException, WebSocketException, InterruptedException {
+		LOGGER.info("=========== Secure Websocket USAGE ==========="); //$NON-NLS-1$
 
 		try (WebSocketSecure webSocket = new WebSocketSecure(
-				new WebSocketURI(SERVER_URL, WebSocketURI.DEFAULT_SECURE_PORT, "/", true), this, this.sslContext)) { //$NON-NLS-1$
+				new WebSocketURI(SERVER_URL, WebSocketURI.DEFAULT_SECURE_PORT, RESOURCE_NAME, true), this,
+				this.sslContext)) {
 			webSocket.connect();
 			Thread.sleep(SLEEP_DURATION);
-			System.out.println("Sending messqge " + HELLO_WORLD);
+			LOGGER.info("Sending message " + HELLO_WORLD); //$NON-NLS-1$
 			webSocket.sendText(HELLO_WORLD);
 			Thread.sleep(SLEEP_DURATION);
-			System.out.println("Sending binary message length " + HELLO_WORLD.length());
+			LOGGER.info("Sending binary message length " + HELLO_WORLD.length()); //$NON-NLS-1$
 			webSocket.sendBinary(HELLO_WORLD.getBytes());
 			Thread.sleep(SLEEP_DURATION);
 		}
@@ -157,10 +193,10 @@ public class WebSocketBackgroundService implements BackgroundService, Endpoint {
 
 	@Override
 	public byte[] onBinaryMessage(WebSocket ws, byte[] message) {
-		System.out.println("Binary message receive length = " + message.length); //$NON-NLS-1$
+		LOGGER.info("Binary message receive length = " + message.length); //$NON-NLS-1$
 		if (Arrays.equals(message, HELLO_WORLD.getBytes())) {
 			// When hello is echoed, return goodbye
-			System.out.println("Answering with binary message length " + GOODBYE_WORLD.length());
+			LOGGER.info("Answering with binary message length " + GOODBYE_WORLD.length()); //$NON-NLS-1$
 			return GOODBYE_WORLD.getBytes();
 		} else {
 			// Does not return anything to the server to avoid loop.
@@ -170,33 +206,32 @@ public class WebSocketBackgroundService implements BackgroundService, Endpoint {
 
 	@Override
 	public void onClose(WebSocket ws, ReasonForClosure closeReason) {
-		System.out.println("Close: " + closeReason); //$NON-NLS-1$
+		LOGGER.info("Close: " + closeReason); //$NON-NLS-1$
 
 	}
 
 	@Override
 	public void onError(WebSocket ws, Throwable thr) {
-		thr.printStackTrace();
-
+		LOGGER.log(Level.INFO, "onError", thr); //$NON-NLS-1$
 	}
 
 	@Override
 	public void onOpen(WebSocket ws) {
-		System.out.println("WebsocketBS.onOpen()"); //$NON-NLS-1$
+		LOGGER.info("onOpen"); //$NON-NLS-1$
 
 	}
 
 	@Override
 	public void onPong(byte[] data) {
-		System.out.println("WebsocketBS.onPong()"); //$NON-NLS-1$
+		LOGGER.info("onPong"); //$NON-NLS-1$
 
 	}
 
 	@Override
 	public String onTextMessage(WebSocket ws, String message) {
-		System.out.println("Message received: " + message); //$NON-NLS-1$
+		LOGGER.info("Message received: " + message); //$NON-NLS-1$
 		if (message.equals(HELLO_WORLD)) {
-			System.out.println("Answering with " + GOODBYE_WORLD);
+			LOGGER.info("Answering with " + GOODBYE_WORLD); //$NON-NLS-1$
 			// When hello is echoed, return goodbye
 			return GOODBYE_WORLD;
 		} else {
@@ -205,22 +240,60 @@ public class WebSocketBackgroundService implements BackgroundService, Endpoint {
 		}
 	}
 
+	private static void waitForConnectivity() {
+		LOGGER.info("=========== Waiting for connectivity ==========="); //$NON-NLS-1$
+		final Object mutex = new Object();
+		final ConnectivityManager service = ServiceLoaderFactory.getServiceLoader()
+				.getService(ConnectivityManager.class);
+		if (service != null) {
+			NetworkCallback callback = new NetworkCallback() {
+				@Override
+				public void onCapabilitiesChanged(Network network, NetworkCapabilities networkCapabilities) {
+					if (networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)) {
+						synchronized (mutex) {
+							mutex.notify();
+						}
+					}
+				}
+			};
+			service.registerDefaultNetworkCallback(callback);
+			NetworkCapabilities capabilities = service.getNetworkCapabilities(service.getActiveNetwork());
+			if (capabilities == null || !capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)) {
+				synchronized (mutex) {
+					try {
+						mutex.wait();
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			service.unregisterNetworkCallback(callback);
+			LOGGER.info("Connected"); //$NON-NLS-1$
+		} else {
+			LOGGER.info("No connectivity manager found."); //$NON-NLS-1$
+		}
+	}
+
+	private static void stopConnectivityManager() {
+		LOGGER.info("=========== Stopping connectivity Manager ==========="); //$NON-NLS-1$
+		final ConnectivityManager service = ServiceLoaderFactory.getServiceLoader()
+				.getService(ConnectivityManager.class);
+		if (service instanceof PollerConnectivityManager) {
+			((PollerConnectivityManager) service).cancel();
+		} else {
+			LOGGER.info("No connectivity manager found."); //$NON-NLS-1$
+		}
+	}
+
 	/**
 	 * Update the platform time.
 	 */
 	public static void updateTime() {
 		LOGGER.info("=========== Updating time ==========="); //$NON-NLS-1$
-		while (Util.currentTimeMillis() < 1000000) {
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// Sanity.
-			}
-			try {
-				NtpUtil.updateLocalTime();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		try {
+			NtpUtil.updateLocalTime();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		LOGGER.info("Time updated"); //$NON-NLS-1$
 	}

@@ -1,16 +1,22 @@
 # Overview
+
 A MicroEJ sandboxed application using the connectivity manager.
 
 # Usage
+
 ## Run on MicroEJ Simulator
-1. Right Click on [Main.java](src\main\java\com\microej\example\iot\androidconnectivity\Main.java)
-2. Select **Run as -> MicroEJ Application**
-3. Select your platform
-4. Press **Ok**
+
+1. Right Click on the project
+2. Select Main
+3. Select **Run as -> MicroEJ Application**
+4. Select your platform
+5. Press **Ok**
 
 ## Run on a device
+
 ### Local deploy
-1. Right Click on [ExampleBG.java](src/main/java/com/microej/example/iot/androidconnectivity/app/ExampleBG.java)
+
+1. Right Click on the project
 2. Select **Run as -> Run Configurations...** 
 3. Select **MicroEJ Application** configuration kind
 4. Click on **New launch configuration** icon
@@ -26,18 +32,21 @@ A MicroEJ sandboxed application using the connectivity manager.
 8. Press **Run**
 
 # Requirements
-* MicroEJ Studio or SDK 4.0 or later
-* A platform with at least:
-	* EDC-1.2 or higher
-	* BON-1.2 or higher
-	* KF-1.4 or higher
+
+This example has been tested on:
+
+* MicroEJ SDK 5.1
+* With a platform that contains:
+    * EDC-1.2
+    * NET-1.1
 
 ## Dependencies
+
 _All dependencies are retrieved transitively by Ivy resolver_.
 
 
-<!--
-  Copyright 2016-2018 IS2T. All rights reserved.
-  For demonstration purpose only.
-  IS2T PROPRIETARY. Use is subject to license terms.
--->
+---  
+_Markdown_   
+_Copyright 2019 MicroEJ Corp. All rights reserved._   
+_Use of this source code is governed by a BSD-style license that can be found with this software._   
+_MicroEJ Corp. PROPRIETARY. Use is subject to license terms._  

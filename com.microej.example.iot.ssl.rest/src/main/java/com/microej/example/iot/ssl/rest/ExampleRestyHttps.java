@@ -1,9 +1,9 @@
 /*
  * Java
  *
- * Copyright 2015-2018 IS2T. All rights reserved.
- * For demonstration purpose only.
- * IS2T PROPRIETARY. Use is subject to license terms.
+ * Copyright 2015-2019 MicroEJ Corp. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be found with this software.
+ * MicroEJ Corp. PROPRIETARY. Use is subject to license terms.
  */
 package com.microej.example.iot.ssl.rest;
 
@@ -13,7 +13,7 @@ import java.net.HttpURLConnection;
 import java.security.KeyStore;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateFactory;
-import java.util.Calendar;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -27,9 +27,8 @@ import android.net.ConnectivityManager;
 import android.net.ConnectivityManager.NetworkCallback;
 import android.net.Network;
 import android.net.NetworkCapabilities;
-import android.net.SntpClient;
-import ej.bon.Util;
 import ej.components.dependencyinjection.ServiceLoaderFactory;
+import ej.net.util.NtpUtil;
 import ej.rest.web.AbstractContent;
 import ej.rest.web.Content;
 import ej.rest.web.Deletion;
@@ -104,8 +103,10 @@ public class ExampleRestyHttps {
 				}
 			}
 			service.unregisterNetworkCallback(callback);
+			LOGGER.info("Connected"); //$NON-NLS-1$
+		} else {
+			LOGGER.info("No connectivity manager found."); //$NON-NLS-1$
 		}
-		LOGGER.info("Connected"); //$NON-NLS-1$
 	}
 
 	/**
@@ -113,24 +114,10 @@ public class ExampleRestyHttps {
 	 */
 	public static void updateTime() {
 		LOGGER.info("=========== Updating time ==========="); //$NON-NLS-1$
-		SntpClient ntpClient = new SntpClient();
-
-		while (Util.currentTimeMillis() < 1000000) {
-			/**
-			 * Request NTP time
-			 */
-			if (ntpClient.requestTime("ntp.ubuntu.com", 123, 1000)) { //$NON-NLS-1$
-				long now = ntpClient.getNtpTime() + Util.platformTimeMillis() - ntpClient.getNtpTimeReference();
-
-				Calendar.getInstance().setTimeInMillis(now);
-				Util.setCurrentTimeMillis(now);
-			} else {
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					// Sanity.
-				}
-			}
+		try {
+			NtpUtil.updateLocalTime();
+		} catch (IOException e) {
+			LOGGER.log(Level.INFO, "Could not update time.", e); //$NON-NLS-1$
 		}
 		LOGGER.info("Time updated"); //$NON-NLS-1$
 	}
@@ -322,8 +309,6 @@ public class ExampleRestyHttps {
 		}finally{
 			conn.disconnect();
 		}
-
 	}
-
 
 }

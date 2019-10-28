@@ -1,9 +1,9 @@
 /*
  * Java
  *
- * Copyright 2015-2018 IS2T. All rights reserved.
- * For demonstration purpose only.
- * IS2T PROPRIETARY. Use is subject to license terms.
+ * Copyright 2015-2019 MicroEJ Corp. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be found with this software.
+ * MicroEJ Corp. PROPRIETARY. Use is subject to license terms.
  */
 package com.microej.example.iot.ssl.rest.ui.style;
 
@@ -30,8 +30,8 @@ import ej.style.selector.combinator.AndCombinator;
 import ej.style.text.ComplexTextManager;
 import ej.style.util.EditableStyle;
 import ej.style.util.StyleHelper;
+import ej.widget.basic.Button;
 import ej.widget.basic.Label;
-import ej.widget.composed.Button;
 
 public class StylesheetPopulator {
 

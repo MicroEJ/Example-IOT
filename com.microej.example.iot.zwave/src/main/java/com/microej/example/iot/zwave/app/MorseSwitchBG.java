@@ -1,8 +1,9 @@
 /*
  * Java
  *
- * Copyright 2016 IS2T. All rights reserved.
- * Use of this source code is subject to license terms.
+ * Copyright 2016-2019 MicroEJ Corp. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be found with this software.
+ * MicroEJ Corp. PROPRIETARY. Use is subject to license terms.
  */
 package com.microej.example.iot.zwave.app;
 
@@ -20,17 +21,17 @@ import ej.wadapps.app.BackgroundService;
 public class MorseSwitchBG extends Thread implements BackgroundService {
 
 	/**
-	 * Convert a lower case char to morse: 
-	 * CHAR_TO_MORSE[0] = 'a' = ._ 
-	 * CHAR_TO_MORSE[1] = 'b' = _... 
+	 * Convert a lower case char to morse:
+	 * CHAR_TO_MORSE[0] = 'a' = ._
+	 * CHAR_TO_MORSE[1] = 'b' = _...
 	 *         ...
 	 * CHAR_TO_MORSE[24] = 'y' = ____.
 	 * CHAR_TO_MORSE[25] = 'z' = _____
 	 */
 	private static final String[] CHAR_TO_MORSE = {
-			"._", "_...", "_._.", "_..", ".", ".._.", "__.", "....", "..", ".___", "_._", "._..", "__", "_.", "___",
-			".__.", "__._", "._.", "...", "_", ".._", "..._", ".__", "_.._", "_.__", "__..", ".____", "..___", "...__",
-			"...._", ".....", "_....", "__...", "___..", "____.", "_____"
+			"._", "_...", "_._.", "_..", ".", ".._.", "__.", "....", "..", ".___", "_._", "._..", "__", "_.", "___", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$ //$NON-NLS-13$ //$NON-NLS-14$ //$NON-NLS-15$
+			".__.", "__._", "._.", "...", "_", ".._", "..._", ".__", "_.._", "_.__", "__..", ".____", "..___", "...__", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$ //$NON-NLS-13$ //$NON-NLS-14$
+			"...._", ".....", "_....", "__...", "___..", "____.", "_____" //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$
 	};
 
 	/**
@@ -72,7 +73,7 @@ public class MorseSwitchBG extends Thread implements BackgroundService {
 	/**
 	 * Text used for the morse.
 	 */
-	private static final String TEXT = "MicroEJ";
+	private static final String TEXT = "MicroEJ"; //$NON-NLS-1$
 
 	@Override
 	public void onStart() {
@@ -94,20 +95,25 @@ public class MorseSwitchBG extends Thread implements BackgroundService {
 			// Initial state
 			switchLights(BinaryState.OFF);
 			// For each character
-			for(char c: TEXT.toLowerCase().toCharArray()){
-				String morse = getMorse(c);
-				if (morse != null) {
-					for (char m : morse.toCharArray()) {
-						switchLights(BinaryState.ON);
-						sleep((m == SHORT) ? SHORT_DELAY : LONG_DELAY);
-						switchLights(BinaryState.OFF);
-						sleep(OFF_DELAY);
-					}
-				} else { // The character is not known
-					sleep(UNKNOWN_DELAY);
-				}
-			}
+			morsePrint(TEXT);
 			sleep(LOOP_DELAY);
+		}
+	}
+
+	private static void morsePrint(String text) {
+		ZWaveBG.LOGGER.info("Printing: " + text); //$NON-NLS-1$
+		for (char c : text.toLowerCase().toCharArray()) {
+			String morse = getMorse(c);
+			if (morse != null) {
+				for (char m : morse.toCharArray()) {
+					switchLights(BinaryState.ON);
+					sleep((m == SHORT) ? SHORT_DELAY : LONG_DELAY);
+					switchLights(BinaryState.OFF);
+					sleep(OFF_DELAY);
+				}
+			} else { // The character is not known
+				sleep(UNKNOWN_DELAY);
+			}
 		}
 	}
 
@@ -120,7 +126,7 @@ public class MorseSwitchBG extends Thread implements BackgroundService {
 	 * @throws IllegalArgumentException
 	 *             when c is not in the range ['a', 'z'].
 	 */
-	private String getMorse(char c) throws IllegalArgumentException {
+	private static String getMorse(char c) throws IllegalArgumentException {
 		if (c < 'a' || c > 'z') {
 			throw new IllegalArgumentException();
 		}
@@ -134,7 +140,7 @@ public class MorseSwitchBG extends Thread implements BackgroundService {
 	 *            The state to set the lights.
 	 * @see BinaryState
 	 */
-	private void switchLights(int state) {
+	private static void switchLights(int state) {
 		// List all Switch With Return States.
 		Iterator<SwitchWithReturnState> list = DeviceManager.list(SwitchWithReturnState.class);
 		while (list.hasNext()) {
@@ -158,7 +164,7 @@ public class MorseSwitchBG extends Thread implements BackgroundService {
 	 *            the delay to sleep.
 	 * @see Thread.sleep
 	 */
-	private void sleep(int delay) {
+	private static void sleep(int delay) {
 		try {
 			Thread.sleep(delay);
 		} catch (InterruptedException e) {

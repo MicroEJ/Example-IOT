@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Application-Id: JsonExample
-Application-Version: 3.0.0
+Application-Version: 3.1.0
 Application-PrintableName: Json
 Application-Description: Json
-Application-BackgroundServices: com.microej.example.iot.json.app.JsonBG
+Application-BackgroundServices: com.microej.example.iot.json.JsonBackgroundService
