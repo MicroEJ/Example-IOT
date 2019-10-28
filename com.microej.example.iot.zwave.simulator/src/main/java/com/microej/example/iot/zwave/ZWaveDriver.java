@@ -1,8 +1,9 @@
 /*
  * Java
  *
- * Copyright 2016 IS2T. All rights reserved.
- * Use of this source code is subject to license terms.
+ * Copyright 2016-2019 MicroEJ Corp. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be found with this software.
+ * MicroEJ Corp. PROPRIETARY. Use is subject to license terms.
  */
 package com.microej.example.iot.zwave;
 
@@ -22,15 +23,15 @@ public class ZWaveDriver extends AbstractDriverService {
 	static {
 		try {
 			// Initiate Connector, only required in simulator.
-			Connector.open("comm://aaa");
-		} catch (IOException e) {
+			Connector.open("comm://aaa"); //$NON-NLS-1$
+		} catch (@SuppressWarnings("unused") IOException e) {
 			// e.printStackTrace();
 		}
 	}
 
 	@Override
 	protected Controller create(CommPort port) {
-		System.out.println("Starts ZWave Driver.");
+		System.out.println("Starts ZWave Driver."); //$NON-NLS-1$
 		try {
 			// Creates the controller.
 			ZwaveController zwaveController = new ZwaveController(port,

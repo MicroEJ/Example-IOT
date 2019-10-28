@@ -1,9 +1,9 @@
 /*
  * Java
  *
- * Copyright 2015-2018 IS2T. All rights reserved.
- * For demonstration purpose only.
- * IS2T PROPRIETARY. Use is subject to license terms.
+ * Copyright 2015-2019 MicroEJ Corp. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be found with this software.
+ * MicroEJ Corp. PROPRIETARY. Use is subject to license terms.
  */
 package com.microej.example.iot.ssl.rest.ui;
 
@@ -13,8 +13,8 @@ import com.microej.example.iot.ssl.rest.ui.style.Pictos;
 
 import ej.mwt.Widget;
 import ej.util.concurrent.SingleThreadExecutor;
+import ej.widget.basic.Button;
 import ej.widget.basic.Label;
-import ej.widget.composed.Button;
 import ej.widget.container.List;
 import ej.widget.listener.OnClickListener;
 
@@ -24,9 +24,9 @@ public class RestHttpsPage extends AbstractOutputPage {
 
 	@Override
 	protected Widget createMenu() {
-		write("HTTPS request tester connected to " + ExampleRestyHttps.SERVER_URL);
+		ExampleRestyHttps.LOGGER.info("HTTPS request tester connected to " + ExampleRestyHttps.SERVER_URL); //$NON-NLS-1$
 		List menu = new List(false);
-		Button doGetButton = new Button("Get");
+		Button doGetButton = new Button("Get"); //$NON-NLS-1$
 		doGetButton.addOnClickListener(new OnClickListener() {
 
 			@Override
@@ -46,7 +46,7 @@ public class RestHttpsPage extends AbstractOutputPage {
 		});
 		menu.add(doGetButton);
 
-		Button doPutButton = new Button("Put");
+		Button doPutButton = new Button("Put"); //$NON-NLS-1$
 		doPutButton.addOnClickListener(new OnClickListener() {
 
 			@Override
@@ -66,7 +66,7 @@ public class RestHttpsPage extends AbstractOutputPage {
 		});
 		menu.add(doPutButton);
 
-		Button doPostButton = new Button("Post");
+		Button doPostButton = new Button("Post"); //$NON-NLS-1$
 		doPostButton.addOnClickListener(new OnClickListener() {
 
 			@Override
@@ -87,7 +87,7 @@ public class RestHttpsPage extends AbstractOutputPage {
 		});
 		menu.add(doPostButton);
 
-		Button doDeleteButton = new Button("Delete");
+		Button doDeleteButton = new Button("Delete"); //$NON-NLS-1$
 		doDeleteButton.addOnClickListener(new OnClickListener() {
 
 			@Override
@@ -110,9 +110,6 @@ public class RestHttpsPage extends AbstractOutputPage {
 		return menu;
 	}
 
-	private void write(String string) {
-		ExampleRestyHttps.LOGGER.info(string);
-	}
 
 	@Override
 	protected Widget getTitle() {

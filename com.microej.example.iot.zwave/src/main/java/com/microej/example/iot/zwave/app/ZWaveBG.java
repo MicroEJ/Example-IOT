@@ -1,10 +1,13 @@
 /*
  * Java
  *
- * Copyright 2016 IS2T. All rights reserved.
- * Use of this source code is subject to license terms.
+ * Copyright 2016-2019 MicroEJ Corp. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be found with this software.
+ * MicroEJ Corp. PROPRIETARY. Use is subject to license terms.
  */
 package com.microej.example.iot.zwave.app;
+
+import java.util.logging.Logger;
 
 import com.microej.example.iot.zwave.ControllerManager;
 import com.microej.example.iot.zwave.DryContactManager;
@@ -20,6 +23,11 @@ import ej.wadapps.app.BackgroundService;
  * Background Service starting the ZWave management.
  */
 public class ZWaveBG implements BackgroundService {
+
+	/**
+	 * Logger used.
+	 */
+	public static final Logger LOGGER = Logger.getLogger("ControllerManager"); //$NON-NLS-1$
 
 	private SwitchWithReturnStateManager switchStateManager;
 	private DryContactManager dryContactManager;

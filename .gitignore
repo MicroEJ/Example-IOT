@@ -1,13 +1,10 @@
-*/bin*/
-*/*.map
-*/*.properties
-*/*.jazzignore
-*/src/.generated~/
-*/target~/
-*/.settings/org.sonar.ide.eclipse.core.prefs
+bin/
+.generated~/
+.sonar/
+target~/
+.settings/
 */_*/
-# */launches/
 */launches/*.properties
-*/ej.examples.*/
-com.microej.example.iot.ssl.websocket/com.microej.example.iot.ssl.websocket.WebsocketBS/
-com.microej.example.iot.ssl.websocket/src-adpgenerated/
+src-adpgenerated/
+**/com.microej.example.iot.*/com.microej.example.iot.*/
+filesystem/

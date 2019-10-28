@@ -1,7 +1,0 @@
-Manifest-Version: 1.0
-Application-Id: RestGet
-Application-Version: 1.0.0
-Application-PrintableName: com.microej.example.iot.ssl.restget
-Application-Description: A SSL REST Get
-Application-IconsDirectory: icons
-Application-BackgroundServices: com.microej.example.iot.ssl.restget.GetBS

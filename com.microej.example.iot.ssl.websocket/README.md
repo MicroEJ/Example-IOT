@@ -4,6 +4,7 @@ WebSocket example connecting to echo.websocket.org over TLS.
 
 # Usage
 ## Run on MicroEJ Simulator
+
 1. Right Click on the project
 2. Select **Run as -> MicroEJ Application**
 3. Select **BackgroundServicesStandalone**
@@ -11,8 +12,10 @@ WebSocket example connecting to echo.websocket.org over TLS.
 5. Press **Ok**
 
 ## Run on device
+
 ### Local deploy
-1. Right Click on [WebsocketEntryPoint.java](src/.generated~/.java/__Websocket__/generated/WebsocketEntryPoint.java)
+
+1. Right Click on the project
 2. Select **Run as -> Run Configurations...** 
 3. Select **MicroEJ Application** configuration kind
 4. Click on **New launch configuration** icon
@@ -30,11 +33,16 @@ WebSocket example connecting to echo.websocket.org over TLS.
 
 # Requirements
 
-  - EDC-1.2 or higher
-  - NET-1.0 or higher
-  - SSL-2.0 or higher
-  - Wadapps Framework 1.2.0 or higher
+This example has been tested on:
 
+* MicroEJ SDK 5.1
+* With a platform that contains:
+    * EDC-1.2 or higher
+    * BON-1.2 or higher
+    * NET-1.1 or higher
+    * SSL-2.0 or higher
+    * KF-1.4 or higher
+    
 # Dependencies
 
 _All dependencies are retrieved transitively by Ivy resolver_.
@@ -47,9 +55,8 @@ N/A
 
 None.
 
-<!--
-    Markdown
-    Copyright 2019 IS2T. All rights reserved.
-    For demonstration purpose only.
-    IS2T PROPRIETARY. Use is subject to license terms.
--->
+---  
+_Markdown_   
+_Copyright 2019 MicroEJ Corp. All rights reserved._   
+_Use of this source code is governed by a BSD-style license that can be found with this software._   
+_MicroEJ Corp. PROPRIETARY. Use is subject to license terms._  

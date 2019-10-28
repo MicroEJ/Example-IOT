@@ -1,8 +1,11 @@
 # Overview
+
 A MicroEJ sandboxed application publishing MQTT data to a MQTT broker via SSL.
 
 # Usage
+
 ## MQTT broker setup
+
 A running MQTT broker is required in order to run this example. You shall ensure that the broker is reachable from your development machine (if running the sample on MicroEJ simulator) or from your target device
 1. Update the MQTT URL in [HelloWorldConstants.java](src/main/java/com/microej/example/iot/mqtt/HelloWorldConstants.java)
 2. Download the broker server's certificate (e.g. broker.com.crt).
@@ -11,6 +14,7 @@ A running MQTT broker is required in order to run this example. You shall ensure
 5. Add a new line in [paho.certificates.list](src/main/resources/certificates/paho.certificates.list) with the path to the certificate (eg /certificates/broker.com.crt)
 
 ## Run on MicroEJ Simulator
+
 1. Right Click on the project
 2. Select **Run as -> MicroEJ Application**
 3. Select **BackgroundServicesStandalone**
@@ -18,8 +22,10 @@ A running MQTT broker is required in order to run this example. You shall ensure
 5. Press **Ok**
 
 ## Run on device
+
 ### Local deploy
-1. Right Click on [PublisherEntryPoint.java](src/.generated~/.java/__MQTTSSLPublisher__/generated/MQTTSSLPublisherEntryPoint.java)
+
+1. Right Click on the project
 2. Select **Run as -> Run Configurations...** 
 3. Select **MicroEJ Application** configuration kind
 4. Click on **New launch configuration** icon
@@ -35,20 +41,24 @@ A running MQTT broker is required in order to run this example. You shall ensure
 8. Press **Run**
 
 # Requirements
-* MicroEJ Studio or SDK 4.0 or later
-* A platform with at least:
-	* EDC-1.2 or higher
-	* NET-1.0 or higher
-	* BON-1.0 or higher
+
+This example has been tested on:
+
+* MicroEJ SDK 5.1
+* With a platform that contains:
+    * EDC-1.2 or higher
+    * BON-1.2 or higher
+    * NET-1.1 or higher
 	* SSL-2.0 or higher
 	* KF-1.4 or higher
 
 ## Dependencies
+
 _All dependencies are retrieved transitively by Ivy resolver_.
 
 
-<!--
-  Copyright 2016-2018 IS2T. All rights reserved.
-  For demonstration purpose only.
-  IS2T PROPRIETARY. Use is subject to license terms.
--->
+
+---
+_Copyright 2016-2019 MicroEJ Corp. All rights reserved._  
+_Use of this source code is governed by a BSD-style license that can be found with this software._  
+_MicroEJ Corp. PROPRIETARY. Use is subject to license terms._  

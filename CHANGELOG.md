@@ -1,3 +1,10 @@
+## 14.2.0 (2019-10-08)
+
+Feature:
+  - Add dynamic server example
+  - Add headless rest example
+  - Add mutual authentification rest example
+  
 ## 14.1.0 (2019-02-19)
 
 Feature:
@@ -15,8 +22,8 @@ Bug Fixes:
 ## 14.0.0 (2017-06-14)
 
 Features:
-	- Add new com.microej.example.iot.ssl.restget example
-	- Migrating from MicroEJ 4.0 to MicroEJ 4.1
+  - Add new com.microej.example.iot.ssl.restget example
+  - Migrating from MicroEJ 4.0 to MicroEJ 4.1
 
 ## 13.0.0 (2016-12-29)
 Features:
@@ -34,10 +41,8 @@ Bugfixes:
 Features:
   - Initial revision.
 
-
-
-<!--
-    Copyright 2016-2019 IS2T. All rights reserved.
-    For demonstration purpose only.
-    IS2T PROPRIETARY. Use is subject to license terms.
--->
+---  
+_Markdown_   
+_Copyright 2016-2019 MicroEJ Corp. All rights reserved._   
+_Use of this source code is governed by a BSD-style license that can be found with this software._   
+_MicroEJ Corp. PROPRIETARY. Use is subject to license terms._  
