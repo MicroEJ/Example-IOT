@@ -1,10 +1,10 @@
 /*
  * Java
  *
- * Copyright 2016-2020 MicroEJ Corp. All rights reserved.
+ * Copyright 2016-2021 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
-package com.microej.example.iot.cbor;
+package com.microej.example.iot.cbor.json;
 
 import static ej.cbor.CborConstants.BREAK;
 import static ej.cbor.CborConstants.DOUBLE_PRECISION_FLOAT;
@@ -42,7 +42,7 @@ import ej.cbor.CborType;
 /**
  * Helper class to serialize and deserialize message using CBOR.
  */
-public class CborHelper {
+public class CborJsonHelper {
 
 	/**
 	 * Deserialize a Cbor Item to an object.

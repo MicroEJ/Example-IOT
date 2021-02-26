@@ -1,0 +1,25 @@
+<!--
+	Copyright 2021 MicroEJ Corp. All rights reserved.
+	Use of this source code is governed by a BSD-style license that can be found with this software.
+-->
+
+<immutables>
+	<array id="tagsMessages" private="false" type="java.lang.String[]">
+		<elem value="Standard format date/time value" />
+		<elem value="Epoch timestamp date/time value" />
+		<elem value="Positive big integer value" />
+		<elem value="Negative big integer value" />
+		<elem value="Decimal fraction value" />
+		<elem value="Big decimal value" />
+		<elem value="base64url encoded value" />
+		<elem value="base64 encoded value" />
+		<elem value="base16 encoded value" />
+		<elem value="CBOR data item" />
+		<elem value="URI" />
+		<elem value="base64url string" />
+		<elem value="base64 string" />
+		<elem value="Regular expression string" />
+		<elem value="MIME message" />
+		<elem value="CBOR content" />
+	</array>
+</immutables>

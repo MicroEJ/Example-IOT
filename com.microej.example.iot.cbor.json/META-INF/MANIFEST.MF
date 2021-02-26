@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Application-Id: CborJsonExample
+Application-Version: 2.1.0
+Application-PrintableName: CborJson
+Application-Description: CborJson
+Application-BackgroundServices: com.microej.example.iot.cbor.json.app.CborJsonBg

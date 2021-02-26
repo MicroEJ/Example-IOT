@@ -1,10 +1,10 @@
 /*
  * Java
  *
- * Copyright 2016-2020 MicroEJ Corp. All rights reserved.
+ * Copyright 2016-2021 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
-package com.microej.example.iot.cbor;
+package com.microej.example.iot.cbor.json;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -22,7 +22,7 @@ import ej.cbor.CborEncoder;
  *
  * The example serialize some data then deserialize them.
  */
-public class CborhelloWorld {
+public class CborJsonhelloWorld {
 
 	/**
 	 * Entry point, serialized a JSONobject then deserialized it.
@@ -32,7 +32,7 @@ public class CborhelloWorld {
 	 */
 	public static void main(String[] args) {
 		// Load the /json/menu.json file into a json object.
-		DataInputStream dis = new DataInputStream(CborhelloWorld.class.getResourceAsStream("/json/menu.json")); //$NON-NLS-1$
+		DataInputStream dis = new DataInputStream(CborJsonhelloWorld.class.getResourceAsStream("/json/menu.json")); //$NON-NLS-1$
 		int size;
 		try {
 			size = dis.available();
@@ -46,7 +46,7 @@ public class CborhelloWorld {
 		ByteArrayOutputStream serializedOutputStream = new ByteArrayOutputStream();
 		CborEncoder cborEncoder = new CborEncoder(serializedOutputStream);
 		try {
-			CborHelper.serialize(cborEncoder, menuJson);
+			CborJsonHelper.serialize(cborEncoder, menuJson);
 		} catch (IllegalArgumentException | IOException e) {
 			System.out.println("Error during serialization"); //$NON-NLS-1$
 			throw new AssertionError(e);
@@ -58,7 +58,7 @@ public class CborhelloWorld {
 		ByteArrayInputStream serializedInputStream = new ByteArrayInputStream(serialized);
 		CborDecoder cborDecoder = new CborDecoder(serializedInputStream);
 		try {
-			Object deserialized = CborHelper.deserialize(cborDecoder);
+			Object deserialized = CborJsonHelper.deserialize(cborDecoder);
 			System.out.println("Data deserialized = " + deserialized); //$NON-NLS-1$
 		} catch (IOException e) {
 			throw new AssertionError(e);

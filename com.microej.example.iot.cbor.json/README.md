@@ -2,7 +2,7 @@
 
 A MicroEJ sandboxed application that uses the ej.cbor serializer/deserializer. 
 
-This example writes some data to a CBOR stream and read it back, printing it in a JSON-like format.
+The example serialize some datas then deserialize them.
 
 # Usage
 
@@ -38,9 +38,9 @@ This example writes some data to a CBOR stream and read it back, printing it in 
 
 This example has been tested on:
 
-* MicroEJ SDK 5.3
+* MicroEJ SDK 5.1
 * With a platform that contains:
-    * EDC-1.3.3 or higher
+    * EDC-1.2 or higher
     * BON-1.3 or higher
 
 ## Dependencies
@@ -50,5 +50,5 @@ _All dependencies are retrieved transitively by Ivy resolver_.
 
 ---  
 _Markdown_   
-_Copyright 2021 MicroEJ Corp. All rights reserved._   
+_Copyright 2019-2021 MicroEJ Corp. All rights reserved._   
 _Use of this source code is governed by a BSD-style license that can be found with this software._   
