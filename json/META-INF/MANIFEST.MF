@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Application-Id: JsonExample
+Application-Version: 4.0.0
+Application-PrintableName: Json
+Application-Description: Json

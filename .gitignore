@@ -2,7 +2,6 @@ bin/
 .generated~/
 .sonar/
 target~/
-.settings/
 */_*/
 */launches/*.properties
 src-adpgenerated/

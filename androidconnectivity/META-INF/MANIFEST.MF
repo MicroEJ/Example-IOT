@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Application-Id: AndroidConnectivity
+Application-Version: 3.0.0
+Application-PrintableName: AndroidConnectivity
+Application-Description: AndroidConnectivity

@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-Application-Id: MQTTSubscriber
-Application-Version: 3.0.0
-Application-PrintableName: Subscriber
-Application-Description: Subscriber
-Application-BackgroundServices: com.microej.example.iot.mqtt.SubscriberBackgroundService

@@ -1,0 +1,5 @@
+#Fri Dec 03 17:01:53 CET 2021
+version=1.0.0
+name=Websocket
+types=ej.net.util.connectivity.*,ej.util.property.*,ej.basictool.map.*,ej.components.registry.util.*,ej.net.util.*,ej.wadapps.registry.*,java.nio.*,ej.util.concurrent.*,org.eclipse.core.runtime.*,ej.websocket.http.*,ej.components.dependencyinjection.util.*,ej.websocket.frame.*,ej.io.progress.*,ej.wadapps.registry.util.*,ej.annotation.*,java.io.*,java.lang.ref.*,java.lang.reflect.*,properties.*,ej.util.logging.handler.*,java.util.logging.*,javax.net.ssl.*,ej.basictool.*,ej.util.message.*,java.security.*,java.security.cert.*,ej.components.*,javax.net.*,ej.wadapps.property.*,ej.wadapps.management.*,__Websocket__.generated.*,java.net.*,ej.components.dependencyinjection.*,ej.websocket.*,java.lang.*,android.net.*,ej.components.registry.impl.*,certificates.*,ej.observable.*,java.lang.annotation.*,ej.components.registry.*,ej.kf.*,java.util.*,java.util.concurrent.*,ej.wadapps.admin.*,ej.wadapps.storage.*,com.microej.example.iot.ssl.websocket.*,ej.net.*,ej.bon.*,ej.websocket.util.*,icons.*,ej.util.message.basic.*,ej.wadapps.app.*
+entryPoint=com.microej.example.iot.ssl.websocket.WebSocketEntryPoint

@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-Application-Id: CborExample
-Application-Version: 1.0.0
-Application-PrintableName: Cbor
-Application-Description: Cbor
-Application-BackgroundServices: com.microej.example.iot.cbor.CborBackgroundService

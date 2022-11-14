@@ -1,0 +1,5 @@
+#Fri Dec 03 16:51:09 CET 2021
+version=1.0.0
+name=mutualAuthentification
+types=com.microej.example.iot.ssl.mutual.*,ej.net.util.connectivity.*,ej.util.property.*,java.util.logging.*,javax.net.ssl.*,ej.basictool.*,ej.basictool.map.*,ej.util.message.*,java.security.*,java.security.cert.*,ej.components.*,javax.net.*,ej.wadapps.property.*,ej.wadapps.management.*,ej.components.registry.util.*,__mutualAuthentification__.generated.*,ej.net.util.*,ej.wadapps.registry.*,java.net.*,org.eclipse.core.runtime.*,ej.components.dependencyinjection.*,ej.components.dependencyinjection.util.*,java.lang.*,android.net.*,ej.io.progress.*,ej.wadapps.registry.util.*,ej.annotation.*,ej.components.registry.impl.*,java.io.*,java.lang.ref.*,certificates.*,ej.observable.*,java.lang.annotation.*,java.lang.reflect.*,ej.components.registry.*,properties.*,ej.kf.*,java.util.*,ej.wadapps.admin.*,ej.wadapps.storage.*,ej.net.*,ej.bon.*,ej.util.message.basic.*,ej.wadapps.app.*,ej.util.logging.handler.*
+entryPoint=com.microej.example.iot.ssl.mutual.MutualAuthEntryPoint

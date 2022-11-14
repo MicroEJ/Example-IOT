@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Application-Id: Websocket
+Application-Version: 2.0.0
+Application-PrintableName: com.microej.example.iot.ssl.websocket
+Application-Description: A SSL Websocket usage
+Application-IconsDirectory: icons

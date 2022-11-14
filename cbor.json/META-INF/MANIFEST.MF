@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Application-Id: CborJsonExample
+Application-Version: 3.0.0
+Application-PrintableName: CborJson
+Application-Description: CborJson
+

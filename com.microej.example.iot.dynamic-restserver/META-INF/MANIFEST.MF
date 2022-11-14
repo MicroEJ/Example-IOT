@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-Application-Id: dynamicRestserver
-Application-Version: 1.0.0
-Application-PrintableName: Dynamic-restserver
-Application-Description: A rest server with dynamic values.
-Application-BackgroundServices: com.microej.example.iot.DynamicServerBackgroundService

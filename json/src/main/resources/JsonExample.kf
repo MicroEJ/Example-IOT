@@ -1,0 +1,5 @@
+#Thu Dec 09 15:19:11 CET 2021
+version=3.1.0
+name=JsonExample
+types=ej.util.property.*,java.util.logging.*,com.microej.example.iot.json.*,ej.basictool.*,ej.basictool.map.*,java.security.*,ej.components.*,json.*,ej.wadapps.property.*,ej.wadapps.management.*,ej.components.registry.util.*,ej.wadapps.registry.*,org.eclipse.core.runtime.*,ej.components.dependencyinjection.*,org.json.me.util.*,ej.components.dependencyinjection.util.*,__JsonExample__.generated.*,java.lang.*,ej.io.progress.*,ej.wadapps.registry.util.*,ej.annotation.*,ej.components.registry.impl.*,java.io.*,java.lang.ref.*,ej.observable.*,java.lang.annotation.*,java.lang.reflect.*,ej.components.registry.*,properties.*,ej.kf.*,org.json.me.*,ej.wadapps.admin.*,ej.wadapps.storage.*,java.util.*,ej.bon.*,ej.wadapps.app.*,ej.util.logging.handler.*
+entryPoint=com.microej.example.iot.json.JsonEntryPoint
