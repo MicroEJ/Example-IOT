@@ -94,7 +94,7 @@ This example has been tested on:
     * SSL-2.0 or higher
     * KF-1.5 or higher
     
-The server used is the one available in [com.microej.example.iot.ssl.mutual.server](../com.microej.example.iot.ssl.mutual.server).
+The server used is the one available in [ssl.mutual.server](../ssl.mutual.server).
 
 ## Dependencies
 
@@ -102,5 +102,5 @@ _All dependencies are retrieved transitively by MicroEJ Module Manager_.
 
 ---  
 _Markdown_   
-_Copyright 2019-2022 MicroEJ Corp. All rights reserved._   
+_Copyright 2019-2023 MicroEJ Corp. All rights reserved._   
 _Use of this source code is governed by a BSD-style license that can be found with this software._

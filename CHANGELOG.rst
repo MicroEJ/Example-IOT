@@ -8,6 +8,15 @@ The format is based on `Keep a Changelog <https://keepachangelog.com/en/1.0.0/>`
 and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0.html>`_.
 
 -------------------
+15.0.1 - 2023-01-10
+-------------------
+
+Fixed
+=====
+
+- Fix ssl.mutual broken link.
+
+-------------------
 15.0.0 - 2022-14-11
 -------------------
 
@@ -146,6 +155,6 @@ Added
 --------------
 
 .. ReStructuredText
-.. Copyright 2016-2022 MicroEJ Corp. All rights reserved.
+.. Copyright 2016-2023 MicroEJ Corp. All rights reserved.
 .. Use of this source code is governed by a BSD-style license that can be found with this software.
 
