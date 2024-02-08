@@ -1,5 +1,0 @@
-#Thu Dec 09 15:11:40 CET 2021
-version=2.1.0
-name=CborJsonExample
-types=ej.util.property.*,java.util.logging.*,ej.cbor.*,ej.basictool.*,ej.basictool.map.*,com.microej.example.iot.cbor.json.app.*,java.security.*,ej.components.*,json.*,ej.wadapps.property.*,ej.wadapps.management.*,ej.components.registry.util.*,ej.wadapps.registry.*,org.eclipse.core.runtime.*,com.microej.example.iot.cbor.json.*,ej.components.dependencyinjection.*,org.json.me.util.*,ej.components.dependencyinjection.util.*,java.lang.*,ej.io.progress.*,ej.wadapps.registry.util.*,ej.annotation.*,ej.components.registry.impl.*,java.io.*,__CborJsonExample__.generated.*,java.lang.ref.*,ej.observable.*,java.lang.annotation.*,java.lang.reflect.*,ej.components.registry.*,properties.*,ej.kf.*,org.json.me.*,java.util.*,ej.wadapps.admin.*,ej.wadapps.storage.*,ej.bon.*,ej.wadapps.app.*,ej.util.logging.handler.*
-entryPoint=com.microej.example.iot.cbor.json.app.CborJsonEntryPoint

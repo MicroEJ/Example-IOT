@@ -1,7 +1,7 @@
 /*
  * Java
  *
- * Copyright 2019-2022 MicroEJ Corp. All rights reserved.
+ * Copyright 2019-2023 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.iot;
@@ -27,7 +27,6 @@ public class Main {
 	private static final String SCRIPT = "script.js"; //$NON-NLS-1$
 	private static final String STYLE = "styles.css"; //$NON-NLS-1$
 	private static final int PORT = 8080;
-	private static RestServer restServer;
 
 	/**
 	 * Entry point.
@@ -38,7 +37,7 @@ public class Main {
 	 *             if the server cannot be started.
 	 */
 	public static void main(String[] args) throws IOException {
-		restServer = new RestServer(PORT, 10, 2);
+		RestServer restServer = new RestServer(PORT, 10, 2);
 		IndexEndpoint index = new IndexEndpoint();
 		restServer.addEndpoint(index);
 		// Add an alias to get the index by default.
@@ -48,13 +47,4 @@ public class Main {
 		restServer.addEndpoint(new ResourceRestEndpoint(STYLE, RESOURCES + STYLE));
 		restServer.start();
 	}
-
-	/**
-	 * Stops the server.
-	 */
-	public static void stop() {
-		restServer.stop();
-
-	}
-
 }

@@ -1,5 +1,0 @@
-Manifest-Version: 1.0
-Application-Id: MQTTPublisher
-Application-Version: 4.0.0
-Application-PrintableName: Publisher
-Application-Description: Publisher

@@ -1,5 +1,0 @@
-#Fri Dec 03 17:01:55 CET 2021
-version=1.0.0
-name=CborExample
-types=ej.util.property.*,java.util.logging.*,ej.cbor.*,com.microej.example.iot.cbor.*,immutables.*,ej.basictool.*,ej.basictool.map.*,java.security.*,ej.components.*,ej.wadapps.property.*,ej.wadapps.management.*,ej.components.registry.util.*,ej.wadapps.registry.*,org.eclipse.core.runtime.*,ej.components.dependencyinjection.*,ej.components.dependencyinjection.util.*,java.lang.*,ej.io.progress.*,ej.wadapps.registry.util.*,ej.annotation.*,ej.components.registry.impl.*,java.io.*,java.lang.ref.*,__CborExample__.generated.*,ej.observable.*,java.lang.annotation.*,java.lang.reflect.*,ej.components.registry.*,properties.*,ej.kf.*,ej.wadapps.admin.*,ej.wadapps.storage.*,java.util.*,ej.bon.*,ej.wadapps.app.*,ej.util.logging.handler.*
-entryPoint=com.microej.example.iot.cbor.CborEntryPoint

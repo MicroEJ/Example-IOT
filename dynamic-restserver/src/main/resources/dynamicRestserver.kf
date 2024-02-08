@@ -1,5 +1,0 @@
-#Thu Dec 09 15:17:33 CET 2021
-version=1.0.0
-name=dynamicRestserver
-types=ej.hoka.log.*,ej.util.property.*,java.util.logging.*,ej.restserver.*,ej.basictool.*,ej.basictool.map.*,ej.util.message.*,java.security.*,ej.components.*,javax.net.*,ej.wadapps.property.*,ej.restserver.endpoint.*,ej.wadapps.management.*,ej.components.registry.util.*,ej.wadapps.registry.*,java.net.*,ej.resserver.log.*,org.eclipse.core.runtime.*,ej.components.dependencyinjection.*,ej.components.dependencyinjection.util.*,java.lang.*,ej.io.progress.*,__dynamicRestserver__.generated.*,ej.hoka.http.*,ej.wadapps.registry.util.*,ej.annotation.*,ej.components.registry.impl.*,java.io.*,java.lang.ref.*,ej.hoka.http.support.*,ej.observable.*,java.lang.annotation.*,java.lang.reflect.*,ej.hoka.io.*,ej.components.registry.*,properties.*,ej.hoka.tcp.*,ej.kf.*,ej.hoka.http.body.*,java.util.*,ej.wadapps.admin.*,ej.wadapps.storage.*,ej.bon.*,com.microej.example.iot.*,ej.util.message.basic.*,com.microej.example.iot.server.*,ej.wadapps.app.*,ej.util.logging.handler.*
-entryPoint=com.microej.example.iot.DynamicServerEntryPoint

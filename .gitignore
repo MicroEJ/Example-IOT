@@ -7,3 +7,14 @@ target~/
 src-adpgenerated/
 **/com.microej.example.iot.*/com.microej.example.iot.*/
 filesystem/
+build/
+.gradle/
+.idea/
+.vscode/
+.iml
+.settings
+.project
+.classpath
+
+build.gradle
+local.properties

@@ -1,54 +1,67 @@
 # Overview
-A MicroEJ sandboxed application that uses the org.json.me parser provided by json.org to parse and browse a [JSON file](src/main/resources/json/menu.json). 
+
+This example shows how to use the org.json.me parser provided by json.org to parse and browse a [JSON file](src/main/resources/json/menu.json). 
 
 The contents of the JSON file is taken from an example available from http://www.json.org/example.html
 
 The example then iterates over all the **menuitem** elements available in the **popup** menu and print their contents.
 
-# Usage
-
-## Run on MicroEJ Simulator
-
-1. Right Click on the project
-2. Select Main
-3. Select **Run as -> MicroEJ Application**
-4. Select your platform
-5. Press **Ok**
-
-## Run on device
-
-### Local deploy
-
-1. Right Click on the project
-2. Select **Run as -> Run Configurations...** 
-3. Select **MicroEJ Application** configuration kind
-4. Click on **New launch configuration** icon
-5. In **Execution** tab
-	1. In **Target** frame, in **Platform** field, select a relevant platform
-	2. In **Execution** frame
-		1. Select **Execute on Device**
-		2. In **Settings** field, select **Build & Deploy**
-6. In **Configuration** tab
-	1. In **Board** frame
-		1. Set **Host** field to your board IP address
-7. Press **Apply**
-8. Press **Run**
-
 # Requirements
+
+* MICROEJ SDK 6.
+* A VEE Port that contains:
+    * EDC-1.3 or higher
+    * BON-1.4 or higher
 
 This example has been tested on:
 
-* MicroEJ SDK 5.1
-* With a platform that contains:
-    * EDC-1.2 or higher
-    * BON-1.2 or higher
-    * KF-1.5 or higher
+* Android Studio with MicroEJ plugin for Android Studio 0.1.2.
+* [STM32F7508-DK VEE Port 2.2.0.](https://github.com/MicroEJ/VEEPort-STMicroelectronics-STM32F7508-DK/tree/2.2.0)
 
-## Dependencies
+# Usage
 
-_All dependencies are retrieved transitively by MicroEJ Module Manager_.
+By default, the sample will use the STM32F7508-DK VEE Port.
+
+Refer to the [Select a VEE Port](https://docs.microej.com/en/latest/SDK6UserGuide/selectVeePort.html) documentation for more information.
+
+## Run on Simulator
+
+In Android Studio:
+- Open the Gradle tool window by clicking on the elephant icon on the right side,
+- Expand the `Tasks` list,
+- From the `Tasks` list, expand the `microej` list,
+- Double-click on `runOnSimulator`,
+- The application starts, the traces are visible in the Run view.
+
+Alternative ways to run in simulation are described in the [Run on Simulator](https://docs.microej.com/en/latest/SDK6UserGuide/runOnSimulator.html) documentation.
+
+## Run on Device
+
+Make sure to properly setup the VEE Port environment before going further.
+Refer to the VEE Port README for more information.
+
+In Android Studio:
+- Open the Gradle tool window by clicking on the elephant on the right side,
+- Expand the `Tasks` list,
+- From the `Tasks` list, expand the `microej` list,
+- Double-Click on `runOnDevice`.
+- The device is flashed. Use the appropriate tool to retrieve the execution traces.
+
+Alternative ways to run on device are described in the [Run on Device](https://docs.microej.com/en/latest/SDK6UserGuide/runOnDevice.html) documentation.
+
+# Dependencies
+
+_All dependencies are retrieved transitively by Gradle._
+
+# Source
+
+N/A
+
+# Restrictions
+
+None.
 
 ---  
 _Markdown_   
-_Copyright 2019-2022 MicroEJ Corp. All rights reserved._   
-_Use of this source code is governed by a BSD-style license that can be found with this software._
+_Copyright 2019-2024 MicroEJ Corp. All rights reserved._   
+_Use of this source code is governed by a BSD-style license that can be found with this software._  
