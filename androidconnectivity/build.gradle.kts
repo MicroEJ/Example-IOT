@@ -6,10 +6,10 @@
  */
 
 group = "com.microej.example.iot"
-version = "4.0.0"
+version = "4.1.0"
 
 plugins {
-    id("com.microej.gradle.application") version "0.14.0"
+    id("com.microej.gradle.application") version "0.17.0"
 }
 
 dependencies {
@@ -44,10 +44,10 @@ dependencies {
     /*
      * To use a VEE Port published in an artifact repository use this VEE Port dependency.
      */
-    microejVeePort("com.microej.veeport.st.stm32f7508-dk:M5QNX_eval:2.2.0")
+    microejVee("com.microej.veeport.st.stm32f7508-dk:M5QNX_eval:2.2.0")
 }
 
 microej {
-    applicationMainClass = "com.microej.example.iot.androidconnectivity.Main"
+    applicationEntryPoint = "com.microej.example.iot.androidconnectivity.Main"
     skippedCheckers = "nullanalysis"
 }

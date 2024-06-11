@@ -8,6 +8,21 @@ The format is based on `Keep a Changelog <https://keepachangelog.com/en/1.0.0/>`
 and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0.html>`_.
 
 -------------------
+16.1.0 - 2024-06-11
+-------------------
+
+Added
+=====
+
+- Add HTTPS Client example.
+
+Changed
+=======
+
+- Update samples to MicroEJ SDK 6 0.17.0 plug-in.
+- Minor README updates.
+
+-------------------
 16.0.0 - 2024-02-08
 -------------------
 
