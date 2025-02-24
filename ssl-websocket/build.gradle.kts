@@ -1,15 +1,15 @@
 /*
  * Kotlin
  *
- * Copyright 2023-2024 MicroEJ Corp. All rights reserved.
+ * Copyright 2023-2025 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 
 group = "com.microej.example.iot"
-version = "3.1.0"
+version = "3.2.0"
 
 plugins {
-    id("com.microej.gradle.application") version "0.17.0"
+    id("com.microej.gradle.application") version "1.0.0"
 }
 
 dependencies {
