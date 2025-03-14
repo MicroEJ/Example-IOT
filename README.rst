@@ -1,10 +1,10 @@
-.. Copyright 2019-2024 MicroEJ Corp. All rights reserved.
+.. Copyright 2019-2025 MicroEJ Corp. All rights reserved.
 .. Use of this source code is governed by a BSD-style license that can be found with this software.
 
 .. image:: https://shields.microej.com/endpoint?url=https://repository.microej.com/packages/badges/sdk_6.0.json
    :alt: sdk_6 badge
-.. image:: https://shields.microej.com/endpoint?url=https://repository.microej.com/packages/badges/arch_8.0.json
-   :alt: arch_8.0 badge
+.. image:: https://shields.microej.com/endpoint?url=https://repository.microej.com/packages/badges/arch_8.3.json
+   :alt: arch_8.3 badge
    :align: left
 
 
@@ -18,7 +18,10 @@ Overview
 
 This project gathers simple applications using IoT libraries.
 
-By default, the samples will use the `STM32F7508-DK VEE Port <https://github.com/MicroEJ/VEEPort-STMicroelectronics-STM32F7508-DK>`_.
+By default, the samples are using either the
+`NXP i.MX RT1170 VEE Port <https://github.com/MicroEJ/nxp-vee-imxrt1170-evk>`_ or
+the `STM32F7508-DK VEE Port <https://github.com/MicroEJ/VEEPort-STMicroelectronics-STM32F7508-DK>`_.
+Those VEE Ports are retrieved as modules.
 
 See https://github.com/search?q=org%3AMicroEJ+VEEPort&type=repositories for the list of supported boards using MICROEJ SDK.
 
@@ -33,6 +36,7 @@ Each subfolder contains a distinct IoT application and its own README file.
 | `cbor <cbor/>`__: shows how to use the ej.cbor serializer/deserializer.
 | `cbor-json <cbor-json/>`__: shows how to use the ej.cbor with json serializer/deserializer.
 | `dynamic-restserver <dynamic-restserver/>`__: shows how to use a rest server.
+| `https-client <https-client/>`__: shows how to establish an HTTPS connection.
 | `json <json/>`__: shows how to use the org.json.me parser.
 | `mqtt-publisher <mqtt-publisher/>`__: shows how to publish MQTT data to a regular MQTT broker.
 | `mqtt-subscriber <mqtt-subscriber/>`__: shows how to subscribe to a regular MQTT broker.

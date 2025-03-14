@@ -6,29 +6,34 @@
  */
 
 group = "com.microej.example.iot"
-version = "3.2.0"
+version = "3.3.0"
 
 plugins {
-    id("com.microej.gradle.application") version "1.0.0"
+    id("com.microej.gradle.application") version libs.versions.microej.sdk
+}
+
+microej {
+    applicationEntryPoint = "com.microej.example.iot.ssl.websocket.Main"
+    skippedCheckers = "nullanalysis"
 }
 
 dependencies {
     //Core libraries.
-    implementation("ej.api:edc:1.3.5")
-    implementation("ej.api:bon:1.4.3")
-    implementation("ej.api:net:1.1.4")
-    implementation("ej.api:ssl:2.2.3")
+    implementation(libs.api.edc)
+    implementation(libs.api.bon)
+    implementation(libs.api.net)
+    implementation(libs.api.ssl)
 
-    implementation("ej.library.runtime:service:1.1.1")
-    implementation("ej.library.eclasspath:logging:1.2.1")
-
+    implementation(libs.library.service)
+    implementation(libs.library.logging)
+    
     //Addon Libraries used for the example.
-    implementation("ej.library.iot:websocket:2.0.1")
-    implementation("ej.library.iot:websocket-secure:2.0.1")
+    implementation(libs.library.websocket)
+    implementation(libs.library.websocket.secure)
 
     //This is used in case the application is run in standalone, in a multiapp firmware, the Connectivity Manager is provided by the firmware.
-    implementation("ej.library.iot:connectivity:2.1.0")
-    implementation("ej.library.iot:net-util:1.2.0")
+    implementation(libs.library.connectivity)
+    implementation(libs.library.net.util)
 
     /*
      * Put your test dependencies here. An example of test dependency declaration is provided below:
@@ -40,10 +45,5 @@ dependencies {
     /*
      * To use a VEE Port published in an artifact repository use this VEE Port dependency.
      */
-    microejVee("com.microej.veeport.st.stm32f7508-dk:M5QNX_eval:2.2.0")
-}
-
-microej {
-    applicationEntryPoint = "com.microej.example.iot.ssl.websocket.Main"
-    skippedCheckers = "nullanalysis"
+    microejVee(libs.vee.port.st.stm32f7508)
 }

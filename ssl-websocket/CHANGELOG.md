@@ -3,6 +3,16 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.3.0] - 2025-03-14
+
+### Changed
+
+- Update STM32F7508 VEE Port to ``2.3.0``.
+- Define ``build.gradle.kts`` dependencies in [libs.versions.toml](../gradle/libs.versions.toml).
+- Update README to use IntelliJ IDEA.
+- Add ``Expected Behavior`` section in the README.
+- Update ``com.microej.gradle.application`` plugin version to `1.1.0`.
+
 ## [3.2.0] - 2025-02-24
 
 ### Changed
@@ -20,27 +30,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-  - Update to MicroEJ SDK 6 and switch from Ivy to Gradle.
-  - Update license.
-  - Update echo server to ws.ifelse.io.
+- Update to MicroEJ SDK 6 and switch from Ivy to Gradle.
+- Update license.
+- Update echo server to ws.ifelse.io.
 
 ## [2.0.0] - 2022-14-11
 
 ### Changed
 
-  - Remove Wadapps dependency.
-  - Use Service library.
-  - Update license.
-  - Simplify project name.
-  - Update WebSocket dependencies (1.1.0 -> 2.0.1).
-  - Update echo server to echo.microej.com.
+- Remove Wadapps dependency.
+- Use Service library.
+- Update license.
+- Simplify project name.
+- Update WebSocket dependencies (1.1.0 -> 2.0.1).
+- Update echo server to echo.microej.com.
 
 ## [1.0.0] - 2019-02-19
 
 ### Added
 
-  - Connect to websocket.org send an echo message as text then binary.
-  
+- Connect to websocket.org send an echo message as text then binary.
+
 ---  
 _Markdown_   
 _Copyright 2019-2025 MicroEJ Corp. All rights reserved._   

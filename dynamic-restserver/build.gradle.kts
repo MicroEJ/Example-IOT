@@ -6,10 +6,15 @@
  */
 
 group = "com.microej.example.iot"
-version = "3.2.0"
+version = "3.3.0"
 
 plugins {
-    id("com.microej.gradle.application") version "1.0.0"
+    id("com.microej.gradle.application") version libs.versions.microej.sdk
+}
+
+microej {
+    applicationEntryPoint = "com.microej.example.iot.Main"
+    skippedCheckers = "nullanalysis"
 }
 
 dependencies {
@@ -17,16 +22,18 @@ dependencies {
      * Put your project dependencies here. An example of project dependency declaration is provided below:
      *
      * implementation("[org]:[otherArtifact]:[M.m.p]")
-     * e.g.: implementation("ej.library.runtime:basictool:1.7.0")
+     * e.g.: implementation(libs.library.basictool)
      */
 
-    //Core libraries.
-    implementation("ej.api:edc:1.3.5")
-    implementation("ej.api:bon:1.4.3")
-    implementation("ej.api:net:1.1.4")
+    implementation(libs.api.edc)
+    implementation(libs.api.bon)
+    implementation(libs.api.net)
 
-    //Libraries used for the example.
-    implementation("ej.library.iot:restserver:4.1.0")
+    implementation(libs.library.restserver)
+    implementation(libs.library.connectivity)
+    implementation(libs.library.logging)
+    implementation(libs.library.service)
+
 
     /*
      * Put your test dependencies here. An example of test dependency declaration is provided below:
@@ -38,10 +45,5 @@ dependencies {
     /*
      * To use a VEE Port published in an artifact repository use this VEE Port dependency.
      */
-    microejVee("com.microej.veeport.st.stm32f7508-dk:M5QNX_eval:2.2.0")
-}
-
-microej {
-    applicationEntryPoint = "com.microej.example.iot.Main"
-    skippedCheckers = "nullanalysis"
+   microejVee(libs.vee.port.nxp.mimxrt1170)
 }

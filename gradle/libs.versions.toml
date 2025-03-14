@@ -1,0 +1,39 @@
+# Copyright 2025 MicroEJ Corp. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be found with this software.
+
+# These variables are used to centralize versioned dependencies. It is used by the individual build.gradle.kts files.
+
+[versions]
+microej-sdk = "1.1.0"
+
+[libraries]
+# APIs
+api-edc =                       { group = "ej.api", name = "edc", version = "1.3.7" }
+api-bon =                       { group = "ej.api", name = "bon", version = "1.4.4" }
+api-net =                       { group = "ej.api", name = "net", version = "1.1.4" }
+api-ssl =                       { group = "ej.api", name = "ssl", version = "2.2.3" }
+api-trace =                     { group = "ej.api", name = "trace", version = "1.1.1" }
+
+# Add-on libraries
+library-httpclient =            { group = "ej.library.eclasspath", name = "httpclient", version = "1.5.0" }
+library-httpsclient =           { group = "ej.library.eclasspath", name = "httpsclient", version = "1.3.0" }
+library-logging =               { group = "ej.library.eclasspath", name = "logging", version = "1.2.1" }
+library-url =                   { group = "ej.library.eclasspath", name = "url", version = "1.2.1" }
+library-android-connectivity =  { group = "ej.library.iot", name = "android-connectivity", version = "1.3.0" }
+library-cbor =                  { group = "ej.library.iot", name = "cbor", version = "1.2.0" }
+library-connectivity =          { group = "ej.library.iot", name = "connectivity", version = "2.1.0" }
+library-micropaho =             { group = "ej.library.iot", name = "micropaho", version = "1.0.0" }
+library-net-util =              { group = "ej.library.iot", name = "net-util", version = "1.4.0" }
+library-restclient =            { group = "ej.library.iot", name = "restclient", version = "1.1.0" }
+library-restserver =            { group = "ej.library.iot", name = "restserver", version = "5.0.0" }
+library-sntpclient =            { group = "ej.library.iot", name = "sntpclient", version = "1.4.0" }
+library-websocket-secure =      { group = "ej.library.iot", name = "websocket-secure", version = "2.0.1" }
+library-websocket =             { group = "ej.library.iot", name = "websocket", version = "2.0.1" }
+library-basictool =             { group = "ej.library.runtime", name = "basictool", version = "1.7.0" }
+library-service =               { group = "ej.library.runtime", name = "service", version = "1.1.1" }
+library-exit =                  { group = "ej.library.util", name = "exit", version = "1.2.0" }
+library-json =                  { group = "org.json.me", name = "json", version = "1.4.0" }
+
+# Default VEE Port
+vee-port-nxp-mimxrt1170 =       { group = "com.nxp.vee.mimxrt1170", name = "vee-port", version = "3.0.0" }
+vee-port-st-stm32f7508 =        { group = "com.microej.veeport.st.stm32f7508-dk", name = "M5QNX_eval", version = "2.3.0" }

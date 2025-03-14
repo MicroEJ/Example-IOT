@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.3.0] - 2025-03-14
+
+### Changed
+
+-
+Use [NXP i.MX RT1170 VEE Port v3.0.0](https://github.com/MicroEJ/nxp-vee-imxrt1170-evk/tree/NXPVEE-MIMXRT1170-EVK-3.0.0)
+by default.
+- Define ``build.gradle.kts`` dependencies in [libs.versions.toml](../gradle/libs.versions.toml).
+- Update README to use IntelliJ IDEA.
+- Add ``Expected Behavior`` section in the README.
+- Update ``com.microej.gradle.application`` plugin version to `1.1.0`.
+
 ## [5.2.0] - 2025-02-24
 
 ### Changed
@@ -22,55 +34,54 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-  - Update to MicroEJ SDK 6 and switch from Ivy to Gradle.
-  - Update license.
+- Update to MicroEJ SDK 6 and switch from Ivy to Gradle.
+- Update license.
 
 ## [4.0.0] - 2022-14-11
 
 ### Changed
 
-  - Remove Wadapps dependency.
-  - Use Service library.
-  - Update license.
-  - Simplify project name.
+- Remove Wadapps dependency.
+- Use Service library.
+- Update license.
+- Simplify project name.
 
 ## [3.0.0] - 2019-09-05
 
 ### Changed
 
-  - Update to MMM.
-  - Take advantage of the abstraction of Net-Util.
-  
+- Update to MMM.
+- Take advantage of the abstraction of Net-Util.
+
 ## [2.1.0] - 2018-08-01
 
 ### Fixed
 
-  - Fix unregistering on lost
-  
+- Fix unregistering on lost
+
 ### Added
 
-  - Use connectivity manager 1.1.0.
-  - Add default connectivity manager for standalone usage
-  
+- Use connectivity manager 1.1.0.
+- Add default connectivity manager for standalone usage
 
 ## [2.0.1] - 2017-08-07
 
 ### Fixed
 
-  - Change the port of broker.
+- Change the port of broker.
 
 ## [2.0.0] - 2016-12-29
 
 ### Added
 
-  - Change organization.
+- Change organization.
 
 ## [1.0.0]
 
 ### Added
 
-  - Initial revision.
-  
+- Initial revision.
+
 ---  
 _Markdown_   
 _Copyright 2019-2025 MicroEJ Corp. All rights reserved._   

@@ -6,10 +6,15 @@
  */
 
 group = "com.microej.example.iot"
-version = "4.2.0"
+version = "4.3.0"
 
 plugins {
-    id("com.microej.gradle.application") version "1.0.0"
+    id("com.microej.gradle.application") version libs.versions.microej.sdk
+}
+
+microej {
+    applicationEntryPoint = "com.microej.example.iot.androidconnectivity.Main"
+    skippedCheckers = "nullanalysis"
 }
 
 dependencies {
@@ -17,22 +22,22 @@ dependencies {
      * Put your project dependencies here. An example of project dependency declaration is provided below:
      *
      * implementation("[org]:[otherArtifact]:[M.m.p]")
-     * e.g.: implementation("ej.library.runtime:basictool:1.7.0")
+     * e.g.: implementation(libs.library.basictool)
      */
 
     //Core libraries.
-    implementation("ej.api:edc:1.3.5")
-    implementation("ej.api:bon:1.4.3")
-    implementation("ej.api:net:1.1.4")
+    implementation(libs.api.edc)
+    implementation(libs.api.bon)
+    implementation(libs.api.net)
 
     //Addon Libraries used for the example.
-    implementation("ej.library.runtime:service:1.1.1")
-    implementation("ej.library.eclasspath:logging:1.2.1")
-    implementation("ej.library.iot:net-util:1.2.0")
-    implementation("ej.library.iot:android-connectivity:1.2.0")
+    implementation(libs.library.service)
+    implementation(libs.library.logging)
+    implementation(libs.library.net.util)
+    implementation(libs.library.android.connectivity)
 
     //This is used in case the application is run in standalone, in a multiapp firmware, the Connectivity Manager is provided by the firmware.
-    implementation("ej.library.iot:connectivity:2.1.0")
+    implementation(libs.library.connectivity)
 
     /*
      * Put your test dependencies here. An example of test dependency declaration is provided below:
@@ -44,10 +49,5 @@ dependencies {
     /*
      * To use a VEE Port published in an artifact repository use this VEE Port dependency.
      */
-    microejVee("com.microej.veeport.st.stm32f7508-dk:M5QNX_eval:2.2.0")
-}
-
-microej {
-    applicationEntryPoint = "com.microej.example.iot.androidconnectivity.Main"
-    skippedCheckers = "nullanalysis"
+    microejVee(libs.vee.port.nxp.mimxrt1170)
 }

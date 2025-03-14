@@ -1,7 +1,7 @@
 /*
  * Java
  *
- * Copyright 2016-2023 MicroEJ Corp. All rights reserved.
+ * Copyright 2016-2025 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.iot.mqtt;
@@ -9,22 +9,20 @@ package com.microej.example.iot.mqtt;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import android.net.Network;
+import android.net.NetworkCapabilities;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import android.net.ConnectivityManager;
-import ej.net.util.connectivity.ConnectivityUtil;
-import ej.net.util.connectivity.SimpleNetworkCallback;
-import ej.net.util.connectivity.SimpleNetworkCallbackAdapter;
 import ej.service.ServiceFactory;
-
 
 /**
  * This example connects to a MQTT broker, creates a callback and subscribes to the topic "MqttHelloWorld".
  */
-public class Main implements SimpleNetworkCallback {
+public class Main {
 
 	/**
 	 * Application logger.
@@ -33,50 +31,53 @@ public class Main implements SimpleNetworkCallback {
 	private MqttClient client;
 	private Thread thread;
 	private boolean subscribe;
-	private SimpleNetworkCallbackAdapter simpleNetworkCallbackAdapter;
 
 	public static void main(String[] args) {
 		// Display all logs
 		Main.LOGGER.setLevel(Level.ALL);
-
-		new Main().start();
-	}
-
-	@Override
-	public void onInternet(boolean connected) {
-		if (connected) {
-			subscribe();
-		} else {
-			disconnect();
+		try {
+			waitForConnectivity();
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
 		}
+
+		new Main().mqttSubscribe();
 	}
 
-	@Override
-	public void onConnectivity(boolean isConnected) {
-		if (isConnected) {
-			LOGGER.info("Network available"); //$NON-NLS-1$
-		} else {
-			LOGGER.info("Network Lost"); //$NON-NLS-1$
-			disconnect();
-		}
-	}
-
-	/**
-	 * Starts the listening.
-	 */
-	public synchronized void start() {
-		if (simpleNetworkCallbackAdapter == null) {
-			ConnectivityManager connectivityManager = ServiceFactory.getService(ConnectivityManager.class);
-			if (connectivityManager != null) {
-				simpleNetworkCallbackAdapter = new SimpleNetworkCallbackAdapter(this);
-				ConnectivityUtil.registerAndCall(connectivityManager, simpleNetworkCallbackAdapter);
-			} else {
-				LOGGER.severe("No connectivity manager found"); //$NON-NLS-1$
+	public static void waitForConnectivity() throws InterruptedException {
+		LOGGER.info("=========== Waiting for connectivity ==========="); //$NON-NLS-1$
+		final Object mutex = new Object();
+		final ConnectivityManager service = ServiceFactory.getServiceLoader().getService(ConnectivityManager.class);
+		if (service != null) {
+			ConnectivityManager.NetworkCallback callback = new ConnectivityManager.NetworkCallback() {
+				@Override
+				public void onCapabilitiesChanged(Network network, NetworkCapabilities networkCapabilities) {
+					if (networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)) {
+						synchronized (mutex) {
+							mutex.notifyAll();
+						}
+					}
+				}
+			};
+			service.registerDefaultNetworkCallback(callback);
+			NetworkCapabilities capabilities = service.getNetworkCapabilities(service.getActiveNetwork());
+			if (capabilities == null || !capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)) {
+				synchronized (mutex) {
+					try {
+						mutex.wait();
+					} catch (InterruptedException e) {
+						throw new InterruptedException(e.getMessage());
+					}
+				}
 			}
+			service.unregisterNetworkCallback(callback);
+			LOGGER.info("Connected"); //$NON-NLS-1$
+		} else {
+			LOGGER.info("No connectivity manager found."); //$NON-NLS-1$
 		}
 	}
 
-	private synchronized void subscribe() {
+	private synchronized void mqttSubscribe() {
 		if (!subscribe) {
 			subscribe = true;
 			thread = new Thread(new Runnable() {

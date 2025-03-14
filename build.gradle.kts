@@ -7,7 +7,7 @@
  
 allprojects {
     group = "com.microej.example"
-    version = "16.2.0"
+    version = "16.3.0"
 }
 
 subprojects {

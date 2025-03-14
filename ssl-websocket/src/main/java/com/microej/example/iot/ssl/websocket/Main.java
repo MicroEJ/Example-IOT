@@ -51,7 +51,7 @@ public class Main implements Endpoint {
 	private static final Logger LOGGER = java.util.logging.Logger.getLogger("WEBSOCKET"); //$NON-NLS-1$
 
 	// The server certificate file name
-	private static final String SERVER_CERT_FILENAME = "GTSRootR1.crt"; //$NON-NLS-1$
+	private static final String SERVER_CERT_FILENAME = "GTSRootR4.crt"; //$NON-NLS-1$
 	private static final String SERVER_CERT_PATH = "/certificates/"; //$NON-NLS-1$
 
 	// X509 certificate type name

@@ -11,7 +11,7 @@ Refer to the [ssl-mutual](../ssl-mutual/) example to run the Client code.
 This example has been tested on:
 
 * Windows 10/11.
-* Android Studio with MicroEJ plugin for Android Studio 0.1.2.
+* IntelliJ IDEA with MicroEJ plugin for IntelliJ IDEA ``1.1.0``.
 * MICROEJ SDK 6.
 * With a JRE 11.
 
@@ -22,14 +22,21 @@ This sample only runs on PC.
 This sample is pre-configured with certificates.
 To change the certificates, follow the ``Changing Certificates`` section.
 
-## Run the Server Code
+## Run the Server
 
-In Android Studio:
-- Open the Gradle tool window by clicking on the elephant icon on the right side,
-- Expand the `Tasks` list,
-- From the `Tasks` list, expand the `application` list,
-- Double-click on `run`,
-- The application starts, the traces are visible in the Run view.
+Run the following command in your IDE
+(or click the ``Play`` button next to the line
+below when opening this README in IntelliJ IDEA):
+
+`./gradlew :ssl-mutual-server:run`
+
+## Expected Behavior
+
+The application starts, the traces are visible in the Run view:
+
+```
+Server waiting for connection on 12345
+```
 
 ## Changing Certificates
 
@@ -84,5 +91,5 @@ None.
 
 ---  
 _Markdown_   
-_Copyright 2019-2024 MicroEJ Corp. All rights reserved._   
+_Copyright 2019-2025 MicroEJ Corp. All rights reserved._   
 _Use of this source code is governed by a BSD-style license that can be found with this software._  

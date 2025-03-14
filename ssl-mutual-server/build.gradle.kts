@@ -13,9 +13,9 @@ plugins {
     application
 }
 
-dependencies {
-}
-
 application {
     mainClass.set("com.microej.example.iot.ssl.mutual.server.Server")
+}
+
+dependencies {
 }

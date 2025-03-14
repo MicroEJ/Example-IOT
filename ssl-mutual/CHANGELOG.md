@@ -3,6 +3,16 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.3.0] - 2025-03-14
+
+### Changed
+
+- Update STM32F7508 VEE Port to ``2.3.0``.
+- Define ``build.gradle.kts`` dependencies in [libs.versions.toml](../gradle/libs.versions.toml).
+- Update README to use IntelliJ IDEA.
+- Add ``Expected Behavior`` section in the README.
+- Update ``com.microej.gradle.application`` plugin version to `1.1.0`.
+
 ## [3.2.0] - 2025-02-24
 
 ### Changed
@@ -20,29 +30,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-  - Update to MicroEJ SDK 6 and switch from Ivy to Gradle.
-  - Update license.
+- Update to MicroEJ SDK 6 and switch from Ivy to Gradle.
+- Update license.
 
 ## [2.0.1] - 2023-01-10
 
 ### Fixed
 
-  - Broken link in the README.
+- Broken link in the README.
 
 ## [2.0.0] - 2022-14-11
 
 ### Changed
 
-  - Remove Wadapps dependency.
-  - Use Service library.
-  - Update license.
-  - Simplify project name.
+- Remove Wadapps dependency.
+- Use Service library.
+- Update license.
+- Simplify project name.
 
 ## [1.0.0] - 2019-10-08
 
 ### Added
 
-  - Initial revision.
+- Initial revision.
 
 ---  
 _Markdown_   
