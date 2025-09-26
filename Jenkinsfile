@@ -8,4 +8,7 @@ buildWithGradle {
 ARTIFACTS_DOMAIN = 'public'
 CODE_ANALYSIS_SKIP_QUALITY_GATE = true
 
+ARTIFACTS_DOMAIN = 'public'
+SKIP_PUBLICATION = true
+
 }
