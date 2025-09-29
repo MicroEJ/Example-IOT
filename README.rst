@@ -1,4 +1,4 @@
-.. Copyright 2019-2025 MicroEJ Corp. All rights reserved.
+.. Copyright 2025 MicroEJ Corp. All rights reserved.
 .. Use of this source code is governed by a BSD-style license that can be found with this software.
 
 .. image:: https://shields.microej.com/endpoint?url=https://repository.microej.com/packages/badges/sdk_6.0.json
@@ -45,6 +45,7 @@ Each subfolder contains a distinct IoT application and its own README file.
 | `ssl-mutual <ssl-mutual/>`__: shows a mutual authentication.
 | `ssl-mutual-server <ssl-mutual-server/>`__: shows how to use a mutual server with SSL.
 | `ssl-rest-headless <ssl-rest-headless/>`__: shows a simple Resty using TLS.
+| `ssl-simple <ssl-simple/>`__: demonstrates a simple TLS handshake with example.org.
 | `ssl-websocket <ssl-websocket/>`__: shows how to use WebSockets connecting to echo.microej.com over TLS.
 
 Changes

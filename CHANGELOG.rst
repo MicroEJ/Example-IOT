@@ -8,6 +8,15 @@ The format is based on `Keep a Changelog <https://keepachangelog.com/en/1.0.0/>`
 and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0.html>`_.
 
 -------------------
+16.4.0 - 2025-09-25
+-------------------
+
+Added
+=======
+
+- New simple SSL handshake sample connecting to [example.org](https://example.org/).
+
+-------------------
 16.3.0 - 2025-03-14
 -------------------
 
@@ -200,6 +209,6 @@ Added
 --------------
 
 .. ReStructuredText
-.. Copyright 2016-2025 MicroEJ Corp. All rights reserved.
+.. Copyright 2025 MicroEJ Corp. All rights reserved.
 .. Use of this source code is governed by a BSD-style license that can be found with this software.
 
